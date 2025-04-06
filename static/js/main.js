@@ -48,7 +48,17 @@ function initNavigation() {
             // Only for mobile view
             if (window.innerWidth <= 992) {
                 e.preventDefault();
+                e.stopPropagation(); // Detiene la propagación para evitar que el documento cierre el menú
                 this.classList.toggle('show');
+                
+                // Encuentra el menú desplegable asociado a este toggle
+                const dropdownMenu = this.nextElementSibling;
+                if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu')) {
+                    // Evitar que los clics en el menú desplegable cierren el menú principal
+                    dropdownMenu.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                    });
+                }
                 
                 // Close other dropdowns
                 dropdownToggles.forEach(otherToggle => {

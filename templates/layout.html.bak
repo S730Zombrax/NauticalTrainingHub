@@ -60,6 +60,7 @@
                         <li><a class="dropdown-item" href="{{ url_for('registro') }}">Registro QR</a></li>
                     </ul>
                 </li>
+                
                 <!-- Vida Académica (Dropdown) -->
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="academicaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -200,7 +201,6 @@
     <!-- Main JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/menu-fix.js') }}"></script>
     
     {% block extra_js %}{% endblock %}
 </body>
