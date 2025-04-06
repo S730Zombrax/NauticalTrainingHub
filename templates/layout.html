@@ -48,41 +48,61 @@
                 <li class="nav-item">
                     <a href="{{ url_for('index') }}" class="nav-link">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('registro') }}" class="nav-link">Registro</a>
+                
+                <!-- Admisión y Registro (Dropdown) -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="admisionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admisión <i class="fas fa-angle-down ms-1"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="admisionDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('admision') }}">Proceso de Admisión</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('registro') }}">Registro QR</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('admision') }}" class="nav-link">Admisión</a>
+                
+                <!-- Vida Académica (Dropdown) -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="academicaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vida Académica <i class="fas fa-angle-down ms-1"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="academicaDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('historia') }}">Historia</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('vida_cadete') }}">Vida del Cadete</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('pasantias') }}">Pasantías</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('idiomas') }}">Programa de Idiomas</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('historia') }}" class="nav-link">Historia</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('pasantias') }}" class="nav-link">Pasantías</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('idiomas') }}" class="nav-link">Idiomas</a>
-                </li>
+                
+                <!-- Uniformes -->
                 <li class="nav-item">
                     <a href="{{ url_for('uniforme') }}" class="nav-link">Uniforme</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('vida_cadete') }}" class="nav-link">Vida del Cadete</a>
+                
+                <!-- Recursos (Dropdown) -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="recursosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Recursos <i class="fas fa-angle-down ms-1"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="recursosDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('biblioteca') }}">Biblioteca</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('games') }}">Simulaciones</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('games') }}" class="nav-link">Games</a>
+                
+                <!-- Noticias y Eventos (Dropdown) -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="noticiasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Noticias y Eventos <i class="fas fa-angle-down ms-1"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('noticias') }}">Noticias</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('jornada') }}">Jornadas</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('noticias') }}" class="nav-link">Noticias</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('jornada') }}" class="nav-link">Jornadas</a>
-                </li>
+                
+                <!-- Contacto -->
                 <li class="nav-item">
                     <a href="{{ url_for('sugerencias') }}" class="nav-link">Sugerencias</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url_for('biblioteca') }}" class="nav-link">Biblioteca</a>
                 </li>
             </ul>
         </div>
