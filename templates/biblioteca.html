@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+
+{% block title %}Biblioteca Virtual - Universidad Marítima del Caribe{% endblock %}
+
+{% block content %}
+<!-- Biblioteca Hero Section -->
+<section class="hero">
+    <div class="container hero-content text-center">
+        <h1 class="hero-title">Biblioteca Virtual</h1>
+        <p class="hero-subtitle">Accede a recursos académicos, publicaciones y documentos especializados en ingeniería naval y ciencias marítimas.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Categorías de la Biblioteca -->
+                <div class="page-content">
+                    <h2 class="section-title text-center">Recursos Disponibles</h2>
+                    
+                    <!-- Tabs de navegación -->
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs mb-4 justify-content-center" id="biblioteca-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="libros-tab" data-bs-toggle="tab" data-bs-target="#libros" type="button" role="tab" aria-controls="libros" aria-selected="true">
+                                    <i class="fas fa-book me-2"></i> Libros Técnicos
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="revistas-tab" data-bs-toggle="tab" data-bs-target="#revistas" type="button" role="tab" aria-controls="revistas" aria-selected="false">
+                                    <i class="fas fa-newspaper me-2"></i> Revistas Especializadas
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="normas-tab" data-bs-toggle="tab" data-bs-target="#normas" type="button" role="tab" aria-controls="normas" aria-selected="false">
+                                    <i class="fas fa-gavel me-2"></i> Normativas Marítimas
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="tesis-tab" data-bs-toggle="tab" data-bs-target="#tesis" type="button" role="tab" aria-controls="tesis" aria-selected="false">
+                                    <i class="fas fa-graduation-cap me-2"></i> Tesis y Proyectos
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Contenido de los tabs -->
+                        <div class="tab-content" id="biblioteca-tabs-content">
+                            <!-- Libros -->
+                            <div class="tab-pane fade show active" id="libros" role="tabpanel" aria-labelledby="libros-tab">
+                                <div class="alert alert-info mb-4">
+                                    <i class="fas fa-info-circle me-2"></i> Próximamente: Acceso completo a nuestra biblioteca digital de libros técnicos.
+                                </div>
+                                
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                    <!-- Libro 1 -->
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="card-title m-0">Principios de Ingeniería Naval</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="text-muted mb-3">Autor: J. Martínez Hernández</p>
+                                                <p class="card-text">Fundamentos de diseño, estabilidad y propulsión de embarcaciones comerciales y militares.</p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <button class="btn btn-sm btn-outline-primary disabled w-100">
+                                                    <i class="fas fa-book-reader me-2"></i> Leer (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Libro 2 -->
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="card-title m-0">Sistemas de Propulsión Marina</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="text-muted mb-3">Autor: C. Ramírez Rojas</p>
+                                                <p class="card-text">Análisis de sistemas convencionales y alternativos para embarcaciones modernas.</p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <button class="btn btn-sm btn-outline-primary disabled w-100">
+                                                    <i class="fas fa-book-reader me-2"></i> Leer (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Libro 3 -->
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="card-title m-0">Navegación Electrónica</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="text-muted mb-3">Autor: M. Sánchez López</p>
+                                                <p class="card-text">Sistemas avanzados de navegación, radar y comunicaciones marítimas.</p>
+                                            </div>
+                                            <div class="card-footer bg-light">
+                                                <button class="btn btn-sm btn-outline-primary disabled w-100">
+                                                    <i class="fas fa-book-reader me-2"></i> Leer (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Revistas -->
+                            <div class="tab-pane fade" id="revistas" role="tabpanel" aria-labelledby="revistas-tab">
+                                <div class="alert alert-info mb-4">
+                                    <i class="fas fa-info-circle me-2"></i> Próximamente: Acceso a revistas científicas y publicaciones periódicas del sector marítimo.
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Revista Internacional de Ingeniería Naval</h5>
+                                                <p class="card-text">Publicación trimestral con artículos científicos sobre avances en tecnología naval.</p>
+                                                <p class="text-muted">Último número: Vol. 45, No. 2 (2024)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Marine Technology Today</h5>
+                                                <p class="card-text">Revista especializada en innovaciones tecnológicas aplicadas a la industria marítima.</p>
+                                                <p class="text-muted">Último número: Marzo 2024</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Normativas -->
+                            <div class="tab-pane fade" id="normas" role="tabpanel" aria-labelledby="normas-tab">
+                                <div class="alert alert-info mb-4">
+                                    <i class="fas fa-info-circle me-2"></i> Próximamente: Acceso a normativas internacionales y regulaciones marítimas actualizadas.
+                                </div>
+                                
+                                <div class="accordion" id="normativas-accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-solas">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-solas" aria-expanded="false" aria-controls="collapse-solas">
+                                                Convenio SOLAS
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-solas" class="accordion-collapse collapse" aria-labelledby="heading-solas" data-bs-parent="#normativas-accordion">
+                                            <div class="accordion-body">
+                                                <p>Convenio Internacional para la Seguridad de la Vida Humana en el Mar (SOLAS). Establece normas mínimas relativas a la construcción, equipamiento y operación de buques.</p>
+                                                <button class="btn btn-sm btn-outline-primary mt-2 disabled">
+                                                    <i class="fas fa-file-pdf me-2"></i> Ver documento (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-marpol">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-marpol" aria-expanded="false" aria-controls="collapse-marpol">
+                                                Convenio MARPOL
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-marpol" class="accordion-collapse collapse" aria-labelledby="heading-marpol" data-bs-parent="#normativas-accordion">
+                                            <div class="accordion-body">
+                                                <p>Convenio Internacional para Prevenir la Contaminación por los Buques (MARPOL). Principal convenio internacional para la prevención de la contaminación del medio marino por buques.</p>
+                                                <button class="btn btn-sm btn-outline-primary mt-2 disabled">
+                                                    <i class="fas fa-file-pdf me-2"></i> Ver documento (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-stcw">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-stcw" aria-expanded="false" aria-controls="collapse-stcw">
+                                                Convenio STCW
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-stcw" class="accordion-collapse collapse" aria-labelledby="heading-stcw" data-bs-parent="#normativas-accordion">
+                                            <div class="accordion-body">
+                                                <p>Convenio Internacional sobre Normas de Formación, Titulación y Guardia para la Gente de Mar (STCW). Establece normas mínimas sobre formación, certificación y guardia para la gente de mar.</p>
+                                                <button class="btn btn-sm btn-outline-primary mt-2 disabled">
+                                                    <i class="fas fa-file-pdf me-2"></i> Ver documento (Próximamente)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tesis -->
+                            <div class="tab-pane fade" id="tesis" role="tabpanel" aria-labelledby="tesis-tab">
+                                <div class="alert alert-info mb-4">
+                                    <i class="fas fa-info-circle me-2"></i> Próximamente: Repositorio de tesis, proyectos finales y trabajos de investigación de nuestros estudiantes.
+                                </div>
+                                
+                                <div class="list-group mb-4">
+                                    <a href="#" class="list-group-item list-group-item-action disabled">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Análisis de Eficiencia Energética en Sistemas de Propulsión Híbridos</h5>
+                                            <small>2023</small>
+                                        </div>
+                                        <p class="mb-1">Estudio comparativo de sistemas de propulsión híbridos en buques comerciales, con enfoque en consumo de combustible y emisiones.</p>
+                                        <small>Por: Carlos Mendoza - Tesis de Grado</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action disabled">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Implementación de Sistemas Anticolisión en Embarcaciones Autónomas</h5>
+                                            <small>2022</small>
+                                        </div>
+                                        <p class="mb-1">Desarrollo de algoritmos de navegación automatizada con detección de obstáculos para embarcaciones no tripuladas.</p>
+                                        <small>Por: María González - Tesis de Maestría</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action disabled">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Optimización de Estructuras Navales mediante Análisis por Elementos Finitos</h5>
+                                            <small>2021</small>
+                                        </div>
+                                        <p class="mb-1">Metodología para reducción de peso en estructuras de buques mercantes manteniendo integridad estructural.</p>
+                                        <small>Por: Javier Pérez - Tesis de Grado</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recursos Adicionales -->
+                <div class="page-content">
+                    <h3 class="mb-4">Enlaces de Interés</h3>
+                    
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Base de Datos Marítima Internacional</h5>
+                                    <p class="card-text">Acceso a estadísticas, informes y documentos técnicos del sector marítimo global.</p>
+                                    <button class="btn btn-sm btn-outline-primary disabled">
+                                        <i class="fas fa-external-link-alt me-2"></i> Visitar (Próximamente)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Organización Marítima Internacional</h5>
+                                    <p class="card-text">Documentos oficiales, convenios y resoluciones de la OMI en materia de seguridad y prevención.</p>
+                                    <button class="btn btn-sm btn-outline-primary disabled">
+                                        <i class="fas fa-external-link-alt me-2"></i> Visitar (Próximamente)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-secondary">
+                        <h5><i class="fas fa-laptop me-2"></i> Acceso Remoto</h5>
+                        <p class="mb-0">Los estudiantes pueden acceder a todos los recursos digitales de la biblioteca desde cualquier ubicación utilizando sus credenciales institucionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
