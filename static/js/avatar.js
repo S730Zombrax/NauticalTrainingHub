@@ -106,11 +106,11 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Preview column (placeholder)
     const previewCol = document.createElement('div');
-    previewCol.className = 'col-md-3 mb-4';
+    previewCol.className = 'col-md-4 mb-4';
     
     const previewTitle = document.createElement('h4');
-    previewTitle.className = 'text-center mb-5';
-    previewTitle.textContent = 'Vista Previa del Uniforme';
+    previewTitle.className = 'text-center mb-4';
+    previewTitle.innerHTML = 'Vista Previa<br>del Uniforme';
     previewCol.appendChild(previewTitle);
     
     const previewPlaceholder = document.createElement('div');
@@ -126,10 +126,10 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Controls column
     const controlsCol = document.createElement('div');
-    controlsCol.className = 'col-md-9';
+    controlsCol.className = 'col-md-8';
     
     const uniformTitle = document.createElement('h4');
-    uniformTitle.className = 'mb-3';
+    uniformTitle.className = 'mb-4';
     uniformTitle.textContent = 'Seleccionar Uniforme';
     controlsCol.appendChild(uniformTitle);
     
