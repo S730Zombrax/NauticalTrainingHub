@@ -377,3 +377,30 @@ function scrollToAnchor(target, offset = 80) {
         });
     }
 }
+
+/**
+ * Inicializar las animaciones de elementos al hacer scroll
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar las animaciones al hacer scroll
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const checkIfInView = () => {
+        animatedElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.classList.add('animated');
+                const animation = element.getAttribute('data-animation') || 'fade-in';
+                element.classList.add(animation);
+            }
+        });
+    };
+    
+    // Verificar elementos al cargar la página
+    checkIfInView();
+    
+    // Verificar elementos al hacer scroll
+    window.addEventListener('scroll', checkIfInView);
+});
