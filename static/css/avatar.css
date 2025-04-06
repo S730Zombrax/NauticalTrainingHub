@@ -1,13 +1,12 @@
 /**
  * Universidad Marítima del Caribe - Marine Engineering
- * Avatar System Styles for Uniform Visualization
+ * Avatar System Styles for Uniform Visualization (Simplified)
  */
 
 :root {
   --avatar-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --avatar-border-radius: 10px;
   --avatar-transition: all 0.3s ease;
-  --avatar-spacing: 20px;
 }
 
 .avatar-container {
@@ -18,77 +17,14 @@
   margin-bottom: 30px;
 }
 
-.avatar-preview-container {
+.preview-placeholder {
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.avatar-preview {
-  width: 300px;
-  height: 450px;
-  position: relative;
-  background-color: #f5f7fa;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.avatar-silhouette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.avatar-layers {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-
-.avatar-head {
-  position: absolute;
-  z-index: 5;
-}
-
-.avatar-body {
-  position: absolute;
-  z-index: 4;
-}
-
-.avatar-legs {
-  position: absolute;
-  z-index: 3;
-}
-
-.avatar-accessory {
-  position: absolute;
-  z-index: 6;
-}
-
-.avatar-controls {
-  width: 100%;
-}
-
-.uniform-category {
-  margin-bottom: 30px;
-}
-
-.uniform-category-title {
-  font-size: 1.2rem;
-  color: #003366;
-  margin-bottom: 15px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #f9a826;
-  display: inline-block;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  color: #555;
 }
 
 .uniform-options {
@@ -146,8 +82,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  color: #003366;
 }
 
 .uniform-option-img img {
@@ -163,24 +97,8 @@
   font-weight: 500;
 }
 
-.uniform-description {
-  background-color: #f8f9fa;
+.uniform-info {
   border-left: 4px solid #0077b6;
-  padding: 15px;
-  border-radius: 0 8px 8px 0;
-  margin-top: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.uniform-description-title {
-  font-size: 1.1rem;
-  color: #003366;
-  margin-bottom: 10px;
-}
-
-.uniform-description-text {
-  margin-bottom: 15px;
-  line-height: 1.5;
 }
 
 .uniform-features {
@@ -203,50 +121,8 @@
   font-weight: bold;
 }
 
-.avatar-actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.avatar-label {
-  font-weight: 600;
-  color: #003366;
-  font-size: 1.1rem;
-}
-
-@media (max-width: 992px) {
-  .avatar-container {
-    flex-direction: column;
-  }
-  
-  .avatar-preview-container {
-    margin: 0 auto 20px;
-  }
-  
-  .uniform-options {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .uniform-options {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .avatar-preview {
-    width: 250px;
-    height: 375px;
-  }
-  
-  .avatar-actions {
-    flex-direction: column;
-  }
-  
-  .uniform-option-img {
-    width: 50px;
-    height: 50px;
   }
 }
