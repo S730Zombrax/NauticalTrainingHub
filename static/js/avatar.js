@@ -106,10 +106,10 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Preview column (placeholder)
     const previewCol = document.createElement('div');
-    previewCol.className = 'col-md-4 mb-4';
+    previewCol.className = 'col-md-3 mb-4';
     
     const previewTitle = document.createElement('h4');
-    previewTitle.className = 'text-center mb-4';
+    previewTitle.className = 'text-center mb-5';
     previewTitle.textContent = 'Vista Previa del Uniforme';
     previewCol.appendChild(previewTitle);
     
@@ -117,7 +117,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     previewPlaceholder.className = 'preview-placeholder text-center p-5 bg-light rounded';
     previewPlaceholder.innerHTML = `
         <div class="tshirt-container">
-            <i class="fas fa-tshirt fa-4x text-primary mb-3"></i>
+            <i class="fas fa-tshirt fa-4x text-primary mb-4"></i>
         </div>
         <p><strong>Próximamente:</strong> Visualización en 3D de uniformes</p>
         <p class="text-muted small">Estamos trabajando en esta funcionalidad para brindarte una experiencia visual más completa.</p>
@@ -126,7 +126,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Controls column
     const controlsCol = document.createElement('div');
-    controlsCol.className = 'col-md-8';
+    controlsCol.className = 'col-md-9';
     
     const uniformTitle = document.createElement('h4');
     uniformTitle.className = 'mb-3';
