@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Universidad Marítima del Caribe - Ingeniería Marina{% endblock %}</title>
+    <title>{% block title %}Universidad Marítima del Caribe - Ingeniería Marítima{% endblock %}</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚓</text></svg>">
@@ -22,6 +22,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -35,7 +36,7 @@
                     <path d="M12 22V16M12 12V16M8 16H16" stroke="#003559" stroke-width="2"/>
                     <circle cx="12" cy="8" r="2" fill="#f9a826"/>
                 </svg>
-                <span>UMC Ingeniería Marina</span>
+                <span>UMC Ingeniería Marítima</span>
             </a>
             
             <div class="navbar-toggle">

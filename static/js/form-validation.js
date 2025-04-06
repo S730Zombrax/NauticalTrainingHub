@@ -1,5 +1,5 @@
 /**
- * Universidad Marítima del Caribe - Marine Engineering
+ * Universidad Marítima del Caribe - Maritime Engineering
  * Form Validation Script
  */
 
