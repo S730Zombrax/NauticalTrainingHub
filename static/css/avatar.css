@@ -26,12 +26,16 @@
   border: 2px dashed #ccc;
   color: #555;
   position: relative;
-  z-index: 1;
+  margin-top: 30px;
+}
+
+.tshirt-container {
+  margin-bottom: 20px;
+  z-index: 10;
 }
 
 .preview-placeholder i {
-  z-index: 5;
-  position: relative;
+  display: block;
   background: white;
   border-radius: 50%;
   padding: 15px;
