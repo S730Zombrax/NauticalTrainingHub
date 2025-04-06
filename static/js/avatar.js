@@ -106,7 +106,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Preview column (placeholder)
     const previewCol = document.createElement('div');
-    previewCol.className = 'col-md-6 mb-4';
+    previewCol.className = 'col-md-5 mb-4';
     
     const previewTitle = document.createElement('h4');
     previewTitle.className = 'text-center mb-3';
@@ -124,7 +124,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     // Controls column
     const controlsCol = document.createElement('div');
-    controlsCol.className = 'col-md-6';
+    controlsCol.className = 'col-md-7';
     
     const uniformTitle = document.createElement('h4');
     uniformTitle.className = 'mb-3';

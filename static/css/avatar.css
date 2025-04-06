@@ -25,6 +25,17 @@
   justify-content: center;
   border: 2px dashed #ccc;
   color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+.preview-placeholder i {
+  z-index: 5;
+  position: relative;
+  background: white;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .uniform-options {
@@ -96,16 +107,20 @@
   color: #333;
   font-weight: 500;
   text-align: center;
-  word-break: break-word;
-  /* Para que el texto no se corte */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
 }
 
 .uniform-info {
   border-left: 4px solid #0077b6;
+  padding-left: 15px !important;
+  width: 100%;
+}
+
+.uniform-info h5 {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .uniform-features {
@@ -118,6 +133,7 @@
   position: relative;
   padding-left: 25px;
   margin-bottom: 8px;
+  word-break: break-word;
 }
 
 .uniform-features li::before {
