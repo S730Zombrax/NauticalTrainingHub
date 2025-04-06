@@ -1,6 +1,6 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
- * Mobile Menu Fix for Dropdowns
+ * Universidad Marítima del Caribe - Ingeniería Marítima
+ * Corrección de Menú Móvil para Desplegables
  */
 
 document.addEventListener('DOMContentLoaded', function() {

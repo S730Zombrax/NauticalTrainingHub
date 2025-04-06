@@ -1,37 +1,37 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
- * Main JavaScript file
+ * Universidad Marítima del Caribe - Ingeniería Marítima
+ * Archivo JavaScript principal
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize navigation
+    // Inicializar navegación
     initNavigation();
     
-    // Initialize scroll effects
+    // Inicializar efectos de desplazamiento
     initScrollEffects();
     
-    // Initialize animations
+    // Inicializar animaciones
     initAnimations();
     
-    // Initialize custom components
+    // Inicializar componentes personalizados
     initComponents();
 });
 
 /**
- * Initialize navigation functionality
+ * Inicializar funcionalidad de navegación
  */
 function initNavigation() {
     const navbarToggle = document.querySelector('.navbar-toggle');
     const navbarMenu = document.querySelector('.navbar-menu');
     
-    // Mobile menu toggle
+    // Alternar menú móvil
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', function() {
             navbarToggle.classList.toggle('active');
             navbarMenu.classList.toggle('active');
         });
         
-        // Close menu when clicking outside
+        // Cerrar menú al hacer clic fuera
         document.addEventListener('click', function(event) {
             if (!navbarMenu.contains(event.target) && !navbarToggle.contains(event.target)) {
                 navbarMenu.classList.remove('active');
@@ -40,12 +40,12 @@ function initNavigation() {
         });
     }
     
-    // Dropdown functionality for mobile
+    // Funcionalidad desplegable para móvil
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-            // Only for mobile view
+            // Solo para vista móvil
             if (window.innerWidth <= 992) {
                 e.preventDefault();
                 e.stopPropagation(); // Detiene la propagación para evitar que el documento cierre el menú
@@ -60,7 +60,7 @@ function initNavigation() {
                     });
                 }
                 
-                // Close other dropdowns
+                // Cerrar otros desplegables
                 dropdownToggles.forEach(otherToggle => {
                     if (otherToggle !== this) {
                         otherToggle.classList.remove('show');
@@ -70,7 +70,7 @@ function initNavigation() {
         });
     });
     
-    // Close dropdowns when window is resized beyond mobile breakpoint
+    // Cerrar desplegables cuando la ventana se redimensiona más allá del punto de quiebre móvil
     window.addEventListener('resize', function() {
         if (window.innerWidth > 992) {
             navbarMenu.classList.remove('active');
@@ -81,7 +81,7 @@ function initNavigation() {
         }
     });
     
-    // Add active class to current page link
+    // Agregar clase activa al enlace de la página actual
     const currentPage = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
     
@@ -93,7 +93,7 @@ function initNavigation() {
             
             link.classList.add('active');
             
-            // If active link is in dropdown, add active class to parent dropdown toggle
+            // Si el enlace activo está en un desplegable, agregar clase activa al toggle del desplegable padre
             if (link.classList.contains('dropdown-item')) {
                 const parentDropdown = link.closest('.dropdown');
                 if (parentDropdown) {
@@ -108,7 +108,7 @@ function initNavigation() {
 }
 
 /**
- * Initialize scroll effects
+ * Inicializar efectos de desplazamiento
  */
 function initScrollEffects() {
     const navbar = document.querySelector('.navbar');
@@ -123,7 +123,7 @@ function initScrollEffects() {
         });
     }
     
-    // Smooth scroll for anchor links
+    // Desplazamiento suave para enlaces de anclaje
     document.querySelectorAll('a[href^="#"]:not(.dropdown-toggle)').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -140,10 +140,10 @@ function initScrollEffects() {
 }
 
 /**
- * Initialize animations
+ * Inicializar animaciones
  */
 function initAnimations() {
-    // Add animation classes when elements enter viewport
+    // Agregar clases de animación cuando los elementos entran en el viewport
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
     const checkIfInView = () => {
@@ -158,21 +158,21 @@ function initAnimations() {
         });
     };
     
-    // Check on scroll
+    // Verificar al desplazarse
     window.addEventListener('scroll', checkIfInView);
-    // Check on load
+    // Verificar al cargar
     checkIfInView();
 }
 
 /**
- * Initialize custom components
+ * Inicializar componentes personalizados
  */
 function initComponents() {
     initTabs();
     initAccordion();
     initAlertDismissal();
     
-    // Tooltips initialization
+    // Inicialización de tooltips
     const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
     tooltipTriggers.forEach(trigger => {
         trigger.addEventListener('mouseenter', function() {
@@ -196,7 +196,7 @@ function initComponents() {
 }
 
 /**
- * Initialize tabs component
+ * Inicializar componente de pestañas
  */
 function initTabs() {
     const tabContainers = document.querySelectorAll('.tabs-container');
@@ -209,11 +209,11 @@ function initTabs() {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Remove active class from all tabs
+                // Quitar clase activa de todas las pestañas
                 tabLinks.forEach(link => link.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
-                // Add active class to current tab
+                // Agregar clase activa a la pestaña actual
                 this.classList.add('active');
                 
                 const targetId = this.getAttribute('data-tab');
@@ -225,7 +225,7 @@ function initTabs() {
             });
         });
         
-        // Activate first tab by default
+        // Activar primera pestaña por defecto
         if (tabLinks.length > 0 && tabContents.length > 0) {
             tabLinks[0].classList.add('active');
             tabContents[0].classList.add('active');
@@ -234,7 +234,7 @@ function initTabs() {
 }
 
 /**
- * Initialize accordion component
+ * Inicializar componente de acordeón
  */
 function initAccordion() {
     const accordionItems = document.querySelectorAll('.accordion-item');
@@ -247,7 +247,7 @@ function initAccordion() {
             header.addEventListener('click', function() {
                 const isActive = item.classList.contains('active');
                 
-                // Close all accordion items
+                // Cerrar todos los elementos de acordeón
                 if (!event.ctrlKey) {
                     document.querySelectorAll('.accordion-item').forEach(otherItem => {
                         if (otherItem !== item) {
@@ -260,7 +260,7 @@ function initAccordion() {
                     });
                 }
                 
-                // Toggle current item
+                // Alternar elemento actual
                 item.classList.toggle('active');
                 
                 if (!isActive) {
@@ -274,7 +274,7 @@ function initAccordion() {
 }
 
 /**
- * Initialize alert dismissal functionality
+ * Inicializar funcionalidad de descarte de alertas
  */
 function initAlertDismissal() {
     const alerts = document.querySelectorAll('.alert');
@@ -292,7 +292,7 @@ function initAlertDismissal() {
             });
         }
         
-        // Auto close alerts after 5 seconds if they have auto-close class
+        // Cerrar automáticamente las alertas después de 5 segundos si tienen la clase auto-close
         if (alert.classList.contains('auto-close')) {
             setTimeout(() => {
                 alert.classList.add('fade-out');
@@ -306,10 +306,10 @@ function initAlertDismissal() {
 }
 
 /**
- * Utility function to show a notification
- * @param {string} message - The notification message
- * @param {string} type - The notification type (success, error, warning)
- * @param {number} duration - Duration in milliseconds
+ * Función de utilidad para mostrar una notificación
+ * @param {string} message - El mensaje de notificación
+ * @param {string} type - El tipo de notificación (success, error, warning)
+ * @param {number} duration - Duración en milisegundos
  */
 function showNotification(message, type = 'success', duration = 3000) {
     const notification = document.createElement('div');
@@ -339,7 +339,7 @@ function showNotification(message, type = 'success', duration = 3000) {
     notification.appendChild(icon);
     notification.appendChild(textSpan);
     
-    // Add close button
+    // Agregar botón de cierre
     const closeBtn = document.createElement('button');
     closeBtn.className = 'notification-close';
     closeBtn.innerHTML = '&times;';
@@ -352,15 +352,15 @@ function showNotification(message, type = 'success', duration = 3000) {
     
     notification.appendChild(closeBtn);
     
-    // Append notification to body
+    // Agregar notificación al body
     document.body.appendChild(notification);
     
-    // Show notification with animation
+    // Mostrar notificación con animación
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
     
-    // Hide notification after duration
+    // Ocultar notificación después de la duración
     setTimeout(() => {
         notification.classList.add('fade-out');
         setTimeout(() => {
@@ -370,9 +370,9 @@ function showNotification(message, type = 'success', duration = 3000) {
 }
 
 /**
- * Utility function for smooth scrolling to anchor
- * @param {string} target - Target element selector
- * @param {number} offset - Offset from the top in pixels
+ * Función de utilidad para desplazamiento suave a ancla
+ * @param {string} target - Selector del elemento objetivo
+ * @param {number} offset - Desplazamiento desde la parte superior en píxeles
  */
 function scrollToAnchor(target, offset = 80) {
     const targetElement = document.querySelector(target);

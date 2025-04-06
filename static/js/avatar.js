@@ -1,6 +1,6 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
- * Avatar System for Uniform Visualization
+ * Universidad Marítima del Caribe - Ingeniería Marítima
+ * Sistema de Avatar para Visualización de Uniformes
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Initialize the avatar uniform system
+ * Inicializar el sistema de uniforme de avatar
  */
 function initAvatarSystem() {
     const avatarContainer = document.querySelector('.avatar-container');
     
     if (!avatarContainer) return;
     
-    // Define uniform categories and items
+    // Definir categorías y elementos de uniformes
     const uniformData = {
         uniforms: [
             {
@@ -87,24 +87,24 @@ function initAvatarSystem() {
         ]
     };
     
-    // Create HTML structure for avatar system
+    // Crear estructura HTML para el sistema de avatar
     createSimpleAvatarSystem(avatarContainer, uniformData);
 }
 
 /**
- * Create a simple avatar system structure
- * @param {HTMLElement} container - The container element
- * @param {Object} uniformData - Data for uniforms and accessories
+ * Crear una estructura simple para el sistema de avatar
+ * @param {HTMLElement} container - El elemento contenedor
+ * @param {Object} uniformData - Datos para uniformes y accesorios
  */
 function createSimpleAvatarSystem(container, uniformData) {
-    // Clear container
+    // Limpiar contenedor
     container.innerHTML = '';
     
-    // Create main elements
+    // Crear elementos principales
     const row = document.createElement('div');
     row.className = 'row';
     
-    // Preview column (placeholder)
+    // Columna de vista previa (placeholder)
     const previewCol = document.createElement('div');
     previewCol.className = 'col-md-4 mb-4';
     
@@ -121,7 +121,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     `;
     previewCol.appendChild(previewPlaceholder);
     
-    // Controls column
+    // Columna de controles
     const controlsCol = document.createElement('div');
     controlsCol.className = 'col-md-8';
     
@@ -130,7 +130,7 @@ function createSimpleAvatarSystem(container, uniformData) {
     uniformTitle.textContent = 'Seleccionar Uniforme';
     controlsCol.appendChild(uniformTitle);
     
-    // Create uniform options grid
+    // Crear cuadrícula de opciones de uniforme
     const uniformGrid = document.createElement('div');
     uniformGrid.className = 'uniform-options';
     
@@ -146,16 +146,16 @@ function createSimpleAvatarSystem(container, uniformData) {
             <div class="uniform-option-label">${uniform.name}</div>
         `;
         
-        // Add click event
+        // Agregar evento de clic
         option.addEventListener('click', () => {
-            // Remove active class from all options
+            // Quitar clase activa de todas las opciones
             document.querySelectorAll('.uniform-option').forEach(o => 
                 o.classList.remove('active'));
             
-            // Add active class to clicked option
+            // Agregar clase activa a la opción seleccionada
             option.classList.add('active');
             
-            // Update uniform info
+            // Actualizar información del uniforme
             updateUniformInfo(uniform);
         });
         
@@ -164,20 +164,20 @@ function createSimpleAvatarSystem(container, uniformData) {
     
     controlsCol.appendChild(uniformGrid);
     
-    // Uniform info section
+    // Sección de información del uniforme
     const uniformInfo = document.createElement('div');
     uniformInfo.className = 'uniform-info mt-4 p-3 bg-light rounded';
     uniformInfo.id = 'uniform-info';
     controlsCol.appendChild(uniformInfo);
     
-    // Append columns to row
+    // Agregar columnas a la fila
     row.appendChild(previewCol);
     row.appendChild(controlsCol);
     
-    // Append row to container
+    // Agregar fila al contenedor
     container.appendChild(row);
     
-    // Set initial uniform info
+    // Establecer información inicial del uniforme
     if (uniformData.uniforms.length > 0) {
         const firstOption = document.querySelector('.uniform-option');
         if (firstOption) {
@@ -188,8 +188,8 @@ function createSimpleAvatarSystem(container, uniformData) {
 }
 
 /**
- * Update uniform information display
- * @param {Object} uniform - The uniform data object
+ * Actualizar información del uniformermation display
+ * @param {Object} uniform - El objeto de datos del uniforme
  */
 function updateUniformInfo(uniform) {
     const infoContainer = document.getElementById('uniform-info');

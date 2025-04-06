@@ -1,21 +1,21 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
- * Interactive Educational Games
+ * Universidad Marítima del Caribe - Ingeniería Marítima
+ * Juegos Educativos Interactivos
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize ship stability simulator if it exists
+    // Inicializar simulador de estabilidad de buque si existe
     initStabilitySimulator();
     
-    // Initialize marine knowledge quiz if it exists
+    // Inicializar cuestionario de conocimientos marinos si existe
     initMarineQuiz();
     
-    // Initialize navigation tool if it exists
+    // Inicializar herramienta de navegación si existe
     initNavigationTool();
 });
 
 /**
- * Initialize ship stability simulator
+ * Inicializar simulador de estabilidad de buque
  */
 function initStabilitySimulator() {
     const simulator = document.getElementById('stability-simulator');
@@ -25,11 +25,11 @@ function initStabilitySimulator() {
     const context = canvas.getContext('2d');
     const controlPanel = simulator.querySelector('.simulator-controls');
     
-    // Set canvas size
+    // Configurar tamaño del canvas
     canvas.width = canvas.parentElement.offsetWidth;
     canvas.height = 400;
     
-    // Ship properties
+    // Propiedades del buque
     const ship = {
         width: canvas.width * 0.6,
         height: canvas.height * 0.3,
@@ -40,7 +40,7 @@ function initStabilitySimulator() {
         cargo: []
     };
     
-    // Water properties
+    // Propiedades del agua
     const water = {
         level: canvas.height * 0.6,
         color: '#0077b6',
@@ -49,15 +49,15 @@ function initStabilitySimulator() {
         wavePhase: 0
     };
     
-    // Function to draw the ship
+    // Función para dibujar el buque
     function drawShip() {
         context.save();
         
-        // Translate to ship center for rotation
+        // Trasladar al centro del buque para rotación
         context.translate(ship.x + ship.width / 2, ship.y + ship.height / 2);
         context.rotate(ship.angle);
         
-        // Draw hull
+        // Dibujar casco
         context.fillStyle = '#343a40';
         context.beginPath();
         context.moveTo(-ship.width / 2, -ship.height / 2);
@@ -69,11 +69,11 @@ function initStabilitySimulator() {
         context.closePath();
         context.fill();
         
-        // Draw deck
+        // Dibujar cubierta
         context.fillStyle = '#6c757d';
         context.fillRect(-ship.width / 2, -ship.height / 2, ship.width, 10);
         
-        // Draw cargo
+        // Dibujar carga
         ship.cargo.forEach(item => {
             context.fillStyle = item.color;
             context.fillRect(item.x - ship.width / 2, -ship.height / 2 + 10, item.width, item.height);
@@ -82,14 +82,14 @@ function initStabilitySimulator() {
         context.restore();
     }
     
-    // Function to draw water with waves
+    // Función para dibujar agua con olas
     function drawWater() {
         context.fillStyle = water.color;
         
         context.beginPath();
         context.moveTo(0, water.level);
         
-        // Draw wavy water surface
+        // Dibujar superficie del agua con olas
         for (let x = 0; x < canvas.width; x += 10) {
             const y = water.level + Math.sin(x * water.waveFrequency + water.wavePhase) * water.waveAmplitude;
             context.lineTo(x, y);
@@ -101,9 +101,9 @@ function initStabilitySimulator() {
         context.fill();
     }
     
-    // Function to update the simulation
+    // Función para actualizar la simulación
     function updateSimulation() {
-        // Calculate total torque and weight distribution
+        // Calcular torque total y distribución de peso
         let totalTorque = 0;
         let totalWeight = 0;
         
@@ -113,31 +113,31 @@ function initStabilitySimulator() {
             totalWeight += item.weight;
         });
         
-        // Calculate new angle based on torque
+        // Calcular nuevo ángulo basado en el torque
         const stabilityFactor = 0.00005;
         const dampingFactor = 0.95;
         
-        // Apply torque to create rotation
+        // Aplicar torque para crear rotación
         ship.angle = totalWeight > 0 ? 
             (totalTorque / totalWeight) * stabilityFactor : 0;
         
-        // Limit angle to reasonable values
+        // Limitar ángulo a valores razonables
         ship.angle = Math.max(Math.min(ship.angle, Math.PI / 6), -Math.PI / 6);
         
-        // Update water wave animation
+        // Actualizar animación de olas de agua
         water.wavePhase += 0.05;
         
-        // Clear canvas and redraw
+        // Limpiar canvas y redibujar
         context.clearRect(0, 0, canvas.width, canvas.height);
         drawWater();
         drawShip();
         
-        // Update stability indicator
+        // Actualizar indicador de estabilidad
         const stabilityIndicator = document.getElementById('stability-indicator');
         const angle = Math.abs(ship.angle * (180 / Math.PI));
         
         if (stabilityIndicator) {
-            // Update stability status
+            // Actualizar estado de estabilidad
             if (angle < 5) {
                 stabilityIndicator.textContent = 'Estable';
                 stabilityIndicator.className = 'badge bg-success';
@@ -150,11 +150,11 @@ function initStabilitySimulator() {
             }
         }
         
-        // Continue animation loop
+        // Continuar bucle de animación
         requestAnimationFrame(updateSimulation);
     }
     
-    // Create cargo item when clicking add cargo button
+    // Crear elemento de carga al hacer clic en el botón añadir carga
     const addCargoBtn = simulator.querySelector('#add-cargo');
     if (addCargoBtn) {
         addCargoBtn.addEventListener('click', () => {
@@ -164,10 +164,10 @@ function initStabilitySimulator() {
             const weight = parseFloat(weightInput.value) || 100;
             const position = parseFloat(positionInput.value) || 0;
             
-            // Calculate relative position (-50 to 50) to pixel coordinates
+            // Calcular posición relativa (-50 a 50) a coordenadas de píxeles
             const positionX = ship.width * (position + 50) / 100;
             
-            // Add new cargo
+            // Añadir nueva carga
             ship.cargo.push({
                 x: positionX,
                 width: 40,
@@ -178,7 +178,7 @@ function initStabilitySimulator() {
         });
     }
     
-    // Reset simulation when clicking reset button
+    // Reiniciar simulación al hacer clic en el botón de reinicio
     const resetBtn = simulator.querySelector('#reset-simulation');
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
@@ -187,10 +187,10 @@ function initStabilitySimulator() {
         });
     }
     
-    // Start the simulation
+    // Iniciar la simulación
     updateSimulation();
     
-    // Handle window resize
+    // Manejar redimensión de ventana
     window.addEventListener('resize', () => {
         canvas.width = canvas.parentElement.offsetWidth;
         ship.width = canvas.width * 0.6;
@@ -199,13 +199,13 @@ function initStabilitySimulator() {
 }
 
 /**
- * Initialize marine knowledge quiz
+ * Inicializar cuestionario de conocimientos marinos
  */
 function initMarineQuiz() {
     const quizContainer = document.getElementById('marine-quiz');
     if (!quizContainer) return;
     
-    // Quiz questions
+    // Preguntas del cuestionario
     const questions = [
         {
             question: "¿Cuál es la principal función de un ingeniero marino a bordo de un buque?",
@@ -262,7 +262,7 @@ function initMarineQuiz() {
     let currentQuestion = 0;
     let score = 0;
     
-    // Create quiz HTML structure
+    // Crear estructura HTML del cuestionario
     function createQuiz() {
         const quizContent = document.createElement('div');
         quizContent.className = 'quiz-content';
@@ -301,21 +301,21 @@ function initMarineQuiz() {
         quizContainer.appendChild(quizContent);
         showQuestion(currentQuestion);
         
-        // Event listeners
+        // Manejadores de eventos
         document.getElementById('next-question').addEventListener('click', nextQuestion);
         document.getElementById('restart-quiz').addEventListener('click', restartQuiz);
     }
     
-    // Show current question
+    // Mostrar pregunta actual
     function showQuestion(index) {
         const questionData = questions[index];
         const questionContainer = document.getElementById('question-container');
         
-        // Update progress
+        // Actualizar progreso
         document.getElementById('current-question').textContent = index + 1;
         document.querySelector('.progress-bar').style.width = `${((index+1)/questions.length)*100}%`;
         
-        // Create question HTML
+        // Crear HTML de la pregunta
         const questionHTML = `
             <div class="quiz-question">
                 <h4>${questionData.question}</h4>
@@ -333,9 +333,9 @@ function initMarineQuiz() {
         questionContainer.innerHTML = questionHTML;
     }
     
-    // Move to next question
+    // Pasar a la siguiente pregunta
     function nextQuestion() {
-        // Check if an option is selected
+        // Verificar si se ha seleccionado una opción
         const selectedOption = document.querySelector('input[name="quiz-option"]:checked');
         
         if (!selectedOption) {
@@ -343,13 +343,13 @@ function initMarineQuiz() {
             return;
         }
         
-        // Check if answer is correct
+        // Verificar si la respuesta es correcta
         const answer = parseInt(selectedOption.value);
         if (answer === questions[currentQuestion].answer) {
             score++;
         }
         
-        // Move to next question or show results
+        // Pasar a la siguiente pregunta or show results
         currentQuestion++;
         
         if (currentQuestion < questions.length) {
@@ -359,7 +359,7 @@ function initMarineQuiz() {
         }
     }
     
-    // Show quiz results
+    // Mostrar resultados del cuestionario
     function showResults() {
         document.getElementById('question-container').style.display = 'none';
         document.getElementById('next-question').style.display = 'none';
@@ -367,7 +367,7 @@ function initMarineQuiz() {
         
         document.getElementById('final-score').textContent = score;
         
-        // Result message based on score
+        // Mensaje de resultado basado en la puntuación
         const resultMessage = document.getElementById('result-message');
         const percentage = (score / questions.length) * 100;
         
@@ -383,7 +383,7 @@ function initMarineQuiz() {
         }
     }
     
-    // Restart quiz
+    // Reiniciar cuestionario
     function restartQuiz() {
         currentQuestion = 0;
         score = 0;
@@ -394,12 +394,12 @@ function initMarineQuiz() {
         document.getElementById('quiz-results').style.display = 'none';
     }
     
-    // Initialize quiz
+    // Inicializar cuestionario
     createQuiz();
 }
 
 /**
- * Initialize navigation tool
+ * Inicializar herramienta de navegación
  */
 function initNavigationTool() {
     const navTool = document.getElementById('navigation-tool');
@@ -408,11 +408,11 @@ function initNavigationTool() {
     const canvas = navTool.querySelector('canvas');
     const context = canvas.getContext('2d');
     
-    // Set canvas size
+    // Configurar tamaño del canvas
     canvas.width = canvas.parentElement.offsetWidth;
     canvas.height = 400;
     
-    // Navigation data
+    // Datos de navegación
     const navigation = {
         ship: {
             x: canvas.width / 2,
@@ -445,16 +445,16 @@ function initNavigationTool() {
         }
     };
     
-    // Draw the navigation scene
+    // Dibujar la escena de navegación
     function drawNavigation() {
-        // Clear canvas
+        // Limpiar canvas
         context.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Draw ocean background
+        // Dibujar fondo de océano
         context.fillStyle = '#e9f4fd';
         context.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Draw grid
+        // Dibujar cuadrícula
         context.strokeStyle = '#cfe5f7';
         context.lineWidth = 1;
         
@@ -473,7 +473,7 @@ function initNavigationTool() {
             context.stroke();
         }
         
-        // Draw obstacles (shallow waters or rocks)
+        // Dibujar obstáculos (aguas poco profundas o rocas)
         context.fillStyle = 'rgba(150, 120, 100, 0.6)';
         navigation.obstacles.forEach(obstacle => {
             context.beginPath();
@@ -481,7 +481,7 @@ function initNavigationTool() {
             context.fill();
         });
         
-        // Draw waypoints
+        // Dibujar puntos de navegación
         context.fillStyle = '#0077b6';
         navigation.waypoints.forEach(waypoint => {
             context.beginPath();
@@ -496,13 +496,13 @@ function initNavigationTool() {
             context.fillStyle = '#0077b6';
         });
         
-        // Draw wind indicator
+        // Dibujar indicador de viento
         drawWindIndicator(canvas.width - 70, 70, navigation.wind.direction, navigation.wind.strength);
         
-        // Draw current indicator
+        // Dibujar indicador de corriente
         drawCurrentIndicator(canvas.width - 70, 140, navigation.current.direction, navigation.current.strength);
         
-        // Draw ship
+        // Dibujar barco
         context.save();
         context.translate(navigation.ship.x, navigation.ship.y);
         context.rotate(navigation.ship.angle);
@@ -518,11 +518,11 @@ function initNavigationTool() {
         context.restore();
     }
     
-    // Draw wind indicator
+    // Dibujar indicador de viento
     function drawWindIndicator(x, y, direction, strength) {
         context.save();
         
-        // Draw circle background
+        // Dibujar círculo de fondo
         context.fillStyle = 'rgba(255, 255, 255, 0.8)';
         context.beginPath();
         context.arc(x, y, 30, 0, Math.PI * 2);
@@ -532,7 +532,7 @@ function initNavigationTool() {
         context.lineWidth = 1;
         context.stroke();
         
-        // Draw direction arrow
+        // Dibujar flecha de dirección
         context.translate(x, y);
         context.rotate(direction);
         
@@ -549,7 +549,7 @@ function initNavigationTool() {
         context.lineTo(5, -15);
         context.stroke();
         
-        // Draw strength lines
+        // Dibujar líneas de intensidad
         const lines = Math.min(Math.floor(strength / 5), 5);
         for (let i = 0; i < lines; i++) {
             context.beginPath();
@@ -560,18 +560,18 @@ function initNavigationTool() {
         
         context.restore();
         
-        // Label
+        // Etiqueta
         context.fillStyle = '#343a40';
         context.font = '12px Arial';
         context.textAlign = 'center';
         context.fillText('Viento', x, y + 40);
     }
     
-    // Draw current indicator
+    // Dibujar indicador de corriente
     function drawCurrentIndicator(x, y, direction, strength) {
         context.save();
         
-        // Draw circle background
+        // Dibujar círculo de fondo
         context.fillStyle = 'rgba(255, 255, 255, 0.8)';
         context.beginPath();
         context.arc(x, y, 30, 0, Math.PI * 2);
@@ -581,14 +581,14 @@ function initNavigationTool() {
         context.lineWidth = 1;
         context.stroke();
         
-        // Draw direction arrow
+        // Dibujar flecha de dirección
         context.translate(x, y);
         context.rotate(direction);
         
         context.strokeStyle = '#15b383';
         context.lineWidth = 2;
         
-        // Draw wavy line for current
+        // Dibujar línea ondulada para la corriente
         context.beginPath();
         context.moveTo(0, -20);
         
@@ -602,7 +602,7 @@ function initNavigationTool() {
         
         context.stroke();
         
-        // Draw arrowhead
+        // Dibujar punta de flecha
         context.beginPath();
         context.moveTo(-5, -15);
         context.lineTo(0, -20);
@@ -611,14 +611,14 @@ function initNavigationTool() {
         
         context.restore();
         
-        // Label
+        // Etiqueta
         context.fillStyle = '#343a40';
         context.font = '12px Arial';
         context.textAlign = 'center';
         context.fillText('Corriente', x, y + 40);
     }
     
-    // Handle ship controls
+    // Manejar controles del barco
     function handleShipControls() {
         const speedControl = navTool.querySelector('#ship-speed');
         const turnControl = navTool.querySelector('#ship-turn');
@@ -638,7 +638,7 @@ function initNavigationTool() {
         }
     }
     
-    // Update ship status display
+    // Actualizar visualización del estado del barco
     function updateShipStatus() {
         const speedDisplay = navTool.querySelector('#speed-value');
         const headingDisplay = navTool.querySelector('#heading-value');
@@ -653,46 +653,46 @@ function initNavigationTool() {
         }
     }
     
-    // Update simulation
+    // Actualizar simulación
     function updateSimulation() {
-        // Update ship position based on speed
+        // Actualizar posición del barco según la velocidad
         navigation.ship.x += Math.cos(navigation.ship.angle) * navigation.ship.speed / 10;
         navigation.ship.y += Math.sin(navigation.ship.angle) * navigation.ship.speed / 10;
         
-        // Apply turn rate
+        // Aplicar tasa de giro
         navigation.ship.angle += navigation.ship.turnRate / 10;
         
-        // Apply wind effect (simplified)
+        // Aplicar efecto del viento (simplificado)
         const windEffect = navigation.wind.strength * 0.01;
         navigation.ship.x += Math.cos(navigation.wind.direction) * windEffect;
         navigation.ship.y += Math.sin(navigation.wind.direction) * windEffect;
         
-        // Apply current effect (simplified)
+        // Aplicar efecto de la corriente (simplificado)
         const currentEffect = navigation.current.strength * 0.02;
         navigation.ship.x += Math.cos(navigation.current.direction) * currentEffect;
         navigation.ship.y += Math.sin(navigation.current.direction) * currentEffect;
         
-        // Keep ship on screen
+        // Mantener el barco en pantalla
         navigation.ship.x = Math.max(0, Math.min(canvas.width, navigation.ship.x));
         navigation.ship.y = Math.max(0, Math.min(canvas.height, navigation.ship.y));
         
-        // Update ship status display
+        // Actualizar visualización del estado del barco
         updateShipStatus();
         
-        // Redraw scene
+        // Redibujar escena
         drawNavigation();
         
-        // Continue animation
+        // Continuar animación
         requestAnimationFrame(updateSimulation);
     }
     
-    // Initialize controls
+    // Inicializar controles
     handleShipControls();
     
-    // Start simulation
+    // Iniciar simulación
     updateSimulation();
     
-    // Handle window resize
+    // Manejar redimensión de ventana
     window.addEventListener('resize', () => {
         canvas.width = canvas.parentElement.offsetWidth;
         drawNavigation();
