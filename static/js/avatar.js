@@ -30,6 +30,7 @@ function initAvatarSystem() {
                     'Zapatos negros de vestir',
                     'Gorra de plato con distintivo UMC'
                 ],
+                imageUrl: '/static/images/uniforms/gala.svg',
                 components: {
                     head: {
                         id: 'gorra-gala',
@@ -66,6 +67,7 @@ function initAvatarSystem() {
                     'Zapatos negros',
                     'Gorra azul marino con logo UMC'
                 ],
+                imageUrl: '/static/images/uniforms/diario.svg',
                 components: {
                     head: {
                         id: 'gorra-diario',
@@ -102,6 +104,7 @@ function initAvatarSystem() {
                     'Medias blancas',
                     'Opcional: sudadera para clima frío'
                 ],
+                imageUrl: '/static/images/uniforms/deportivo.svg',
                 components: {
                     head: {
                         id: 'ninguno',
@@ -138,6 +141,7 @@ function initAvatarSystem() {
                     'Calzado cerrado resistente',
                     'Equipo de protección según actividad'
                 ],
+                imageUrl: '/static/images/uniforms/laboratorio.svg',
                 components: {
                     head: {
                         id: 'casco-seguridad',
@@ -174,6 +178,7 @@ function initAvatarSystem() {
                     'Calzado de seguridad',
                     'Casco y equipo de protección (según área)'
                 ],
+                imageUrl: '/static/images/uniforms/pasantias.svg',
                 components: {
                     head: {
                         id: 'casco-pasantias',
@@ -198,37 +203,6 @@ function initAvatarSystem() {
                         }
                     ]
                 }
-            }
-        ],
-        accessories: [
-            {
-                id: 'gorra',
-                name: 'Gorra Oficial',
-                options: [
-                    { id: 'gorra-gala', name: 'Gorra de Gala', icon: '🎩' },
-                    { id: 'gorra-diaria', name: 'Gorra Diaria', icon: '🧢' },
-                    { id: 'casco-seguridad', name: 'Casco de Seguridad', icon: '⛑️' },
-                    { id: 'ninguno', name: 'Sin Gorra', icon: '🚫' }
-                ]
-            },
-            {
-                id: 'insignia',
-                name: 'Insignias',
-                options: [
-                    { id: 'insignia-oficial', name: 'Insignia Oficial', icon: '⭐' },
-                    { id: 'insignia-rango', name: 'Insignia de Rango', icon: '🔰' },
-                    { id: 'insignia-especial', name: 'Insignia Especial', icon: '🏅' },
-                    { id: 'sin-insignia', name: 'Sin Insignia', icon: '🚫' }
-                ]
-            },
-            {
-                id: 'calzado',
-                name: 'Calzado',
-                options: [
-                    { id: 'zapatos-vestir', name: 'Zapatos de Vestir', icon: '👞' },
-                    { id: 'zapatos-seguridad', name: 'Zapatos de Seguridad', icon: '🥾' },
-                    { id: 'calzado-deportivo', name: 'Calzado Deportivo', icon: '👟' }
-                ]
             }
         ]
     };
@@ -262,7 +236,20 @@ function createAvatarSystem(container, uniformData) {
     // Create avatar preview
     const previewSection = document.createElement('div');
     previewSection.className = 'avatar-preview';
-    previewSection.innerHTML = `
+    
+    // Add a human silhouette as the base
+    const silhouette = document.createElement('div');
+    silhouette.className = 'avatar-silhouette';
+    silhouette.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" width="100%" height="100%">
+            <path d="M150 50 A40 40 0 0 1 190 90 V110 A60 60 0 0 1 200 150 V300 L180 350 V420 H150 V350 L120 300 V150 A60 60 0 0 1 130 110 V90 A40 40 0 0 1 150 50Z" fill="#e0e0e0" stroke="#777" stroke-width="2"/>
+            <circle cx="150" cy="50" r="35" fill="#f5d7b5" stroke="#777" stroke-width="2"/>
+        </svg>
+    `;
+    previewSection.appendChild(silhouette);
+    
+    // Add uniform layers
+    previewSection.innerHTML += `
         <div class="avatar-base"></div>
         <div class="avatar-head"></div>
         <div class="avatar-body"></div>
@@ -293,12 +280,21 @@ function createAvatarSystem(container, uniformData) {
         option.className = 'uniform-option';
         option.dataset.uniformId = uniform.id;
         
-        option.innerHTML = `
-            <div class="uniform-option-img">
-                ${uniform.components.torso.icon}
-            </div>
-            <div class="uniform-option-label">${uniform.name}</div>
-        `;
+        if (uniform.imageUrl) {
+            option.innerHTML = `
+                <div class="uniform-option-img">
+                    <img src="${uniform.imageUrl}" alt="${uniform.name}" width="60" height="60">
+                </div>
+                <div class="uniform-option-label">${uniform.name}</div>
+            `;
+        } else {
+            option.innerHTML = `
+                <div class="uniform-option-img">
+                    ${uniform.components.torso.icon}
+                </div>
+                <div class="uniform-option-label">${uniform.name}</div>
+            `;
+        }
         
         uniformOptions.appendChild(option);
     });
