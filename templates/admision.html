@@ -1,0 +1,409 @@
+{% extends "layout.html" %}
+
+{% block title %}Proceso de Admisión - Universidad Marítima del Caribe{% endblock %}
+
+{% block content %}
+<!-- Admission Hero Section -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <h1 class="mb-4">Proceso de Admisión</h1>
+        <p class="lead">Inicia tu camino para convertirte en un Ingeniero Marino de clase mundial en la Universidad Marítima del Caribe.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Requisitos de Admisión</h2>
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Documentación Requerida</h3>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item">
+                                <i class="fas fa-id-card text-primary me-2"></i> 
+                                Cédula de identidad (original y copia)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-graduation-cap text-primary me-2"></i> 
+                                Título de Bachiller (original y copia)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-alt text-primary me-2"></i> 
+                                Notas certificadas de bachillerato (original y copia)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-user-md text-primary me-2"></i> 
+                                Certificado médico general (original)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-eye text-primary me-2"></i> 
+                                Evaluación de la visión (daltonismo y agudeza visual)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-image text-primary me-2"></i> 
+                                2 fotografías tamaño carnet (fondo blanco)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-swimmer text-primary me-2"></i> 
+                                Certificado de natación básica (25 metros)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Requisitos Físicos y Médicos</h3>
+                        <p>La carrera de Ingeniería Marina exige determinadas condiciones físicas y médicas por la naturaleza del trabajo marítimo:</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Aspecto</th>
+                                        <th>Requerimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Visión</td>
+                                        <td>20/20 (se permite corrección con lentes). Sin daltonismo.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Audición</td>
+                                        <td>Normal en ambos oídos.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sistema cardiovascular</td>
+                                        <td>Sin patologías significativas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sistema respiratorio</td>
+                                        <td>Sin asma severa o enfermedades crónicas.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Movilidad</td>
+                                        <td>Capacidad completa de movimiento y subir/bajar escaleras.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Psicológico</td>
+                                        <td>Estabilidad emocional, capacidad para trabajo bajo presión.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="mb-4">Proceso de Selección</h2>
+                
+                <div class="accordion mb-4" id="admission-accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-one">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
+                                <i class="fas fa-1 me-2"></i> Solicitud Inicial
+                            </button>
+                        </h2>
+                        <div id="collapse-one" class="accordion-collapse collapse show" aria-labelledby="heading-one" data-bs-parent="#admission-accordion">
+                            <div class="accordion-body">
+                                <p>Completa el formulario de solicitud en línea o presencialmente en la oficina de admisiones. Deberás adjuntar copias digitales de tus documentos, los cuales serán verificados cuando te presentes a la siguiente fase.</p>
+                                <div class="d-grid gap-2 col-md-6 mx-auto mt-3">
+                                    <button class="btn btn-outline-primary" disabled>
+                                        <i class="fas fa-edit me-2"></i> Completar solicitud en línea
+                                    </button>
+                                    <p class="text-center text-muted small mt-2">*El periodo de solicitudes abre el 15 de junio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-two">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-two" aria-expanded="false" aria-controls="collapse-two">
+                                <i class="fas fa-2 me-2"></i> Prueba de Aptitud Académica
+                            </button>
+                        </h2>
+                        <div id="collapse-two" class="accordion-collapse collapse" aria-labelledby="heading-two" data-bs-parent="#admission-accordion">
+                            <div class="accordion-body">
+                                <p>Los candidatos preseleccionados deben presentar una prueba de aptitud que evalúa:</p>
+                                <ul>
+                                    <li>Matemáticas (álgebra, geometría, aritmética)</li>
+                                    <li>Física básica</li>
+                                    <li>Comprensión lectora</li>
+                                    <li>Razonamiento lógico</li>
+                                </ul>
+                                <p>La prueba tiene una duración de 3 horas y se realiza en las instalaciones de la universidad.</p>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Ofrecemos un curso preparatorio opcional de 2 semanas para la prueba de aptitud.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-three">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-three" aria-expanded="false" aria-controls="collapse-three">
+                                <i class="fas fa-3 me-2"></i> Examen Médico y Físico
+                            </button>
+                        </h2>
+                        <div id="collapse-three" class="accordion-collapse collapse" aria-labelledby="heading-three" data-bs-parent="#admission-accordion">
+                            <div class="accordion-body">
+                                <p>Los aprobados en la fase académica deben someterse a:</p>
+                                <ul>
+                                    <li>Evaluación médica completa</li>
+                                    <li>Prueba de natación (25 metros en estilo libre)</li>
+                                    <li>Prueba de resistencia física básica</li>
+                                    <li>Evaluación visual especializada (incluye prueba de daltonismo)</li>
+                                </ul>
+                                <p>Estas evaluaciones se realizan con personal médico designado por la universidad para garantizar estándares uniformes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-four">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-four" aria-expanded="false" aria-controls="collapse-four">
+                                <i class="fas fa-4 me-2"></i> Entrevista Personal
+                            </button>
+                        </h2>
+                        <div id="collapse-four" class="accordion-collapse collapse" aria-labelledby="heading-four" data-bs-parent="#admission-accordion">
+                            <div class="accordion-body">
+                                <p>La entrevista evalúa aspectos como:</p>
+                                <ul>
+                                    <li>Motivación para la carrera marítima</li>
+                                    <li>Capacidad de adaptación a la vida en el mar</li>
+                                    <li>Habilidades de comunicación</li>
+                                    <li>Trabajo en equipo y liderazgo</li>
+                                    <li>Conocimiento general sobre la industria marítima</li>
+                                </ul>
+                                <p>La entrevista es conducida por un panel que incluye docentes de la facultad y un psicólogo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-five">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-five" aria-expanded="false" aria-controls="collapse-five">
+                                <i class="fas fa-5 me-2"></i> Resultados y Matrícula
+                            </button>
+                        </h2>
+                        <div id="collapse-five" class="accordion-collapse collapse" aria-labelledby="heading-five" data-bs-parent="#admission-accordion">
+                            <div class="accordion-body">
+                                <p>Los resultados se publican dentro de las dos semanas posteriores a la finalización de todas las entrevistas. Los estudiantes admitidos recibirán:</p>
+                                <ul>
+                                    <li>Carta de aceptación oficial</li>
+                                    <li>Paquete de bienvenida con información del programa</li>
+                                    <li>Instrucciones para el proceso de matrícula</li>
+                                    <li>Calendario académico</li>
+                                    <li>Lista de requisitos para el primer día de clases</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Timeline -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title m-0">Calendario de Admisión</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">JUN</span>
+                                        <strong class="d-block">15</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Apertura de Solicitudes</h5>
+                                    <p class="text-muted mb-0">Inicio del periodo de admisión</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">JUL</span>
+                                        <strong class="d-block">30</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Cierre de Solicitudes</h5>
+                                    <p class="text-muted mb-0">Último día para aplicar</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">AGO</span>
+                                        <strong class="d-block">15</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Prueba de Aptitud</h5>
+                                    <p class="text-muted mb-0">Examen de conocimientos</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">AGO</span>
+                                        <strong class="d-block">25</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Exámenes Médicos</h5>
+                                    <p class="text-muted mb-0">Evaluaciones físicas</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">SEP</span>
+                                        <strong class="d-block">5-10</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Entrevistas</h5>
+                                    <p class="text-muted mb-0">Evaluación personal</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">SEP</span>
+                                        <strong class="d-block">20</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Resultados</h5>
+                                    <p class="text-muted mb-0">Publicación de admitidos</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex">
+                                <div class="me-3 text-center">
+                                    <div class="bg-primary text-white rounded p-2 mb-1">
+                                        <span class="d-block">OCT</span>
+                                        <strong class="d-block">1-15</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1">Matrícula</h5>
+                                    <p class="text-muted mb-0">Registro formal de admitidos</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="card-title m-0">Contacto de Admisiones</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Para cualquier consulta sobre el proceso de admisión:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-envelope me-2 text-primary"></i>
+                                admisiones@umc.edu.ve
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-phone me-2 text-primary"></i>
+                                +58 (212) 555-2468
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-clock me-2 text-primary"></i>
+                                Lunes a Viernes: 8:00 AM - 4:00 PM
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Edificio Administrativo, Planta Baja
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ -->
+                <div class="card">
+                    <div class="card-header bg-accent text-dark">
+                        <h3 class="card-title m-0">Preguntas Frecuentes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="faq-accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq-heading-1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-1" aria-expanded="false">
+                                        ¿Cuál es el costo de la carrera?
+                                    </button>
+                                </h2>
+                                <div id="faq-collapse-1" class="accordion-collapse collapse" aria-labelledby="faq-heading-1" data-bs-parent="#faq-accordion">
+                                    <div class="accordion-body">
+                                        La Universidad Marítima del Caribe es una institución pública. Los estudiantes venezolanos sólo pagan una matrícula administrativa semestral. Consulta las tarifas actualizadas en el departamento de administración.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq-heading-2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-2" aria-expanded="false">
+                                        ¿Ofrecen residencias estudiantiles?
+                                    </button>
+                                </h2>
+                                <div id="faq-collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-heading-2" data-bs-parent="#faq-accordion">
+                                    <div class="accordion-body">
+                                        Sí, la universidad cuenta con residencias para estudiantes procedentes del interior del país. Las plazas son limitadas y se asignan según criterios socioeconómicos.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq-heading-3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-3" aria-expanded="false">
+                                        ¿Puedo trabajar mientras estudio?
+                                    </button>
+                                </h2>
+                                <div id="faq-collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-heading-3" data-bs-parent="#faq-accordion">
+                                    <div class="accordion-body">
+                                        La carrera de Ingeniería Marina es a tiempo completo con régimen especial de internado. No es compatible con actividades laborales durante el periodo académico.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq-heading-4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-4" aria-expanded="false">
+                                        ¿Hay edad mínima o máxima para ingresar?
+                                    </button>
+                                </h2>
+                                <div id="faq-collapse-4" class="accordion-collapse collapse" aria-labelledby="faq-heading-4" data-bs-parent="#faq-accordion">
+                                    <div class="accordion-body">
+                                        La edad mínima es 17 años. No hay edad máxima oficial, pero se recomienda comenzar la carrera antes de los 25 años debido a los requisitos físicos y la duración de la vida profesional en el mar.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">¿Estás listo para embarcarte en esta aventura?</h2>
+        <p class="mb-4">Únete a nuestra selecta comunidad de futuros oficiales marinos e ingenieros navales.</p>
+        <button class="btn btn-accent btn-lg" disabled>
+            <i class="fas fa-anchor me-2"></i> Solicitar Admisión
+        </button>
+        <p class="mt-3"><i class="fas fa-info-circle"></i> El próximo periodo de admisión inicia el 15 de junio.</p>
+    </div>
+</section>
+{% endblock %}

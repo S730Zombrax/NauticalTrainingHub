@@ -1,0 +1,491 @@
+{% extends "layout.html" %}
+
+{% block title %}Juegos Interactivos - Universidad Marítima del Caribe{% endblock %}
+
+{% block content %}
+<!-- Games Hero Section -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <h1 class="mb-4">Juegos Interactivos Educativos</h1>
+        <p class="lead">Pon a prueba tus conocimientos y habilidades con nuestras simulaciones y juegos interactivos sobre ingeniería marina.</p>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Simulador de Estabilidad del Buque</h2>
+                
+                <div class="card mb-5 shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="card-title m-0">Simulación de Carga y Estabilidad</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">Experimenta con la distribución de carga y observa cómo afecta a la estabilidad de una embarcación. Aprende los principios básicos de estabilidad naval de forma práctica.</p>
+                        
+                        <div id="stability-simulator" class="mb-4">
+                            <div class="canvas-container mb-3" style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                                <canvas width="800" height="400">Tu navegador no soporta HTML Canvas</canvas>
+                            </div>
+                            
+                            <div class="row simulator-controls">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="m-0">Controles de Carga</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-3">
+                                                <label for="cargo-weight" class="form-label">Peso de la Carga (toneladas)</label>
+                                                <input type="range" class="form-range" id="cargo-weight" min="50" max="200" value="100">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>50t</span>
+                                                    <span>200t</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group mb-3">
+                                                <label for="cargo-position" class="form-label">Posición (-50 babor a 50 estribor)</label>
+                                                <input type="range" class="form-range" id="cargo-position" min="-50" max="50" value="0">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Babor</span>
+                                                    <span>Estribor</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="d-grid gap-2">
+                                                <button id="add-cargo" class="btn btn-primary">
+                                                    <i class="fas fa-plus me-2"></i> Añadir Carga
+                                                </button>
+                                                <button id="reset-simulation" class="btn btn-outline-secondary">
+                                                    <i class="fas fa-redo me-2"></i> Reiniciar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="m-0">Estado del Buque</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <h6>Estabilidad</h6>
+                                                <div class="d-flex align-items-center">
+                                                    <span id="stability-indicator" class="badge bg-success me-2">Estable</span>
+                                                    <div class="progress flex-grow-1">
+                                                        <div class="progress-bar bg-success" style="width: 15%"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <h6>Escora</h6>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span>30° Babor</span>
+                                                    <span>0°</span>
+                                                    <span>30° Estribor</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" style="width: 50%; margin-left: 0"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <h6>Carga Total</h6>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span>0t</span>
+                                                    <span>Máx: 1000t</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" style="width: 10%"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <p class="alert alert-info mb-0">
+                                                <i class="fas fa-info-circle me-2"></i> Distribuye la carga adecuadamente para mantener la estabilidad del buque.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="m-0">Principios de Estabilidad</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li><strong>Centro de Gravedad (G):</strong> Punto donde se considera concentrada toda la masa del buque.</li>
+                                        <li><strong>Centro de Carena (B):</strong> Centro de gravedad del volumen sumergido del buque.</li>
+                                        <li><strong>Metacentro (M):</strong> Punto alrededor del cual gira el buque cuando se escora.</li>
+                                        <li><strong>Altura Metacéntrica (GM):</strong> Distancia entre G y M, determina la estabilidad inicial.</li>
+                                    </ul>
+                                    <p><strong>Recuerda:</strong> Un GM positivo (M por encima de G) indica estabilidad positiva. Si el GM es negativo, el buque es inestable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="mb-4">Test de Conocimientos Marítimos</h2>
+                
+                <div class="card mb-5 shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title m-0">Cuestionario Interactivo</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">Pon a prueba tus conocimientos sobre ingeniería marina con este cuestionario interactivo. Cubre temas como propulsión, sistemas eléctricos, seguridad y normativa marítima.</p>
+                        
+                        <div id="marine-quiz" class="mt-4">
+                            <!-- Quiz content will be dynamically generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="mb-4">Simulador de Navegación</h2>
+                
+                <div class="card mb-5 shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="card-title m-0">Elementos Básicos de Navegación</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">Experimenta con este simulador básico para comprender los elementos fundamentales de la navegación y cómo diferentes factores como viento, corrientes y obstáculos afectan el rumbo de un buque.</p>
+                        
+                        <div id="navigation-tool" class="mb-4">
+                            <div class="canvas-container mb-3" style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                                <canvas width="800" height="400">Tu navegador no soporta HTML Canvas</canvas>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="m-0">Controles del Buque</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-3">
+                                                <label for="ship-speed" class="form-label">Velocidad del Buque (nudos)</label>
+                                                <input type="range" class="form-range" id="ship-speed" min="0" max="20" value="5">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>0</span>
+                                                    <span>20</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group mb-3">
+                                                <label for="ship-turn" class="form-label">Giro del Timón (grados)</label>
+                                                <input type="range" class="form-range" id="ship-turn" min="-30" max="30" value="0">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Babor 30°</span>
+                                                    <span>Estribor 30°</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="m-0">Estado de Navegación</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h6>Velocidad</h6>
+                                                        <div class="d-flex align-items-center">
+                                                            <span id="speed-value" class="badge bg-primary me-2">5.0</span>
+                                                            <span>nudos</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h6>Rumbo</h6>
+                                                        <div class="d-flex align-items-center">
+                                                            <span id="heading-value" class="badge bg-primary me-2">0</span>
+                                                            <span>grados</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <p class="alert alert-info mb-0">
+                                                <i class="fas fa-info-circle me-2"></i> Navega entre los puntos A, B y C evitando los obstáculos.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="m-0">Conceptos de Navegación</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li><strong>Rumbo:</strong> Dirección en la que navega el buque, medido en grados desde el norte.</li>
+                                        <li><strong>Deriva:</strong> Desviación del rumbo causada por viento y corrientes.</li>
+                                        <li><strong>Abatimiento:</strong> Desviación causada específicamente por el viento.</li>
+                                        <li><strong>Corriente:</strong> Movimiento horizontal del agua que afecta a la navegación.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Sidebar content -->
+                <div class="sticky-top" style="top: 100px;">
+                    <!-- Game Categories -->
+                    <div class="card mb-4 shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="m-0">Categorías de Juegos</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush">
+                                <a href="#stability-simulator" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="fas fa-balance-scale me-2 text-primary"></i>
+                                        Simulación de Estabilidad
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Activo</span>
+                                </a>
+                                <a href="#marine-quiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="fas fa-question-circle me-2 text-primary"></i>
+                                        Test de Conocimientos
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Activo</span>
+                                </a>
+                                <a href="#navigation-tool" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="fas fa-compass me-2 text-primary"></i>
+                                        Simulador de Navegación
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Activo</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
+                                    <div>
+                                        <i class="fas fa-engine me-2 text-secondary"></i>
+                                        Simulador de Sala de Máquinas
+                                    </div>
+                                    <span class="badge bg-secondary rounded-pill">Próximamente</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
+                                    <div>
+                                        <i class="fas fa-fire-extinguisher me-2 text-secondary"></i>
+                                        Simulación de Emergencias
+                                    </div>
+                                    <span class="badge bg-secondary rounded-pill">Próximamente</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
+                                    <div>
+                                        <i class="fas fa-water me-2 text-secondary"></i>
+                                        Oceanografía Interactiva
+                                    </div>
+                                    <span class="badge bg-secondary rounded-pill">Próximamente</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Learning Resources -->
+                    <div class="card mb-4 shadow">
+                        <div class="card-header bg-secondary text-white">
+                            <h3 class="m-0">Recursos de Aprendizaje</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Complementa tu conocimiento con estos recursos educativos:</p>
+                            
+                            <div class="list-group mb-3">
+                                <a href="#" class="list-group-item list-group-item-action" onclick="return false;">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Principios de Estabilidad Naval</h5>
+                                        <small class="text-muted">PDF</small>
+                                    </div>
+                                    <p class="mb-1">Guía completa sobre estabilidad, trimado y calados.</p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="return false;">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Terminología Náutica</h5>
+                                        <small class="text-muted">PDF</small>
+                                    </div>
+                                    <p class="mb-1">Diccionario técnico con términos marítimos esenciales.</p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action" onclick="return false;">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Regulaciones SOLAS</h5>
+                                        <small class="text-muted">PDF</small>
+                                    </div>
+                                    <p class="mb-1">Resumen del Convenio Internacional para la Seguridad de la Vida Humana en el Mar.</p>
+                                </a>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Nota:</strong> Estos documentos son solo material de apoyo. Consulta siempre las fuentes oficiales para información actualizada.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Leaderboard -->
+                    <div class="card shadow">
+                        <div class="card-header bg-accent text-dark">
+                            <h3 class="m-0">Mejores Puntuaciones</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="mb-3">Test de Conocimientos</h4>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Puntuación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Miguel A.</td>
+                                        <td>98/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Carolina R.</td>
+                                        <td>95/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Juan D.</td>
+                                        <td>92/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Andrea M.</td>
+                                        <td>90/100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Pedro L.</td>
+                                        <td>89/100</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="alert alert-warning mt-3">
+                                <i class="fas fa-trophy me-2"></i>
+                                <strong>¡Desafío!</strong> Completa todos los juegos para recibir tu certificado de participación.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Games Section -->
+<section class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Próximos Juegos y Simulaciones</h2>
+        <p class="section-description">Estamos trabajando en nuevas experiencias interactivas para enriquecer tu aprendizaje.</p>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="m-0">Simulador de Sala de Máquinas</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="coming-soon py-5">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="coming-soon-title">Próximamente</h3>
+                            <p class="coming-soon-text">Experimenta la operación de los sistemas principales de la sala de máquinas de un buque mercante. Gestiona potencia, combustible, refrigeración y responde a emergencias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="m-0">Simulador de Emergencias a Bordo</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="coming-soon py-5">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-fire-extinguisher"></i>
+                            </div>
+                            <h3 class="coming-soon-title">Próximamente</h3>
+                            <p class="coming-soon-text">Practica tus respuestas ante situaciones de emergencia como incendios, inundaciones, varadas y otros eventos críticos que pueden ocurrir a bordo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Educational Value Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Valor Educativo de los Juegos Interactivos</h2>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Aprendizaje Experiencial</h3>
+                    <p class="feature-text">Los simuladores permiten experimentar situaciones reales sin riesgos, facilitando el aprendizaje práctico antes de enfrentar escenarios reales a bordo.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Repetición y Perfeccionamiento</h3>
+                    <p class="feature-text">La posibilidad de repetir situaciones permite perfeccionar técnicas y procedimientos hasta dominarlos completamente.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Medición de Progreso</h3>
+                    <p class="feature-text">Los sistemas de puntuación y estadísticas permiten monitorear el avance y identificar áreas específicas que requieren mayor atención.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">¿Quieres más desafíos?</h2>
+        <p class="mb-4">Estas simulaciones son solo una introducción a lo que experimentarás en nuestros laboratorios y simuladores profesionales.</p>
+        <a href="{{ url_for('admision') }}" class="btn btn-accent btn-lg">
+            <i class="fas fa-graduation-cap me-2"></i> Conoce Nuestro Programa
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/games.js') }}"></script>
+{% endblock %}

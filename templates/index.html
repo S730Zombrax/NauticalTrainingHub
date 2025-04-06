@@ -1,0 +1,265 @@
+{% extends "layout.html" %}
+
+{% block title %}Universidad Marítima del Caribe - Ingeniería Marina{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Ingeniería Marina</h1>
+            <p class="hero-description fade-in">Formando profesionales marítimos de excelencia con los conocimientos técnicos para operar y mantener sistemas de propulsión, electricidad y automatización en embarcaciones modernas.</p>
+            <div class="hero-btn-group">
+                <a href="{{ url_for('admision') }}" class="btn btn-accent slide-up">Proceso de Admisión</a>
+                <a href="{{ url_for('registro') }}" class="btn btn-outline slide-up">Registro QR</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Características del Programa</h2>
+        
+        <div class="features">
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <h3 class="feature-title">Enfoque Práctico</h3>
+                <p class="feature-text">Formación técnica especializada con simuladores de última generación y prácticas en embarcaciones reales.</p>
+            </div>
+            
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3 class="feature-title">Reconocimiento Internacional</h3>
+                <p class="feature-text">Titulación reconocida por la Organización Marítima Internacional (OMI) que permite trabajar en cualquier buque mercante del mundo.</p>
+            </div>
+            
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="feature-title">Tecnología Avanzada</h3>
+                <p class="feature-text">Formación en los sistemas más modernos de propulsión, automatización y gestión energética en embarcaciones.</p>
+            </div>
+            
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="feature-title">Formación Integral</h3>
+                <p class="feature-text">Desarrollo académico, técnico y personal con énfasis en liderazgo, trabajo en equipo y toma de decisiones.</p>
+            </div>
+            
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="feature-title">Alianzas Estratégicas</h3>
+                <p class="feature-text">Convenios con empresas navieras nacionales e internacionales para pasantías y oportunidades laborales.</p>
+            </div>
+            
+            <div class="feature reveal">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="feature-title">Investigación</h3>
+                <p class="feature-text">Participación en proyectos de investigación en tecnologías marítimas sostenibles y eficiencia energética.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Wave Divider -->
+<div class="wave-divider"></div>
+
+<!-- Programs Overview -->
+<section class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Plan de Estudios</h2>
+        <p class="section-description">Nuestro programa de Ingeniería Marina está diseñado según los más altos estándares internacionales, combinando teoría, práctica y formación en valores profesionales.</p>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title m-0">Fase Básica</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Fundamentos de ingeniería, matemáticas, física, química y conocimientos básicos de navegación y sistemas marítimos.</p>
+                        <ul>
+                            <li>Matemáticas aplicadas</li>
+                            <li>Física y mecánica</li>
+                            <li>Química general</li>
+                            <li>Introducción a la ingeniería naval</li>
+                            <li>Dibujo técnico</li>
+                            <li>Informática básica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title m-0">Fase Técnica</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Conocimientos avanzados en sistemas de propulsión, sistemas eléctricos, automatización y mantenimiento.</p>
+                        <ul>
+                            <li>Motores de combustión interna</li>
+                            <li>Sistemas eléctricos marinos</li>
+                            <li>Sistemas hidráulicos y neumáticos</li>
+                            <li>Automatización y control</li>
+                            <li>Refrigeración y climatización</li>
+                            <li>Seguridad marítima</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title m-0">Fase Profesional</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Especialización, gestión y prácticas profesionales en buques mercantes internacionales.</p>
+                        <ul>
+                            <li>Gestión de sala de máquinas</li>
+                            <li>Prevención de la contaminación</li>
+                            <li>Normativa marítima internacional</li>
+                            <li>Mantenimiento predictivo</li>
+                            <li>Pasantías profesionales</li>
+                            <li>Proyecto de grado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Últimas Noticias</h2>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-img img-placeholder">
+                        <i class="fas fa-newspaper fa-3x"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Nuevos simuladores de sala de máquinas</h3>
+                        <p class="card-text">La UMC recibe moderna tecnología de simulación para entrenamiento de cadetes en operaciones de sala de máquinas.</p>
+                        <p class="text-muted">15 de mayo, 2023</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('noticias') }}" class="btn btn-sm btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-img img-placeholder">
+                        <i class="fas fa-handshake fa-3x"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Convenio con naviera internacional</h3>
+                        <p class="card-text">Firmamos un nuevo convenio de cooperación para pasantías con una importante naviera internacional.</p>
+                        <p class="text-muted">3 de abril, 2023</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('noticias') }}" class="btn btn-sm btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-img img-placeholder">
+                        <i class="fas fa-trophy fa-3x"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Estudiantes ganan competencia internacional</h3>
+                        <p class="card-text">Cadetes de Ingeniería Marina obtienen primer lugar en competencia de eficiencia energética.</p>
+                        <p class="text-muted">20 de marzo, 2023</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('noticias') }}" class="btn btn-sm btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('noticias') }}" class="btn btn-primary">Ver todas las noticias</a>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Próximos Eventos</h2>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="me-4 text-center">
+                                <div style="background-color: var(--primary); color: white; padding: 10px; border-radius: 5px;">
+                                    <div style="font-size: 24px; font-weight: bold;">15</div>
+                                    <div>JUNIO</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Jornada de Orientación Profesional</h3>
+                                <p class="card-text">Oficiales de marina mercante compartirán sus experiencias con estudiantes de ingeniería marina.</p>
+                                <p class="text-muted"><i class="fas fa-map-marker-alt"></i> Auditorio Principal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="me-4 text-center">
+                                <div style="background-color: var(--primary); color: white; padding: 10px; border-radius: 5px;">
+                                    <div style="font-size: 24px; font-weight: bold;">22</div>
+                                    <div>JULIO</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="card-title">Ceremonia de Ascenso de Cadetes</h3>
+                                <p class="card-text">Tradicional ceremonia donde los cadetes reciben sus nuevos rangos según su progreso académico.</p>
+                                <p class="text-muted"><i class="fas fa-map-marker-alt"></i> Plaza de Armas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section bg-primary">
+    <div class="container text-center text-white">
+        <h2 class="mb-4">¿Listo para iniciar tu carrera marítima?</h2>
+        <p class="mb-5">Conviértete en un profesional de la ingeniería marina con reconocimiento internacional.</p>
+        <a href="{{ url_for('admision') }}" class="btn btn-accent">Conoce nuestro proceso de admisión</a>
+    </div>
+</section>
+{% endblock %}

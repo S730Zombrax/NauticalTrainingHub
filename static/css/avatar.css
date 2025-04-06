@@ -1,0 +1,164 @@
+/* Avatar System Styles for Uniforme Section */
+
+.avatar-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.avatar-preview {
+    width: 300px;
+    height: 450px;
+    margin: 0 auto var(--spacing-lg);
+    position: relative;
+    border: 2px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    background-color: var(--light);
+    overflow: hidden;
+}
+
+.avatar-figure {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%23003559' d='M208 96a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm40 88c17.7 0 32-14.3 32-32 0-30.9-25.1-56-56-56h-16c-30.9 0-56 25.1-56 56v48h96c17.7 0 32-14.3 32-32v-48 64zm0 72l-16-16H88l-16 16c-28.5 0-54.9 18.2-64 45.8l-5.1 15.2 145.6 54.6c6.4 2.4 13.5 2.4 19.9 0l145.6-54.6-5.1-15.2c-9.1-27.6-35.5-45.8-64-45.8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120px;
+}
+
+.avatar-clothing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px;
+    transition: all var(--transition);
+}
+
+.avatar-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.avatar-options-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary);
+    text-align: center;
+}
+
+.avatar-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.avatar-option {
+    padding: var(--spacing-sm);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.avatar-option:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.avatar-option.active {
+    border-color: var(--primary);
+    background-color: rgba(0, 83, 137, 0.1);
+}
+
+.avatar-option-img {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto var(--spacing-xs);
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-option-label {
+    font-size: var(--font-size-sm);
+    color: var(--dark-gray);
+}
+
+.uniform-info {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background-color: var(--light);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary);
+}
+
+.uniform-info-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary);
+}
+
+.uniform-description {
+    margin-bottom: var(--spacing-md);
+}
+
+.uniform-regulations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.uniform-regulations li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.uniform-regulations li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .avatar-preview {
+        width: 250px;
+        height: 375px;
+    }
+    
+    .avatar-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .avatar-option-img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .avatar-preview {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .avatar-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
