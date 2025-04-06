@@ -144,6 +144,8 @@
   border-bottom: 2px solid rgba(0, 119, 182, 0.1);
   padding-bottom: 10px;
   margin-bottom: 15px;
+  padding-left: 15px;
+  margin-left: -15px;
 }
 
 .uniform-info p {
@@ -151,6 +153,8 @@
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 20px;
+  padding-left: 15px;
+  margin-left: -15px;
 }
 
 .uniform-info h6 {
@@ -160,14 +164,16 @@
   position: relative;
   display: inline-block;
   margin-bottom: 15px;
+  padding-left: 15px;
+  margin-left: -15px;
 }
 
 .uniform-info h6::after {
   content: '';
   position: absolute;
   bottom: -5px;
-  left: 0;
-  width: 100%;
+  left: 15px;
+  width: calc(100% - 15px);
   height: 2px;
   background: var(--primary-color);
   border-radius: 2px;
@@ -177,6 +183,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-left: 15px;
+  margin-left: -15px;
 }
 
 .uniform-features li {
