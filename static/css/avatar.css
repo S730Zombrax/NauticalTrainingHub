@@ -1,164 +1,301 @@
-/* Avatar System Styles for Uniforme Section */
+/**
+ * Universidad Marítima del Caribe - Marine Engineering
+ * Avatar System Styles for Uniform Visualization
+ */
+
+:root {
+  --avatar-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --avatar-border-radius: 10px;
+  --avatar-transition: all 0.3s ease;
+  --avatar-spacing: 20px;
+}
 
 .avatar-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: var(--spacing-lg);
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  background: white;
+  border-radius: var(--avatar-border-radius);
+  box-shadow: var(--avatar-shadow);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.avatar-preview-container {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .avatar-preview {
-    width: 300px;
-    height: 450px;
-    margin: 0 auto var(--spacing-lg);
-    position: relative;
-    border: 2px solid var(--light-gray);
-    border-radius: var(--border-radius);
-    background-color: var(--light);
-    overflow: hidden;
+  width: 300px;
+  height: 450px;
+  position: relative;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.avatar-figure {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%23003559' d='M208 96a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm40 88c17.7 0 32-14.3 32-32 0-30.9-25.1-56-56-56h-16c-30.9 0-56 25.1-56 56v48h96c17.7 0 32-14.3 32-32v-48 64zm0 72l-16-16H88l-16 16c-28.5 0-54.9 18.2-64 45.8l-5.1 15.2 145.6 54.6c6.4 2.4 13.5 2.4 19.9 0l145.6-54.6-5.1-15.2c-9.1-27.6-35.5-45.8-64-45.8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 120px;
+.avatar-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: var(--avatar-transition);
 }
 
-.avatar-clothing {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 300px;
-    transition: all var(--transition);
+.avatar-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  transition: var(--avatar-transition);
+}
+
+.avatar-body {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: var(--avatar-transition);
+}
+
+.avatar-legs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: var(--avatar-transition);
+}
+
+.avatar-accessory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: var(--avatar-transition);
+  z-index: 10;
 }
 
 .avatar-controls {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+  flex: 2;
+  min-width: 300px;
 }
 
-.avatar-options-title {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-sm);
-    color: var(--primary);
-    text-align: center;
+.uniform-category {
+  margin-bottom: 30px;
 }
 
-.avatar-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: var(--spacing-sm);
+.uniform-category-title {
+  font-size: 1.2rem;
+  color: #003366;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f9a826;
+  display: inline-block;
 }
 
-.avatar-option {
-    padding: var(--spacing-sm);
-    border: 2px solid var(--light-gray);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    text-align: center;
-    transition: all var(--transition-fast);
+.uniform-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
 }
 
-.avatar-option:hover {
-    border-color: var(--secondary);
-    transform: translateY(-2px);
+.uniform-option {
+  position: relative;
+  cursor: pointer;
+  background: white;
+  border: 2px solid #eaeaea;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: var(--avatar-transition);
+  overflow: hidden;
 }
 
-.avatar-option.active {
-    border-color: var(--primary);
-    background-color: rgba(0, 83, 137, 0.1);
+.uniform-option:hover {
+  transform: translateY(-5px);
+  border-color: #0077b6;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.avatar-option-img {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto var(--spacing-xs);
-    background-color: var(--light-gray);
-    border-radius: var(--border-radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.uniform-option.active {
+  border-color: #003366;
+  background-color: rgba(0, 51, 102, 0.05);
 }
 
-.avatar-option-label {
-    font-size: var(--font-size-sm);
-    color: var(--dark-gray);
+.uniform-option::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent #003366 transparent transparent;
+  transform: scale(0);
+  transition: transform 0.3s ease;
 }
 
-.uniform-info {
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-md);
-    background-color: var(--light);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary);
+.uniform-option.active::after {
+  transform: scale(1);
 }
 
-.uniform-info-title {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-sm);
-    color: var(--primary);
+.uniform-option-img {
+  width: 80px;
+  height: 80px;
+  background-color: #f5f7fa;
+  border-radius: 5px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #003366;
+}
+
+.uniform-option-label {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: #333;
 }
 
 .uniform-description {
-    margin-bottom: var(--spacing-md);
+  background-color: #f8f9fa;
+  border-left: 4px solid #0077b6;
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 20px;
 }
 
-.uniform-regulations {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.uniform-description-title {
+  font-size: 1.1rem;
+  color: #003366;
+  margin-bottom: 10px;
 }
 
-.uniform-regulations li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: var(--spacing-sm);
+.uniform-description-text {
+  margin-bottom: 15px;
+  line-height: 1.5;
 }
 
-.uniform-regulations li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: bold;
+.uniform-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.uniform-features li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 8px;
+}
+
+.uniform-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #0077b6;
+  font-weight: bold;
+}
+
+.avatar-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.avatar-action-btn {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--avatar-transition);
+}
+
+.avatar-action-btn:hover {
+  background-color: #0077b6;
+  transform: translateY(-3px);
+}
+
+.avatar-action-btn.secondary {
+  background-color: #f5f7fa;
+  color: #003366;
+  border: 1px solid #003366;
+}
+
+.avatar-action-btn.secondary:hover {
+  background-color: #e6f2ff;
+}
+
+.avatar-label {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+@media (max-width: 992px) {
+  .avatar-container {
+    flex-direction: column;
+  }
+  
+  .avatar-preview-container {
+    margin: 0 auto;
+  }
+  
+  .uniform-options {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .avatar-preview {
-        width: 250px;
-        height: 375px;
-    }
-    
-    .avatar-options {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .avatar-option-img {
-        width: 40px;
-        height: 40px;
-    }
+  .uniform-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 576px) {
-    .avatar-preview {
-        width: 200px;
-        height: 300px;
-    }
-    
-    .avatar-options {
-        grid-template-columns: repeat(2, 1fr);
-    }
+@media (max-width: 480px) {
+  .avatar-preview {
+    width: 250px;
+    height: 375px;
+  }
+  
+  .avatar-actions {
+    flex-direction: column;
+  }
 }

@@ -15,205 +15,438 @@ function initAvatarSystem() {
     
     if (!avatarContainer) return;
     
-    // Define the uniform types
-    const uniformTypes = [
-        {
-            id: 'formal',
-            name: 'Gala',
-            description: 'Uniforme formal para ceremonias oficiales y eventos especiales.',
-            svgData: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-                <rect x="100" y="150" width="100" height="200" fill="#ffffff"/>
-                <rect x="100" y="150" width="100" height="50" fill="#003559"/>
-                <rect x="100" y="200" width="100" height="150" fill="#ffffff"/>
-                <rect x="70" y="150" width="30" height="200" fill="#003559"/>
-                <rect x="200" y="150" width="30" height="200" fill="#003559"/>
-                <rect x="85" y="350" width="50" height="30" fill="#003559"/>
-                <rect x="165" y="350" width="50" height="30" fill="#003559"/>
-                <circle cx="150" cy="170" r="10" fill="#f9a826"/>
-                <circle cx="150" cy="190" r="5" fill="#f9a826"/>
-                <circle cx="150" cy="210" r="5" fill="#f9a826"/>
-            </svg>`
-        },
-        {
-            id: 'daily',
-            name: 'Diario',
-            description: 'Uniforme estándar para actividades diarias y clases regulares.',
-            svgData: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-                <rect x="100" y="150" width="100" height="200" fill="#ffffff"/>
-                <rect x="70" y="150" width="30" height="200" fill="#0077b6"/>
-                <rect x="200" y="150" width="30" height="200" fill="#0077b6"/>
-                <rect x="100" y="150" width="100" height="20" fill="#0077b6"/>
-                <rect x="85" y="350" width="50" height="30" fill="#0077b6"/>
-                <rect x="165" y="350" width="50" height="30" fill="#0077b6"/>
-                <rect x="115" y="170" width="70" height="15" fill="#0077b6"/>
-                <line x1="150" y1="170" x2="150" y2="350" stroke="#0077b6" stroke-width="2"/>
-            </svg>`
-        },
-        {
-            id: 'physical',
-            name: 'Educación Física',
-            description: 'Uniforme deportivo para actividades físicas y entrenamientos.',
-            svgData: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-                <rect x="100" y="150" width="100" height="70" fill="#e9f4fd"/>
-                <rect x="100" y="220" width="100" height="130" fill="#0077b6"/>
-                <text x="150" y="190" font-family="Arial" font-size="15" text-anchor="middle" fill="#0077b6">UMC</text>
-                <rect x="85" y="350" width="50" height="30" fill="#0077b6"/>
-                <rect x="165" y="350" width="50" height="30" fill="#0077b6"/>
-            </svg>`
-        },
-        {
-            id: 'practice',
-            name: 'Prácticas',
-            description: 'Uniforme específico para prácticas en el simulador y laboratorios.',
-            svgData: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-                <rect x="100" y="150" width="100" height="200" fill="#f4a261"/>
-                <rect x="70" y="150" width="30" height="200" fill="#e76f51"/>
-                <rect x="200" y="150" width="30" height="200" fill="#e76f51"/>
-                <rect x="115" y="150" width="70" height="30" fill="#e76f51"/>
-                <rect x="85" y="350" width="50" height="30" fill="#e76f51"/>
-                <rect x="165" y="350" width="50" height="30" fill="#e76f51"/>
-                <rect x="125" y="190" width="50" height="10" fill="#e76f51"/>
-                <rect x="125" y="210" width="50" height="10" fill="#e76f51"/>
-            </svg>`
-        },
-        {
-            id: 'internship',
-            name: 'Pasantías',
-            description: 'Uniforme de marinero para prácticas y pasantías en buques.',
-            svgData: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-                <rect x="100" y="150" width="100" height="200" fill="#003559"/>
-                <rect x="85" y="350" width="50" height="30" fill="#003559"/>
-                <rect x="165" y="350" width="50" height="30" fill="#003559"/>
-                <rect x="100" y="150" width="100" height="50" fill="#ffffff"/>
-                <path d="M100,200 L200,200 L200,190 L100,190 Z" fill="#003559"/>
-                <path d="M130,150 L170,150 L170,190 L130,190 Z" fill="#003559"/>
-            </svg>`
-        }
-    ];
+    // Define uniform categories and items
+    const uniformData = {
+        uniforms: [
+            {
+                id: 'gala',
+                name: 'Uniforme de Gala',
+                description: 'Uniforme formal para ceremonias oficiales, graduaciones y eventos especiales. Representa la máxima formalidad en la vestimenta de los cadetes marítimos.',
+                features: [
+                    'Chaqueta azul marino con botones dorados',
+                    'Pantalón/falda azul marino con línea dorada',
+                    'Camisa blanca de manga larga',
+                    'Corbata negra',
+                    'Zapatos negros de vestir',
+                    'Gorra de plato con distintivo UMC'
+                ],
+                components: {
+                    head: {
+                        id: 'gorra-gala',
+                        url: 'background-image: linear-gradient(to bottom, #003366, #002244); border-radius: 30% 30% 0 0; height: 40px; width: 80px; position: relative;',
+                        icon: '🎖️'
+                    },
+                    torso: {
+                        id: 'chaqueta-gala',
+                        url: 'background: linear-gradient(to right, #002244 10%, #003366 25%, #002855 75%, #001c39 90%);',
+                        icon: '🧥'
+                    },
+                    legs: {
+                        id: 'pantalon-gala',
+                        url: 'background-color: #002244;',
+                        icon: '👖'
+                    },
+                    accessories: [
+                        {
+                            id: 'insignia-gala',
+                            url: 'background-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'40\' fill=\'%23f9a826\'/%3E%3Cpath d=\'M50 10 L54 40 L85 40 L60 60 L70 90 L50 70 L30 90 L40 60 L15 40 L46 40 Z\' fill=\'%23003366\'/%3E%3C/svg%3E"); width: 50px; height: 50px; top: 120px; left: 125px;',
+                            icon: '⭐'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'diario',
+                name: 'Uniforme Diario',
+                description: 'Uniforme estándar para actividades académicas y uso cotidiano en las instalaciones de la universidad.',
+                features: [
+                    'Camisa blanca tipo polo con logo UMC',
+                    'Pantalón/falda azul marino',
+                    'Cinturón negro con hebilla institucional',
+                    'Zapatos negros',
+                    'Gorra azul marino con logo UMC'
+                ],
+                components: {
+                    head: {
+                        id: 'gorra-diario',
+                        url: 'background-color: #003366; border-radius: 40% 40% 0 0; height: 30px; width: 70px; position: relative;',
+                        icon: '🧢'
+                    },
+                    torso: {
+                        id: 'polo-diario',
+                        url: 'background-color: white; border: 2px solid #003366; border-top-width: 10px;',
+                        icon: '👕'
+                    },
+                    legs: {
+                        id: 'pantalon-diario',
+                        url: 'background-color: #003366;',
+                        icon: '👖'
+                    },
+                    accessories: [
+                        {
+                            id: 'logo-diario',
+                            url: 'background-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%23003366\'/%3E%3Ctext x=\'50\' y=\'65\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'30\' fill=\'%23ffffff\'%3EUMC%3C/text%3E%3C/svg%3E"); width: 40px; height: 40px; top: 120px; left: 130px;',
+                            icon: '🏫'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'deportivo',
+                name: 'Uniforme Deportivo',
+                description: 'Uniforme para actividades físicas, deportes y entrenamientos realizados como parte del programa educativo.',
+                features: [
+                    'Camiseta azul con logo UMC',
+                    'Pantalón corto o pants azul marino',
+                    'Calzado deportivo blanco',
+                    'Medias blancas',
+                    'Opcional: sudadera para clima frío'
+                ],
+                components: {
+                    head: {
+                        id: 'ninguno',
+                        url: 'background: transparent;',
+                        icon: '🚫'
+                    },
+                    torso: {
+                        id: 'camiseta-deportiva',
+                        url: 'background-color: #0077b6; color: white; display: flex; align-items: center; justify-content: center;',
+                        icon: '👕'
+                    },
+                    legs: {
+                        id: 'shorts-deportivos',
+                        url: 'background-color: #003366; height: 80px;',
+                        icon: '🩳'
+                    },
+                    accessories: [
+                        {
+                            id: 'texto-umc',
+                            url: 'display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px; top: 140px; left: 130px; width: 40px; height: 40px;',
+                            text: 'UMC'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'laboratorio',
+                name: 'Uniforme de Laboratorio',
+                description: 'Uniforme especializado para prácticas en laboratorios de ingeniería y simuladores.',
+                features: [
+                    'Bata azul con logo UMC',
+                    'Pantalón de jean azul',
+                    'Camisa blanca',
+                    'Calzado cerrado resistente',
+                    'Equipo de protección según actividad'
+                ],
+                components: {
+                    head: {
+                        id: 'casco-seguridad',
+                        url: 'background-color: #f9a826; border-radius: 50% 50% 0 0; height: 30px; width: 70px; position: relative;',
+                        icon: '⛑️'
+                    },
+                    torso: {
+                        id: 'bata-laboratorio',
+                        url: 'background-color: #90e0ef; border: 1px solid #0077b6;',
+                        icon: '🥼'
+                    },
+                    legs: {
+                        id: 'jean-laboratorio',
+                        url: 'background-color: #274c77;',
+                        icon: '👖'
+                    },
+                    accessories: [
+                        {
+                            id: 'gafas-seguridad',
+                            url: 'background-image: url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 50\'%3E%3Cpath d=\'M10 25 C10 15 20 15 30 25 L70 25 C80 15 90 15 90 25 L90 30 C90 40 80 40 70 30 L30 30 C20 40 10 40 10 30 Z\' fill=\'%23caf0f8\'/%3E%3C/svg%3E"); width: 60px; height: 20px; top: 85px; left: 120px;',
+                            icon: '🥽'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'pasantias',
+                name: 'Uniforme de Pasantías',
+                description: 'Uniforme utilizado durante prácticas profesionales y pasantías en buques y empresas del sector marítimo.',
+                features: [
+                    'Camisa tipo oxford azul celeste con insignias',
+                    'Pantalón azul marino',
+                    'Chaqueta técnica con identificación UMC',
+                    'Calzado de seguridad',
+                    'Casco y equipo de protección (según área)'
+                ],
+                components: {
+                    head: {
+                        id: 'casco-pasantias',
+                        url: 'background-color: white; border-radius: 50% 50% 0 0; height: 35px; width: 75px; position: relative;',
+                        icon: '⛑️'
+                    },
+                    torso: {
+                        id: 'camisa-pasantias',
+                        url: 'background-color: #a8dadc; border: 1px solid #457b9d;',
+                        icon: '👔'
+                    },
+                    legs: {
+                        id: 'pantalon-pasantias',
+                        url: 'background-color: #1d3557;',
+                        icon: '👖'
+                    },
+                    accessories: [
+                        {
+                            id: 'chaleco-reflectante',
+                            url: 'background-color: #f9c74f; opacity: 0.7; width: 80px; height: 100px; top: 120px; left: 110px;',
+                            icon: '🦺'
+                        }
+                    ]
+                }
+            }
+        ],
+        accessories: [
+            {
+                id: 'gorra',
+                name: 'Gorra Oficial',
+                options: [
+                    { id: 'gorra-gala', name: 'Gorra de Gala', icon: '🎩' },
+                    { id: 'gorra-diaria', name: 'Gorra Diaria', icon: '🧢' },
+                    { id: 'casco-seguridad', name: 'Casco de Seguridad', icon: '⛑️' },
+                    { id: 'ninguno', name: 'Sin Gorra', icon: '🚫' }
+                ]
+            },
+            {
+                id: 'insignia',
+                name: 'Insignias',
+                options: [
+                    { id: 'insignia-oficial', name: 'Insignia Oficial', icon: '⭐' },
+                    { id: 'insignia-rango', name: 'Insignia de Rango', icon: '🔰' },
+                    { id: 'insignia-especial', name: 'Insignia Especial', icon: '🏅' },
+                    { id: 'sin-insignia', name: 'Sin Insignia', icon: '🚫' }
+                ]
+            },
+            {
+                id: 'calzado',
+                name: 'Calzado',
+                options: [
+                    { id: 'zapatos-vestir', name: 'Zapatos de Vestir', icon: '👞' },
+                    { id: 'zapatos-seguridad', name: 'Zapatos de Seguridad', icon: '🥾' },
+                    { id: 'calzado-deportivo', name: 'Calzado Deportivo', icon: '👟' }
+                ]
+            }
+        ]
+    };
     
     // Create HTML structure for avatar system
-    createAvatarSystem(avatarContainer, uniformTypes);
+    createAvatarSystem(avatarContainer, uniformData);
     
     // Initialize event listeners
-    initAvatarEvents(uniformTypes);
+    initAvatarEvents(uniformData);
 }
 
 /**
  * Create the avatar system HTML structure
  * @param {HTMLElement} container - The container element
- * @param {Array} uniformTypes - Array of uniform data
+ * @param {Object} uniformData - Data for uniforms and accessories
  */
-function createAvatarSystem(container, uniformTypes) {
+function createAvatarSystem(container, uniformData) {
+    // Clear container
+    container.innerHTML = '';
+    
+    // Create preview section container
+    const previewContainer = document.createElement('div');
+    previewContainer.className = 'avatar-preview-container';
+    
+    // Create avatar label
+    const avatarLabel = document.createElement('div');
+    avatarLabel.className = 'avatar-label';
+    avatarLabel.textContent = 'Vista Previa del Uniforme';
+    previewContainer.appendChild(avatarLabel);
+    
     // Create avatar preview
     const previewSection = document.createElement('div');
     previewSection.className = 'avatar-preview';
     previewSection.innerHTML = `
-        <div class="avatar-figure"></div>
-        <div class="avatar-clothing"></div>
+        <div class="avatar-base"></div>
+        <div class="avatar-head"></div>
+        <div class="avatar-body"></div>
+        <div class="avatar-legs"></div>
+        <div class="avatar-accessory"></div>
     `;
+    previewContainer.appendChild(previewSection);
     
-    // Create options section
+    // Create controls section
     const controlsSection = document.createElement('div');
     controlsSection.className = 'avatar-controls';
     
+    // Create uniform category section
+    const uniformCategory = document.createElement('div');
+    uniformCategory.className = 'uniform-category';
+    
+    const uniformCategoryTitle = document.createElement('h3');
+    uniformCategoryTitle.className = 'uniform-category-title';
+    uniformCategoryTitle.textContent = 'Seleccionar Uniforme';
+    uniformCategory.appendChild(uniformCategoryTitle);
+    
     // Create uniform options
-    const uniformOptionsSection = document.createElement('div');
-    uniformOptionsSection.innerHTML = `
-        <h3 class="avatar-options-title">Seleccionar Uniforme</h3>
-        <div class="avatar-options" id="uniform-options"></div>
-    `;
+    const uniformOptions = document.createElement('div');
+    uniformOptions.className = 'uniform-options';
     
-    // Create uniform description section
-    const uniformInfoSection = document.createElement('div');
-    uniformInfoSection.className = 'uniform-info';
-    uniformInfoSection.innerHTML = `
-        <h3 class="uniform-info-title">Uniforme de Gala</h3>
-        <p class="uniform-description">Uniforme formal para ceremonias oficiales y eventos especiales.</p>
-        <h4>Reglamento de uso:</h4>
-        <ul class="uniform-regulations">
-            <li>El uniforme debe estar limpio y planchado en todo momento.</li>
-            <li>Los botones deben estar correctamente abrochados.</li>
-            <li>El calzado debe estar limpio y lustrado.</li>
-            <li>No se permiten modificaciones al diseño oficial.</li>
-            <li>Los distintivos de rango deben colocarse según el protocolo.</li>
-        </ul>
-    `;
-    
-    // Add options for each uniform type
-    const optionsContainer = document.createElement('div');
-    optionsContainer.className = 'avatar-options';
-    optionsContainer.id = 'uniform-options';
-    
-    uniformTypes.forEach(uniform => {
+    uniformData.uniforms.forEach(uniform => {
         const option = document.createElement('div');
-        option.className = 'avatar-option';
-        option.dataset.uniform = uniform.id;
+        option.className = 'uniform-option';
+        option.dataset.uniformId = uniform.id;
         
         option.innerHTML = `
-            <div class="avatar-option-img">
-                <i class="fas fa-tshirt"></i>
+            <div class="uniform-option-img">
+                ${uniform.components.torso.icon}
             </div>
-            <div class="avatar-option-label">${uniform.name}</div>
+            <div class="uniform-option-label">${uniform.name}</div>
         `;
         
-        optionsContainer.appendChild(option);
+        uniformOptions.appendChild(option);
     });
     
-    uniformOptionsSection.querySelector('#uniform-options').replaceWith(optionsContainer);
+    uniformCategory.appendChild(uniformOptions);
+    controlsSection.appendChild(uniformCategory);
     
-    // Append all sections
-    controlsSection.appendChild(uniformOptionsSection);
-    container.appendChild(previewSection);
+    // Create uniform description container
+    const uniformDescription = document.createElement('div');
+    uniformDescription.className = 'uniform-description';
+    uniformDescription.innerHTML = `
+        <h4 class="uniform-description-title">${uniformData.uniforms[0].name}</h4>
+        <p class="uniform-description-text">${uniformData.uniforms[0].description}</p>
+        <h5>Características:</h5>
+        <ul class="uniform-features">
+            ${uniformData.uniforms[0].features.map(feature => `<li>${feature}</li>`).join('')}
+        </ul>
+    `;
+    controlsSection.appendChild(uniformDescription);
+    
+    // Create action buttons
+    const actionButtons = document.createElement('div');
+    actionButtons.className = 'avatar-actions';
+    
+    actionButtons.innerHTML = `
+        <button class="avatar-action-btn secondary" id="reset-avatar">
+            <i class="fas fa-undo"></i> Reiniciar
+        </button>
+        <button class="avatar-action-btn" id="save-avatar">
+            <i class="fas fa-save"></i> Guardar Imagen
+        </button>
+    `;
+    
+    controlsSection.appendChild(actionButtons);
+    
+    // Append both sections to container
+    container.appendChild(previewContainer);
     container.appendChild(controlsSection);
-    container.appendChild(uniformInfoSection);
     
     // Set initial uniform
-    if (uniformTypes.length > 0) {
-        setUniform(uniformTypes[0]);
-        optionsContainer.querySelector('.avatar-option').classList.add('active');
+    if (uniformData.uniforms.length > 0) {
+        applyUniform(uniformData.uniforms[0]);
+        uniformOptions.querySelector('.uniform-option').classList.add('active');
     }
 }
 
 /**
  * Initialize event listeners for avatar system
- * @param {Array} uniformTypes - Array of uniform data
+ * @param {Object} uniformData - Data for uniforms and accessories
  */
-function initAvatarEvents(uniformTypes) {
-    const options = document.querySelectorAll('.avatar-option');
+function initAvatarEvents(uniformData) {
+    // Uniform selection
+    const uniformOptions = document.querySelectorAll('.uniform-option');
     
-    options.forEach(option => {
+    uniformOptions.forEach(option => {
         option.addEventListener('click', () => {
             // Remove active class from all options
-            options.forEach(opt => opt.classList.remove('active'));
+            uniformOptions.forEach(opt => opt.classList.remove('active'));
             
             // Add active class to clicked option
             option.classList.add('active');
             
             // Get selected uniform
-            const uniformId = option.dataset.uniform;
-            const selectedUniform = uniformTypes.find(u => u.id === uniformId);
+            const uniformId = option.dataset.uniformId;
+            const selectedUniform = uniformData.uniforms.find(u => u.id === uniformId);
             
             if (selectedUniform) {
-                setUniform(selectedUniform);
+                applyUniform(selectedUniform);
+                updateUniformDescription(selectedUniform);
             }
         });
     });
+    
+    // Reset button
+    const resetButton = document.getElementById('reset-avatar');
+    if (resetButton) {
+        resetButton.addEventListener('click', () => {
+            // Reset to first uniform
+            const firstUniform = uniformData.uniforms[0];
+            applyUniform(firstUniform);
+            updateUniformDescription(firstUniform);
+            
+            // Reset active uniform option
+            uniformOptions.forEach(opt => opt.classList.remove('active'));
+            uniformOptions[0].classList.add('active');
+        });
+    }
+    
+    // Save button (placeholder functionality)
+    const saveButton = document.getElementById('save-avatar');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            alert('Funcionalidad de guardar imagen - próximamente');
+        });
+    }
 }
 
 /**
- * Set the active uniform
+ * Apply the selected uniform to the avatar
  * @param {Object} uniform - The uniform data object
  */
-function setUniform(uniform) {
-    const avatarClothing = document.querySelector('.avatar-clothing');
-    const uniformInfo = document.querySelector('.uniform-info');
+function applyUniform(uniform) {
+    // Apply head item
+    const avatarHead = document.querySelector('.avatar-head');
+    if (avatarHead && uniform.components.head) {
+        avatarHead.style.cssText = uniform.components.head.url || '';
+    }
     
-    if (avatarClothing && uniformInfo) {
-        // Set SVG content
-        avatarClothing.innerHTML = uniform.svgData;
+    // Apply torso item
+    const avatarBody = document.querySelector('.avatar-body');
+    if (avatarBody && uniform.components.torso) {
+        avatarBody.style.cssText = uniform.components.torso.url || '';
+    }
+    
+    // Apply legs item
+    const avatarLegs = document.querySelector('.avatar-legs');
+    if (avatarLegs && uniform.components.legs) {
+        avatarLegs.style.cssText = uniform.components.legs.url || '';
+    }
+    
+    // Apply accessories
+    const avatarAccessory = document.querySelector('.avatar-accessory');
+    if (avatarAccessory && uniform.components.accessories && uniform.components.accessories.length > 0) {
+        const accessory = uniform.components.accessories[0];
+        avatarAccessory.style.cssText = accessory.url || '';
         
-        // Update info
-        uniformInfo.querySelector('.uniform-info-title').textContent = `Uniforme de ${uniform.name}`;
-        uniformInfo.querySelector('.uniform-description').textContent = uniform.description;
+        if (accessory.text) {
+            avatarAccessory.textContent = accessory.text;
+        } else {
+            avatarAccessory.textContent = '';
+        }
+    }
+}
+
+/**
+ * Update the uniform description section
+ * @param {Object} uniform - The uniform data object
+ */
+function updateUniformDescription(uniform) {
+    const descriptionElement = document.querySelector('.uniform-description');
+    if (descriptionElement) {
+        descriptionElement.innerHTML = `
+            <h4 class="uniform-description-title">${uniform.name}</h4>
+            <p class="uniform-description-text">${uniform.description}</p>
+            <h5>Características:</h5>
+            <ul class="uniform-features">
+                ${uniform.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+        `;
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 550">
+  <!-- Silueta básica del cadete -->
+  <path d="M175 100 A50 50 0 0 1 225 150 V160 A60 60 0 0 1 235 200 V350 L215 400 V500 H185 V400 L165 350 V200 A60 60 0 0 1 175 160 V150 A50 50 0 0 1 175 100Z" fill="#e0e0e0" stroke="#777" stroke-width="2"/>
+  <!-- Cabeza simplificada -->
+  <circle cx="175" cy="80" r="40" fill="#e0e0e0" stroke="#777" stroke-width="2"/>
+</svg>
