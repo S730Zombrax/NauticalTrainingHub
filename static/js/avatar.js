@@ -116,9 +116,6 @@ function createSimpleAvatarSystem(container, uniformData) {
     const previewPlaceholder = document.createElement('div');
     previewPlaceholder.className = 'preview-placeholder text-center p-5 bg-light rounded';
     previewPlaceholder.innerHTML = `
-        <div class="tshirt-container">
-            <i class="fas fa-tshirt fa-4x text-primary mb-4"></i>
-        </div>
         <p><strong>Próximamente:</strong> Visualización en 3D de uniformes</p>
         <p class="text-muted small">Estamos trabajando en esta funcionalidad para brindarte una experiencia visual más completa.</p>
     `;
