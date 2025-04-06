@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize navigation
     initNavigation();
     
+    // Initialize scroll effects
+    initScrollEffects();
+    
     // Initialize animations
     initAnimations();
     
     // Initialize custom components
     initComponents();
-    
-    // Initialize scroll effects
-    initScrollEffects();
 });
 
 /**
@@ -26,52 +26,45 @@ function initNavigation() {
     
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', function() {
+            navbarToggle.classList.toggle('active');
             navbarMenu.classList.toggle('active');
-            
-            // Toggle hamburger animation
-            const spans = this.querySelectorAll('span');
-            if (spans.length >= 3) {
-                spans[0].classList.toggle('rotate-45');
-                spans[1].classList.toggle('opacity-0');
-                spans[2].classList.toggle('rotate-negative-45');
-            }
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!navbarMenu.contains(event.target) && !navbarToggle.contains(event.target)) {
                 navbarMenu.classList.remove('active');
-                
-                // Reset hamburger
-                const spans = navbarToggle.querySelectorAll('span');
-                if (spans.length >= 3) {
-                    spans[0].classList.remove('rotate-45');
-                    spans[1].classList.remove('opacity-0');
-                    spans[2].classList.remove('rotate-negative-45');
-                }
+                navbarToggle.classList.remove('active');
+            }
+        });
+        
+        // Close menu when window is resized beyond mobile breakpoint
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                navbarMenu.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            }
+        });
+        
+        // Add active class to current page link
+        const currentPage = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (linkPath === currentPage || 
+                (currentPage === '/' && linkPath === '/index') || 
+                (linkPath !== '/' && currentPage.includes(linkPath))) {
+                link.classList.add('active');
             }
         });
     }
-    
-    // Set active nav link based on current page
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath || (currentPath === '/' && href === '/index.html')) {
-            link.classList.add('active');
-        } else if (href !== '/' && currentPath.includes(href)) {
-            link.classList.add('active');
-        }
-    });
 }
 
 /**
  * Initialize scroll effects
  */
 function initScrollEffects() {
-    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     
     if (navbar) {
@@ -84,92 +77,113 @@ function initScrollEffects() {
         });
     }
     
-    // Scroll reveal animation for elements
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    if (revealElements.length > 0) {
-        const revealElement = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-        
-        const observer = new IntersectionObserver(revealElement, {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                scrollToAnchor(targetId);
+            }
         });
-        
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-    }
+    });
 }
 
 /**
  * Initialize animations
  */
 function initAnimations() {
-    // Add animation classes with delay
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach((element, index) => {
-        element.style.animationDelay = (index * 0.1) + 's';
-    });
+    // Add animation classes when elements enter viewport
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
-    const slideElements = document.querySelectorAll('.slide-up');
-    slideElements.forEach((element, index) => {
-        element.style.animationDelay = (index * 0.1) + 's';
-    });
+    const checkIfInView = () => {
+        animatedElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                const animation = element.getAttribute('data-animation') || 'fade-in';
+                element.classList.add(animation);
+            }
+        });
+    };
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkIfInView);
+    // Check on load
+    checkIfInView();
 }
 
 /**
  * Initialize custom components
  */
 function initComponents() {
-    // Initialize tabs if present
     initTabs();
-    
-    // Initialize accordion if present
     initAccordion();
-    
-    // Initialize form validation
-    initFormValidation();
-    
-    // Initialize alert dismissal
     initAlertDismissal();
+    
+    // Tooltips initialization
+    const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+    tooltipTriggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', function() {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = this.getAttribute('data-tooltip');
+            
+            document.body.appendChild(tooltip);
+            
+            const triggerRect = this.getBoundingClientRect();
+            tooltip.style.left = triggerRect.left + (triggerRect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+            tooltip.style.top = triggerRect.top - tooltip.offsetHeight - 10 + 'px';
+            
+            tooltip.classList.add('show');
+            
+            this.addEventListener('mouseleave', function() {
+                tooltip.remove();
+            }, { once: true });
+        });
+    });
 }
 
 /**
  * Initialize tabs component
  */
 function initTabs() {
-    const tabContainers = document.querySelectorAll('.tabs');
+    const tabContainers = document.querySelectorAll('.tabs-container');
     
     tabContainers.forEach(container => {
-        const tabButtons = container.querySelectorAll('.tab-button');
-        const tabPanels = container.querySelectorAll('.tab-panel');
+        const tabLinks = container.querySelectorAll('.tab-link');
+        const tabContents = container.querySelectorAll('.tab-content');
         
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const target = button.getAttribute('data-target');
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // Toggle active class on buttons
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+                // Remove active class from all tabs
+                tabLinks.forEach(link => link.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
                 
-                // Toggle active class on panels
-                tabPanels.forEach(panel => {
-                    if (panel.getAttribute('id') === target) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
+                // Add active class to current tab
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('data-tab');
+                const targetContent = container.querySelector(`#${targetId}`);
+                
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
             });
         });
+        
+        // Activate first tab by default
+        if (tabLinks.length > 0 && tabContents.length > 0) {
+            tabLinks[0].classList.add('active');
+            tabContents[0].classList.add('active');
+        }
     });
 }
 
@@ -177,30 +191,39 @@ function initTabs() {
  * Initialize accordion component
  */
 function initAccordion() {
-    const accordions = document.querySelectorAll('.accordion');
+    const accordionItems = document.querySelectorAll('.accordion-item');
     
-    accordions.forEach(accordion => {
-        const items = accordion.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
         
-        items.forEach(item => {
-            const header = item.querySelector('.accordion-header');
-            const content = item.querySelector('.accordion-content');
-            
-            header.addEventListener('click', () => {
-                // Check if this accordion allows multiple open items
-                const allowMultiple = accordion.getAttribute('data-allow-multiple') === 'true';
+        if (header && content) {
+            header.addEventListener('click', function() {
+                const isActive = item.classList.contains('active');
                 
-                if (!allowMultiple) {
-                    items.forEach(otherItem => {
+                // Close all accordion items
+                if (!event.ctrlKey) {
+                    document.querySelectorAll('.accordion-item').forEach(otherItem => {
                         if (otherItem !== item) {
                             otherItem.classList.remove('active');
+                            const otherContent = otherItem.querySelector('.accordion-content');
+                            if (otherContent) {
+                                otherContent.style.maxHeight = null;
+                            }
                         }
                     });
                 }
                 
+                // Toggle current item
                 item.classList.toggle('active');
+                
+                if (!isActive) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = null;
+                }
             });
-        });
+        }
     });
 }
 
@@ -211,16 +234,27 @@ function initAlertDismissal() {
     const alerts = document.querySelectorAll('.alert');
     
     alerts.forEach(alert => {
-        const dismissButton = alert.querySelector('.alert-dismiss');
+        const closeBtn = alert.querySelector('.alert-close');
         
-        if (dismissButton) {
-            dismissButton.addEventListener('click', () => {
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
                 alert.classList.add('fade-out');
                 
                 setTimeout(() => {
                     alert.remove();
                 }, 300);
             });
+        }
+        
+        // Auto close alerts after 5 seconds if they have auto-close class
+        if (alert.classList.contains('auto-close')) {
+            setTimeout(() => {
+                alert.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    alert.remove();
+                }, 300);
+            }, 5000);
         }
     });
 }
@@ -233,24 +267,56 @@ function initAlertDismissal() {
  */
 function showNotification(message, type = 'success', duration = 3000) {
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span>${message}</span>
-        </div>
-    `;
+    notification.className = `notification ${type}`;
     
+    const icon = document.createElement('span');
+    icon.className = 'notification-icon';
+    
+    switch(type) {
+        case 'success':
+            icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+            break;
+        case 'error':
+            icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+            break;
+        case 'warning':
+            icon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+            break;
+        case 'info':
+            icon.innerHTML = '<i class="fas fa-info-circle"></i>';
+            break;
+    }
+    
+    const textSpan = document.createElement('span');
+    textSpan.textContent = message;
+    
+    notification.appendChild(icon);
+    notification.appendChild(textSpan);
+    
+    // Add close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'notification-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', () => {
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    });
+    
+    notification.appendChild(closeBtn);
+    
+    // Append notification to body
     document.body.appendChild(notification);
     
-    // Add visible class after a short delay for animation
+    // Show notification with animation
     setTimeout(() => {
-        notification.classList.add('visible');
+        notification.classList.add('show');
     }, 10);
     
-    // Remove notification after duration
+    // Hide notification after duration
     setTimeout(() => {
-        notification.classList.remove('visible');
-        
+        notification.classList.add('fade-out');
         setTimeout(() => {
             notification.remove();
         }, 300);
@@ -263,12 +329,14 @@ function showNotification(message, type = 'success', duration = 3000) {
  * @param {number} offset - Offset from the top in pixels
  */
 function scrollToAnchor(target, offset = 80) {
-    const element = document.querySelector(target);
+    const targetElement = document.querySelector(target);
     
-    if (element) {
-        const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    if (targetElement) {
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = targetPosition - offset;
+        
         window.scrollTo({
-            top: targetPosition - offset,
+            top: offsetPosition,
             behavior: 'smooth'
         });
     }
