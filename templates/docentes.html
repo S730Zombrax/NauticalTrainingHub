@@ -2,6 +2,10 @@
 
 {% block title %}Evaluación Docente - Universidad Marítima del Caribe{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/docentes.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <!-- Header Principal -->
@@ -257,6 +261,9 @@
     z-index: 1;
 }
 </style>
+
+<!-- JavaScript específico para docentes -->
+<script src="{{ url_for('static', filename='js/docentes.js') }}"></script>
 
 <!-- JavaScript para generar códigos QR (simulación visual) -->
 <script>

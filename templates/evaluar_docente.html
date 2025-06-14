@@ -2,6 +2,10 @@
 
 {% block title %}Evaluar {{ profesor.nombre }} - Universidad Marítima del Caribe{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/docentes.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <!-- Header de Evaluación -->
@@ -516,6 +520,9 @@
     }
 }
 </style>
+
+<!-- JavaScript específico para docentes -->
+<script src="{{ url_for('static', filename='js/docentes.js') }}"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
