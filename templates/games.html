@@ -1,17 +1,26 @@
 {% extends "layout.html" %}
 
-{% block title %}Juegos Interactivos - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Juegos Interactivos - Escuela Nautica{% endblock %}
 
 {% block content %}
-<!-- Games Hero Section -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h1 class="mb-4">Juegos Interactivos Educativos</h1>
-        <p class="lead">Pon a prueba tus conocimientos y habilidades con nuestras simulaciones y juegos interactivos sobre ingeniería marina.</p>
+<!-- Inicio de la seccion principal de simuladores -->
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Juegos de Simulación Interactivos</h1>
+            <p class="hero-description fade-in">Pon a prueba tus conocimientos y habilidades con nuestras simulaciones y juegos interactivos sobre ingeniería marina.</p>
+        </div>
     </div>
 </section>
 
-<!-- Main Content -->
+<!-- Contenido principal de la seccion de simuladores -->
 <section class="section">
     <div class="container">
         <div class="row">
@@ -34,7 +43,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card">
                                         <div class="card-header bg-primary text-white">
-                                            <h5 class="m-0">Controles de Carga</h5>
+                                            <h4 class="m-0">Controles de Carga</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group mb-3">
@@ -70,7 +79,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card">
                                         <div class="card-header bg-primary text-white">
-                                            <h5 class="m-0">Estado del Buque</h5>
+                                            <h4 class="m-0">Estado del Buque</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3">
@@ -116,7 +125,7 @@
                             
                             <div class="card mt-3">
                                 <div class="card-header bg-light">
-                                    <h5 class="m-0">Principios de Estabilidad</h5>
+                                    <h4 class="m-0">Principios de Estabilidad</h4>
                                 </div>
                                 <div class="card-body">
                                     <ul>
@@ -165,7 +174,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card">
                                         <div class="card-header bg-primary text-white">
-                                            <h5 class="m-0">Controles del Buque</h5>
+                                            <h4 class="m-0">Controles del Buque</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group mb-3">
@@ -192,7 +201,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card">
                                         <div class="card-header bg-primary text-white">
-                                            <h5 class="m-0">Estado de Navegación</h5>
+                                            <h4 class="m-0">Estado de Navegación</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3">
@@ -224,7 +233,7 @@
                             
                             <div class="card mt-3">
                                 <div class="card-header bg-light">
-                                    <h5 class="m-0">Conceptos de Navegación</h5>
+                                    <h4 class="m-0">Conceptos de Navegación</h4>
                                 </div>
                                 <div class="card-body">
                                     <ul>
@@ -241,12 +250,12 @@
             </div>
             
             <div class="col-lg-4">
-                <!-- Sidebar content -->
+                <!-- Contenido de la barra lateral -->
                 <div class="sticky-top" style="top: 100px;">
-                    <!-- Categorías de Juegos -->
+                    <!-- Categorías de Simulaciones -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Categorías de Juegos</h3>
+                            <h4 class="m-0">Categorías de Simuladores</h4>
                         </div>
                         <div class="card-body p-0">
                             <div class="list-group list-group-flush">
@@ -296,10 +305,10 @@
                         </div>
                     </div>
                     
-                    <!-- Learning Resources -->
+                    <!-- Recursos de Aprendizaje -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-secondary text-white">
-                            <h3 class="m-0">Recursos de Aprendizaje</h3>
+                            <h4 class="m-0">Recursos de Aprendizaje</h4>
                         </div>
                         <div class="card-body">
                             <p>Complementa tu conocimiento con estos recursos educativos:</p>
@@ -338,10 +347,10 @@
                     <!-- Leaderboard -->
                     <div class="card shadow">
                         <div class="card-header bg-accent text-dark">
-                            <h3 class="m-0">Mejores Puntuaciones</h3>
+                            <h4 class="m-0">Mejores Puntuaciones</h4>
                         </div>
                         <div class="card-body">
-                            <h4 class="mb-3">Test de Conocimientos</h4>
+                            <h5 class="mb-3">Test de Conocimientos</h5>
                             <table class="table table-sm">
                                 <thead>
                                     <tr>
@@ -391,24 +400,24 @@
     </div>
 </section>
 
-<!-- Additional Games Section -->
+<!-- Juegos adicionales -->
 <section class="section bg-light">
     <div class="container">
-        <h2 class="section-title">Próximos Juegos y Simulaciones</h2>
+        <h2 class="section-title">Próximas Simulaciones</h2>
         <p class="section-description">Estamos trabajando en nuevas experiencias interactivas para enriquecer tu aprendizaje.</p>
         
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow">
                     <div class="card-header bg-secondary text-white">
-                        <h3 class="m-0">Simulador de Sala de Máquinas</h3>
+                        <h4 class="m-0">Simulador de Sala de Máquinas</h4>
                     </div>
                     <div class="card-body text-center">
                         <div class="coming-soon py-5">
                             <div class="coming-soon-icon">
                                 <i class="fas fa-cogs"></i>
                             </div>
-                            <h3 class="coming-soon-title">Próximamente</h3>
+                            <h5 class="coming-soon-title">Próximamente</h5>
                             <p class="coming-soon-text">Experimenta la operación de los sistemas principales de la sala de máquinas de un buque mercante. Gestiona potencia, combustible, refrigeración y responde a emergencias.</p>
                         </div>
                     </div>
@@ -418,14 +427,14 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow">
                     <div class="card-header bg-secondary text-white">
-                        <h3 class="m-0">Simulador de Emergencias a Bordo</h3>
+                        <h4 class="m-0">Simulador de Emergencias a Bordo</h4>
                     </div>
                     <div class="card-body text-center">
                         <div class="coming-soon py-5">
                             <div class="coming-soon-icon">
                                 <i class="fas fa-fire-extinguisher"></i>
                             </div>
-                            <h3 class="coming-soon-title">Próximamente</h3>
+                            <h5 class="coming-soon-title">Próximamente</h5>
                             <p class="coming-soon-text">Practica tus respuestas ante situaciones de emergencia como incendios, inundaciones, varadas y otros eventos críticos que pueden ocurrir a bordo.</p>
                         </div>
                     </div>
@@ -435,7 +444,7 @@
     </div>
 </section>
 
-<!-- Educational Value Section -->
+<!-- Valor educativo de los juegos -->
 <section class="section">
     <div class="container">
         <h2 class="section-title">Valor Educativo de los Juegos Interactivos</h2>
@@ -474,14 +483,16 @@
     </div>
 </section>
 
-<!-- Call to Action -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h2 class="mb-4">¿Quieres más desafíos?</h2>
-        <p class="mb-4">Estas simulaciones son solo una introducción a lo que experimentarás en nuestros laboratorios y simuladores profesionales.</p>
-        <a href="{{ url_for('admision') }}" class="btn btn-accent btn-lg">
+<!-- Llamado para mas desafios -->
+ <section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">¿Quieres más desafíos?</h1>
+            <p class="hero-description fade-in">Estas simulaciones son solo una introducción a lo que experimentarás en nuestros laboratorios y simuladores profesionales.</p>
+            <a href="{{ url_for('admision') }}" class="btn btn-accent btn-lg">
             <i class="fas fa-graduation-cap me-2"></i> Conoce Nuestro Programa
-        </a>
+            </a>
+        </div>
     </div>
 </section>
 {% endblock %}

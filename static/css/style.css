@@ -1,5 +1,5 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
+ * Universidad Marítima del Caribe - Ingenieria maritima
  * Main Styles
  */
 
@@ -11,13 +11,13 @@
 }
 
 :root {
-    --primary: #003366;
-    --primary-dark: #001a4d;
-    --primary-light: #0077b6;
-    --accent: #f9a826;
+    --primary: #020922;
+    --primary-dark: #041553;
+    --primary-light: #042395;
+    --accent: #ff9d00;
     --accent-dark: #e38c00;
     --text-light: #e6f2ff;
-    --text-dark: #002952;
+    --text-dark: #000f1f;
     --bg-light: #f0f8ff;
     --bg-gray: #f5f7fa;
     --success: #28a745;
@@ -35,13 +35,16 @@ body {
     overflow-x: hidden;
     padding-top: 0; /* Quitamos espacio para evitar el espacio azul celeste */
 }
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
-    color: var(--primary);
+    color: var(--primary-dark);
+}
+
+h4{
+    color: #ffffff;
 }
 
 a {
@@ -66,9 +69,21 @@ img {
     margin: 0 auto;
     padding: 0 15px;
 }
+.container-text-center {
+    background: #020922 !important;
+    color: #fff !important;
+    padding: 40px 0;
+}
 
-/* Buttons */
+.container-text-center h1,
+.container-text-center p {
+    color: #fff !important;
+    text-align: center;
+}
+
+/* Botones */
 .btn {
+    color: white;
     display: inline-block;
     padding: 10px 20px;
     font-weight: 600;
@@ -122,6 +137,9 @@ img {
 .btn-outline-accent:hover {
     background-color: var(--accent);
     color: var(--text-dark);
+}
+.nav-link li{
+    color: black;
 }
 
 /* Spacing utilities */
@@ -275,7 +293,7 @@ img {
     cursor: pointer;
 }
 
-/* Hero Section */
+/* Seccion del Hero */
 .hero {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
@@ -307,7 +325,7 @@ img {
     justify-content: center;
 }
 
-/* Section styling */
+/* Estilo de section */
 .section {
     padding: 60px 0;
 }
@@ -402,12 +420,13 @@ img {
     transition: width 0.3s ease;
 }
 
+
 .feature-box:hover .feature-title::after {
     width: 60px;
 }
 
 /* Cards */
-.card {
+/*.card {
     border-radius: 10px;
     overflow: hidden;
     border: none;
@@ -442,6 +461,10 @@ img {
     background-color: white;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding: 1rem 1.5rem;
+}*/
+.card-header{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
 }
 
 /* Program Characteristics */
@@ -903,6 +926,13 @@ img {
     position: relative;
     z-index: 1;
 }
+#marine-quiz h3,
+#marine-quiz h4,
+#marine-quiz .quiz-question,
+#marine-quiz p {
+    color: #111 !important;
+}
+
 
 /* Notifications */
 .notification {
@@ -1305,7 +1335,7 @@ img {
     transform: translateY(0);
 }
 
-/* Video Section */
+/* Seccion de Videos */
 .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -1324,8 +1354,15 @@ img {
     height: 100%;
     border: 0;
 }
+.section-bg-primary-text-white {
+    background: #020922 !important;
+    color: #fff !important;
+}
+.section-bg-primary-text-white h1 {
+    color: #fff;
+}
 
-/* Search Box */
+/* buscar caja */
 .search-box {
     position: relative;
     margin-bottom: 30px;
@@ -1546,3 +1583,440 @@ img {
 .tab-content.active {
     display: block;
 }
+
+/*Biblioteca*/
+.libros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linea_libros {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+.bloque_libro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px; /* Ajusta el ancho según prefieras */
+}
+
+.imagen_libro {
+    width: 180px;   /* Tamaño reducido */
+    height: 240px;  /* Mantén proporción o ajusta según tus imágenes */
+    object-fit: cover;
+    display: block;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.cuerpo{
+    background-color:  rgba(9, 47, 184, 0.096);
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background-color:  rgba(4, 21, 83);
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 80px 0;
+    margin-top: 0;
+}
+
+.hero-content {
+    max-width: 860px;
+    margin: 0 auto;
+    
+}
+
+.hero-title {
+    font-size: 2.3rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-size: 1.6rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+
+}
+
+/* Bloques de libros */
+
+.seccion_secondtitulo{ 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.secondtitulo{ 
+    font-size: 2.5rem;
+    color:   rgba(8, 15, 105);
+    text-align: center;
+}
+
+
+.linea_libros{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.bloque_libro{
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;  
+}
+
+
+.imagen_libro{
+    width: 190px;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  
+}
+
+.boton_libro{
+    padding: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color:  rgb(12, 20, 128);
+    color: rgb(255, 255, 255);
+}
+
+.boton_libro:hover {
+    background-color:rgb(26, 39, 219);
+}
+
+
+/* Bloques de convenios */
+
+
+.convenios{ 
+    padding: 80px;
+    margin-top: 9rem;
+    background-image: url("document/proyecto UMC/img 14.jpg");
+    background-size: cover;  
+}
+
+.revistas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloque_revista{
+    width: 590px;
+    height: 600px;
+    padding: 10px;
+    margin-right: 2.8rem;
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px rgb(54, 54, 248);
+    background-color: rgba(4, 24, 97, 0.678);
+    text-align: center;
+    
+}
+
+.imagen_revista{ 
+    width: 73%;
+    height: 65%;
+    margin: 0 auto;
+}
+
+.img_revista{ 
+   width: 100%;
+   height: 100%;
+   border-radius: 9px;
+}
+
+.revistas_titulos{
+    width: 90%;
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+}
+
+.boton_revista{
+    width: 100px;
+    padding: 13px;
+    margin-top: 7px;
+    border-radius: 5px;
+    background-color:  rgba(37, 51, 243, 0.973);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+/* Bloques de historia*/
+
+
+.bloque_historia{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+    margin-top: 7rem;
+}
+
+.imagen_historia{ 
+    width: 650px;
+    height: 380px;
+    object-fit: cover; 
+}
+
+.texto_historia{ 
+    width: 870px;
+    margin-left: 5rem;
+}
+
+.parrafo{
+    text-align: justify;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+}
+
+
+
+
+/*Uniformes*/
+/*Bloque de normativas del uniforme*/
+
+.normativa_descripcion {
+    display: flex;
+    flex-direction: column;   /* Apila los hijos verticalmente */
+    align-items: center;      /* Centra horizontalmente */
+    padding: 30px;
+    width: 60%;
+    margin: 20px auto;
+}
+
+.descripcion_1 {
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.img_descripccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.img_descripccion img {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.img_descripccion .boton_libro {
+    width: 100%;
+    text-align: center;
+}
+
+.primer_titulo1{
+    color: rgb(5, 14, 148);
+}
+
+.titulo_principio{
+    text-align: center;
+}
+
+.normativa_parrafo{
+    text-align: justify;
+}
+
+.contenedor_principios{
+    text-align: center;
+    margin: 0 auto;
+    padding: 30px;
+    width: 80%;                           
+}
+
+.cuadrados_principios{ 
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    padding: 25px;
+}
+
+.cuadros{ 
+    margin-right: 20px;
+    max-width: 600px;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 6px rgba(8, 8, 134, 0.432);
+}
+
+.imag_unifor{ 
+    width: 65%;
+    height: 170px;
+    border-radius: 8px;
+}
+
+/*Bloque de disposiciones del uniforme*/
+
+.disposiciones_uniforme{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 15px;
+    color: rgb(247, 251, 255);
+    background-color:  rgb(12, 33, 107);
+}
+
+.disposicion_unifor{ 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 6px;
+}
+
+.bloque_disposicion{ 
+    text-align: justify;
+    line-height: 1.7rem;
+}
+
+.titulo_disposicion{
+    text-align: center;
+    color:  rgb(247, 251, 255);
+}
+
+.alerta{
+    margin-top: 23px;
+    margin-bottom: 15px;
+    text-align: center; 
+}
+
+#bloque_femeninas{
+    margin-left: 3rem;
+}
+
+/*Bloque del carrusel*/
+
+
+.contenedor_carrusel{ 
+    height: 450px;
+    max-width: 1350px;
+    margin: 0 auto;
+    border-radius: 9px;
+    box-shadow: 5px 5px 7px 7px rgba(8, 8, 134, 0.356);
+    overflow: hidden;
+    padding: 0px;
+
+} 
+
+.itemscarrusel{
+    height: 100%;
+    position: relative;
+
+}
+
+.items_presentacion{
+    width: 100%;
+    height: 100%;
+}
+
+.tarjetacarrusel{
+    height: 100%;
+}
+
+.uniforme{  
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0 auto;
+    width: 85%;
+    height: 90%;
+    border: 3px ;
+}
+
+.uniforme_img{
+    width: 360px;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.video{
+    width: 100%;
+    height: 100%;
+}
+
+.unifor_elementos{ 
+    padding: 8px;
+    margin-left: 1.7rem;
+    width: 60%;
+    text-align: justify;
+    line-height: 1.3rem;
+    font-size: 1.05rem;
+}
+
+.contePuntos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.4rem;
+}
+
+.boton_uniforme{ 
+    width: 2rem;
+    height: 1.2rem;
+    margin: 0 4px 0 4px;
+    border-radius: 5px;
+    background-color:  rgb(6, 24, 88);
+    cursor: pointer;
+
+}
+
+
+/*Bloque del acordeon*/
+
+.acordeon{ 
+    width: 60%;
+    padding: 25px;
+    margin: 25px auto;
+}
+
+.bloque_pregunta{
+    padding: 2rem;
+    margin: 20px 25px 20px 25px;
+    border-radius: 6px;
+    box-shadow: 2px 3px 3px 2px rgba(8, 8, 134, 0.356);
+    cursor: pointer;
+}
+
+.titulo_acordeon{
+    list-style: none;
+   
+}
+
+.titulo_preguntas{
+    color: rgb(5, 14, 148);
+    text-align: center;
+}
+
+.titulo_acordeon::before{
+    content: "-";
+    padding-right: 1rem;
+}
+
+details[open] summary::before{
+    content: "-";
+}
+
+
+

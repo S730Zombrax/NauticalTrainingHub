@@ -1,11 +1,11 @@
 /**
- * Universidad Marítima del Caribe - Marine Engineering
+ * Universidad Marítima del Caribe - Ingenieria maritima
  * Navbar Styles
  */
 
 /* Main Navbar */
 .navbar {
-    background: linear-gradient(135deg, #003366 0%, #001a4d 100%);
+    background: linear-gradient(135deg, #002c5c 0%, #011337 100%);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 15px 0;
     position: sticky;

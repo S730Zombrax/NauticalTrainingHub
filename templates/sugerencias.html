@@ -3,15 +3,22 @@
 {% block title %}Sugerencias - Universidad Marítima del Caribe{% endblock %}
 
 {% block content %}
-<!-- Sugerencias Hero Section -->
-<section class="hero">
+<!-- Hero contenido -->
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
     <div class="container hero-content text-center">
         <h1 class="hero-title">Buzón de Sugerencias</h1>
         <p class="hero-subtitle">Tu opinión es importante para seguir mejorando nuestro programa de Ingeniería Marina</p>
     </div>
 </section>
 
-<!-- Main Content -->
+<!-- Contenido Main -->
 <section class="section">
     <div class="container">
         <div class="row">

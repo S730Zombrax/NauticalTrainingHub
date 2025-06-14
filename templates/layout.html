@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Universidad Marítima del Caribe - Ingeniería Marítima{% endblock %}</title>
+    <title>{% block title %} Escuela Nautica de Venezuela- Ingeniería Marítima{% endblock %}</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚓</text></svg>">
@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,17 +27,13 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigacion -->
     <nav class="navbar">
         <div class="container navbar-container">
-            <a href="{{ url_for('index') }}" class="navbar-logo">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 12H5V22H19V12H22L12 2Z" fill="#0077b6"/>
-                    <path d="M12 22V16M12 12V16M8 16H16" stroke="#003559" stroke-width="2"/>
-                    <circle cx="12" cy="8" r="2" fill="#f9a826"/>
-                </svg>
-                <span>UMC Ingeniería Marítima</span>
-            </a>
+                        <a href="{{ url_for('index') }}" class="navbar-logo" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo_umc.png') }}"                             alt="Logo UMC" style="height: 44px; margin-right: 10px;">
+                            <span>Escuela Nautica</span>
+                        </a>
             
             <div class="navbar-toggle">
                 <span></span>
@@ -85,7 +81,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="recursosDropdown">
                         <li><a class="dropdown-item" href="{{ url_for('biblioteca') }}">Biblioteca</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('games') }}">Simulaciones</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('classroom') }}">Classroom</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('games') }}">Game Simulator</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('docentes') }}">Evaluación Docente</a></li>
                     </ul>
                 </li>
                 
@@ -108,7 +106,7 @@
         </div>
     </nav>
     
-    <!-- Error Message (if any) -->
+    <!-- Mensaje de error (if any) -->
     {% if error %}
     <div class="container mt-5 pt-5">
         <div class="alert alert-danger text-center">
@@ -190,7 +188,7 @@
         </div>
         
         <div class="container footer-bottom">
-            <p>&copy; {{ now.year }} Universidad Marítima del Caribe. Todos los derechos reservados.</p>
+            <p>&copy; {{ now.year }} Escuela Nautica. Todos los derechos reservados.</p>
         </div>
     </footer>
     

@@ -1,36 +1,45 @@
 {% extends "layout.html" %}
 
-{% block title %}Historia - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Historia - Escuela Nautica{% endblock %}
 
 {% block content %}
 <!-- History Hero Section -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h1 class="mb-4">Historia de la Ingeniería Marina en UMC</h1>
-        <p class="lead">Nuestra tradición y evolución en la formación de profesionales marítimos de excelencia.</p>
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Historia de la Ingeniería Marina en UMC</h1>
+            <p class="hero-description fade-in">Nuestra tradición y evolución en la formación de profesionales marítimos de excelencia.</p>
+        </div>
     </div>
 </section>
 
-<!-- Timeline Section -->
+<!-- Linea de tiempo Section -->
 <section class="section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <h2 class="mb-4">Nuestra Trayectoria</h2>
                 
-                <!-- Timeline -->
+                <!-- Linea de tiempo -->
                 <div class="position-relative mb-5">
-                    <!-- Timeline Line -->
+                    <!--  Linea -->
                     <div class="position-absolute top-0 bottom-0" style="width: 4px; background-color: var(--primary); left: 24px;"></div>
                     
-                    <!-- Timeline Items -->
+                    <!-- Items -->
                     <div class="timeline-item mb-5 ms-5 position-relative">
                         <div class="position-absolute" style="width: 52px; height: 52px; border-radius: 50%; background-color: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; left: -77px; top: 0;">
                             <i class="fas fa-ship"></i>
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">1811 - Los inicios de la educación náutica</h3>
+                                <h4 class="m-0">1811 - Los inicios de la educación náutica</h4>
                             </div>
                             <div class="card-body">
                                 <p>Los primeros pasos de la educación náutica en Venezuela se dieron a principios del siglo XIX, cuando el país comenzaba su camino hacia la independencia. La necesidad de formar oficiales para la incipiente marina venezolana llevó a establecer las primeras escuelas de navegación.</p>
@@ -49,7 +58,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">1936 - Escuela Náutica de Venezuela</h3>
+                                <h4 class="m-0">1936 - Escuela Náutica de Venezuela</h4>
                             </div>
                             <div class="card-body">
                                 <p>Con el auge de la industria petrolera, Venezuela reconoció la necesidad de formar profesionales marítimos más especializados. Esto llevó a la fundación de la Escuela Náutica de Venezuela, precursora directa de la actual Universidad Marítima.</p>
@@ -68,7 +77,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">1958 - Escuela de Oficiales de Máquinas</h3>
+                                <h4 class="m-0">1958 - Escuela de Oficiales de Máquinas</h4>
                             </div>
                             <div class="card-body">
                                 <p>La evolución de la navegación y la creciente complejidad técnica de los buques llevó a la creación de una división especializada: la Escuela de Oficiales de Máquinas. Esta institución se dedicó específicamente a la formación de ingenieros para la sala de máquinas de las embarcaciones.</p>
@@ -87,7 +96,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">1975 - Escuela de Formación de Oficiales de la Marina Mercante</h3>
+                                <h4 class="m-0">1975 - Escuela de Formación de Oficiales de la Marina Mercante</h4>
                             </div>
                             <div class="card-body">
                                 <p>La fusión de las diferentes escuelas náuticas dio origen a la Escuela de Formación de Oficiales de la Marina Mercante (EFOMM), que unificó la formación de todos los oficiales mercantes bajo una misma institución.</p>
@@ -106,7 +115,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">2000 - Fundación de la Universidad Marítima del Caribe</h3>
+                                <h4 class="m-0">2000 - Fundación de la Universidad Marítima del Caribe</h4>
                             </div>
                             <div class="card-body">
                                 <p>El 13 de abril de 2000, mediante decreto presidencial, se crea la Universidad Marítima del Caribe (UMC), elevando la formación marítima venezolana al nivel universitario. La carrera de Ingeniería Marina se establece como uno de sus programas insignia.</p>
@@ -125,7 +134,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">2010 - Reconocimiento Internacional</h3>
+                                <h4 class="m-0">2010 - Reconocimiento Internacional</h4>
                             </div>
                             <div class="card-body">
                                 <p>La UMC logra el pleno reconocimiento internacional de sus programas de formación marítima, incluyendo la Ingeniería Marina, cumpliendo con todos los estándares del Convenio STCW (Estándares de Formación, Titulación y Guardia para Gente de Mar).</p>
@@ -144,7 +153,7 @@
                         </div>
                         <div class="card shadow">
                             <div class="card-header bg-light">
-                                <h3 class="m-0">Actualidad - Innovación y Excelencia</h3>
+                                <h4 class="m-0">Actualidad - Innovación y Excelencia</h4>
                             </div>
                             <div class="card-body">
                                 <p>Hoy, la carrera de Ingeniería Marina en la UMC es reconocida por su excelencia académica y su enfoque en las nuevas tecnologías. La universidad ha modernizado continuamente su infraestructura, incorporando simuladores de última generación y estableciendo convenios con navieras internacionales.</p>
@@ -162,10 +171,10 @@
             <div class="col-lg-4">
                 <!-- Sidebar content -->
                 <div class="sticky-top" style="top: 100px;">
-                    <!-- Legacy & Heritage -->
+                    <!-- Legado y herencia -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Legado y Tradición</h3>
+                            <h4 class="m-0">Legado y Tradición</h4>
                         </div>
                         <div class="card-body">
                             <p>A lo largo de su historia, la carrera de Ingeniería Marina en la UMC ha formado a más de:</p>
@@ -185,39 +194,39 @@
                         </div>
                     </div>
                     
-                    <!-- Pioneers -->
+                    <!-- Pioneras -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-secondary text-white">
-                            <h3 class="m-0">Pioneros y Figuras Destacadas</h3>
+                            <h4 class="m-0">Pioneros y Figuras Destacadas</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 p-3 border-bottom">
-                                <h4>Capitán Ramón Velásquez</h4>
+                                <h3>Capitán Ramón Velásquez</h3>
                                 <p class="text-muted">Fundador de la Escuela Náutica (1936)</p>
                                 <p>Estableció las bases de la formación náutica profesional en Venezuela.</p>
                             </div>
                             <div class="mb-3 p-3 border-bottom">
-                                <h4>Ing. Carlos Lander</h4>
+                                <h3>Ing. Carlos Lander</h3>
                                 <p class="text-muted">Director de la Escuela de Oficiales de Máquinas (1960-1972)</p>
                                 <p>Modernizó el currículo e introdujo estándares internacionales en la formación técnica.</p>
                             </div>
                             <div class="mb-3 p-3 border-bottom">
-                                <h4>Dra. María Rodríguez</h4>
+                                <h3>Dra. María Rodríguez</h3>
                                 <p class="text-muted">Primera rectora de la UMC (2000-2008)</p>
                                 <p>Lideró la transición de escuela a universidad y estableció convenios internacionales clave.</p>
                             </div>
                             <div class="p-3">
-                                <h4>Capitán José Antonio Fernández</h4>
+                                <h3>Capitán José Antonio Fernández</h3>
                                 <p class="text-muted">Decano de Ingeniería (2010-2018)</p>
                                 <p>Impulsó la incorporación de tecnologías sostenibles en el currículo de Ingeniería Marina.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Historical Documents -->
+                    <!-- Documentos historicos -->
                     <div class="card shadow">
                         <div class="card-header bg-accent text-dark">
-                            <h3 class="m-0">Archivo Histórico</h3>
+                            <h4 class="m-0">Archivo Histórico</h4>
                         </div>
                         <div class="card-body">
                             <p>Explora nuestros documentos históricos digitalizados:</p>
@@ -275,13 +284,15 @@
 </section>
 
 <!-- Call to Action -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h2 class="mb-4">Sé parte de nuestra historia</h2>
-        <p class="mb-4">Únete a una tradición de excelencia de más de 80 años formando a los mejores profesionales marítimos.</p>
-        <a href="{{ url_for('admision') }}" class="btn btn-accent btn-lg">
+ <section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Sé parte de nuestra historia</h1>
+            <p class="hero-description fade-in">Únete a una tradición de excelencia de más de 80 años formando a los mejores profesionales marítimos.</p>
+            <a href="{{ url_for('admision') }}" class="btn btn-accent btn-lg">
             <i class="fas fa-graduation-cap me-2"></i> Proceso de Admisión
-        </a>
+            </a>
+        </div>
     </div>
 </section>
 {% endblock %}

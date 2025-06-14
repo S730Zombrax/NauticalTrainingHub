@@ -1,22 +1,33 @@
 {% extends "layout.html" %}
 
-{% block title %}Noticias - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Noticias - Escuela Nautica{% endblock %}
 
 {% block content %}
-<!-- News Hero Section -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h1 class="mb-4">Noticias y Eventos</h1>
-        <p class="lead">Mantente informado sobre las últimas actividades, logros y novedades de la carrera de Ingeniería Marítima.</p>
+<!-- Sección de noticias -->
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Noticias y Eventos</h1>
+            <p class="hero-description fade-in">Mantente informado sobre las últimas actividades, logros y novedades de la carrera de Ingeniería Marítima.</p>
+        </div>
     </div>
 </section>
 
-<!-- Main Content -->
+
+
+<!-- Contenido principal-->
 <section class="section">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <!-- Featured News -->
+                <!-- Noticias destacadas -->
                 <div class="card mb-5 shadow">
                     <div class="img-placeholder" style="height: 350px;">
                         <i class="fas fa-newspaper fa-4x"></i>
@@ -169,7 +180,7 @@
                     <!-- Search -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Buscar Noticias</h3>
+                            <h4 class="m-0">Buscar Noticias</h4>
                         </div>
                         <div class="card-body">
                             <form>
@@ -186,7 +197,7 @@
                     <!-- Categories -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-secondary text-white">
-                            <h3 class="m-0">Categorías</h3>
+                            <h4 class="m-0">Categorías</h4>
                         </div>
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush">
@@ -221,7 +232,7 @@
                     <!-- Upcoming Events -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-accent text-dark">
-                            <h3 class="m-0">Próximos Eventos</h3>
+                            <h4 class="m-0">Próximos Eventos</h4>
                         </div>
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush">
@@ -273,7 +284,7 @@
                     <!-- Newsletter -->
                     <div class="card shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Boletín Informativo</h3>
+                            <h4 class="m-0">Boletín Informativo</h4>
                         </div>
                         <div class="card-body">
                             <p>Suscríbete para recibir las últimas noticias y eventos de la carrera de Ingeniería Marítima:</p>
@@ -333,10 +344,10 @@
 </section>
 
 <!-- Call to Action -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h2 class="mb-4">Comparte tu historia</h2>
-        <p class="mb-4">¿Eres egresado de Ingeniería Marítima? Cuéntanos sobre tus logros profesionales para inspirar a las nuevas generaciones.</p>
+<section class="hero">
+    <div class="container hero-content text-center">
+        <h1 class="hero-title">Comparte tu Historia</h1>
+        <p class="hero-subtitle">¿Eres egresado de Ingeniería Marítima? Cuéntanos sobre tus logros profesionales para inspirar a las nuevas generaciones.</p>
         <button class="btn btn-accent btn-lg" disabled>
             <i class="fas fa-edit me-2"></i> Enviar mi historia
         </button>

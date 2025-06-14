@@ -1,6 +1,6 @@
 /**
- * Universidad Marítima del Caribe - Maritime Engineering
- * Form Validation Script
+ * Universidad Marítima del Caribe - Ingenieria maritima
+ * Script de Validación de Formularios
  */
 
 document.addEventListener('DOMContentLoaded', function() {

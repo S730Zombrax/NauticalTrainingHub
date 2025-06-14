@@ -1,17 +1,24 @@
 {% extends "layout.html" %}
 
-{% block title %}Proceso de Admisión - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Proceso de Admisión - Escuela Nautica{% endblock %}
 
 {% block content %}
-<!-- Admission Hero Section -->
-<section class="hero">
+<!-- Admission sección del hero -->
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
     <div class="container hero-content text-center">
         <h1 class="hero-title">Proceso de Admisión</h1>
         <p class="hero-subtitle">Inicia tu camino para convertirte en un Ingeniero Marino de clase mundial en la Universidad Marítima del Caribe.</p>
     </div>
 </section>
 
-<!-- Main Content -->
+<!-- Contenido Main -->
 <section class="section">
     <div class="container">
         <div class="row">

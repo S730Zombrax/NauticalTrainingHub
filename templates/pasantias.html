@@ -1,13 +1,22 @@
 {% extends "layout.html" %}
 
-{% block title %}Pasantías - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Pasantías - Escuela Nautica{% endblock %}
 
 {% block content %}
 <!-- Internship Hero Section -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h1 class="mb-4">Programa de Pasantías</h1>
-        <p class="lead">Experiencia práctica a bordo de buques mercantes nacionales e internacionales para complementar tu formación académica.</p>
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Programa de Pasantías</h1>
+            <p class="hero-description fade-in">Experiencia práctica a bordo de buques mercantes nacionales e internacionales para complementar tu formación académica.</p>
+        </div>
     </div>
 </section>
 
@@ -141,7 +150,7 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <h4 class="border-bottom pb-2 mb-3">Condiciones Físicas</h4>
+                                <h5 class="border-bottom pb-2 mb-3">Condiciones Físicas</h5>
                                 <ul>
                                     <li><strong>Salud general:</strong> Excelente condición física, capaz de realizar trabajos que requieren esfuerzo físico.</li>
                                     <li><strong>Resistencia:</strong> Capacidad para trabajar en turnos prolongados y adaptarse a diferentes husos horarios.</li>
@@ -151,7 +160,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h4 class="border-bottom pb-2 mb-3">Habilidades Personales</h4>
+                                <h5 class="border-bottom pb-2 mb-3">Habilidades Personales</h5>
                                 <ul>
                                     <li><strong>Adaptabilidad:</strong> Capacidad de ajustarse a entornos multiculturales y espacios confinados por períodos prolongados.</li>
                                     <li><strong>Trabajo en equipo:</strong> Habilidad para colaborar eficazmente en grupos reducidos.</li>
@@ -177,27 +186,27 @@
                             <div class="col-lg-12">
                                 <ol class="timeline-process">
                                     <li class="timeline-item p-3 mb-4 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">1</span> Verificación de requisitos</h4>
+                                        <h3><span class="badge bg-primary me-2">1</span> Verificación de requisitos</h3>
                                         <p>El estudiante debe verificar que cumple con todos los requisitos académicos y personales antes de iniciar el proceso.</p>
                                     </li>
                                     <li class="timeline-item p-3 mb-4 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">2</span> Solicitud formal</h4>
+                                        <h3><span class="badge bg-primary me-2">2</span> Solicitud formal</h3>
                                         <p>Presentar la solicitud de pasantía en la Coordinación de Relaciones con la Industria, adjuntando la documentación requerida.</p>
                                     </li>
                                     <li class="timeline-item p-3 mb-4 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">3</span> Entrevista y evaluación</h4>
+                                        <h3><span class="badge bg-primary me-2">3</span> Entrevista y evaluación</h3>
                                         <p>Participar en entrevistas con el coordinador académico y, posiblemente, con representantes de las navieras.</p>
                                     </li>
                                     <li class="timeline-item p-3 mb-4 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">4</span> Asignación de naviera</h4>
+                                        <h3><span class="badge bg-primary me-2">4</span> Asignación de naviera</h3>
                                         <p>Según el perfil del estudiante y las plazas disponibles, se asigna una naviera específica.</p>
                                     </li>
                                     <li class="timeline-item p-3 mb-4 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">5</span> Preparación pre-embarque</h4>
+                                        <h3><span class="badge bg-primary me-2">5</span> Preparación pre-embarque</h3>
                                         <p>Completar trámites migratorios, obtener visados necesarios y asistir al seminario pre-embarque obligatorio.</p>
                                     </li>
                                     <li class="timeline-item p-3 bg-light rounded">
-                                        <h4><span class="badge bg-primary me-2">6</span> Embarque y seguimiento</h4>
+                                        <h3><span class="badge bg-primary me-2">6</span> Embarque y seguimiento</h3>
                                         <p>Inicio de la pasantía con seguimiento mensual por parte del tutor académico asignado.</p>
                                     </li>
                                 </ol>
@@ -213,7 +222,7 @@
                     <!-- Shipping Companies -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Navieras Colaboradoras</h3>
+                            <h4 class="m-0">Navieras Colaboradoras</h4>
                         </div>
                         <div class="card-body">
                             <p>Mantenemos convenios activos con importantes empresas navieras que reciben regularmente a nuestros pasantes:</p>
@@ -243,7 +252,7 @@
                     <!-- Deadlines -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-secondary text-white">
-                            <h3 class="m-0">Fechas Importantes</h3>
+                            <h4 class="m-0">Fechas Importantes</h4>
                         </div>
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush">
@@ -302,7 +311,7 @@
                     <!-- Contact -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-accent text-dark">
-                            <h3 class="m-0">Contacto e Información</h3>
+                            <h4 class="m-0">Contacto e Información</h4>
                         </div>
                         <div class="card-body">
                             <p>Para cualquier consulta sobre el programa de pasantías:</p>
@@ -334,7 +343,7 @@
                     <!-- Photo Contest -->
                     <div class="card shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Concurso de Fotografías</h3>
+                            <h4 class="m-0">Concurso de Fotografías</h4>
                         </div>
                         <div class="card-body">
                             <div class="img-placeholder mb-3">
@@ -346,7 +355,7 @@
                             <div class="alert alert-info">
                                 <i class="fas fa-info-circle me-2"></i>
                                 <strong>Próxima edición:</strong> El concurso abrirá en noviembre 2023.
-                            </div>
+                            </div> 
                             <button class="btn btn-outline-primary w-100" disabled>
                                 <i class="fas fa-camera me-2"></i> Bases del concurso
                             </button>
@@ -446,8 +455,19 @@
     </div>
 </section>
 
-<!-- Call to Action -->
-<section class="section bg-primary text-white">
+<!-- LLamada de atencion -->
+ <section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">¿Listo para embarcarte en esta aventura?</h1>
+            <p class="hero-description fade-in">Las pasantías son tu puerta de entrada al mundo profesional de la marina mercante.</p>
+            <button class="btn btn-accent btn-lg" disabled>
+            <i class="fas fa-clipboard-list me-2"></i> Solicitar Información
+        </button>
+        </div>
+    </div>
+</section>
+<!-- <section class="section bg-primary text-white">
     <div class="container text-center">
         <h2 class="mb-4">¿Listo para embarcarte en esta aventura?</h2>
         <p class="mb-4">Las pasantías son tu puerta de entrada al mundo profesional de la marina mercante.</p>
@@ -455,5 +475,5 @@
             <i class="fas fa-clipboard-list me-2"></i> Solicitar Información
         </button>
     </div>
-</section>
+</section> -->
 {% endblock %}

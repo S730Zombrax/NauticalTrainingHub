@@ -1,17 +1,25 @@
 {% extends "layout.html" %}
 
-{% block title %}Idiomas - Universidad Marítima del Caribe{% endblock %}
+{% block title %}Idiomas - Escuela Nautica{% endblock %}
 
 {% block content %}
-<!-- Languages Hero Section -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h1 class="mb-4">Formación en Idiomas para Ingenieros Marinos</h1>
-        <p class="lead">Desarrolla las habilidades lingüísticas necesarias para una carrera internacional en la marina mercante.</p>
+<!-- Seccion de la parte Inicial del Idioma -->
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Formación en Idiomas para Ingenieros Marinos</h1>
+            <p class="hero-description fade-in">Desarrolla las habilidades lingüísticas necesarias para una carrera internacional en la marina mercante.</p>
+        </div>
     </div>
 </section>
-
-<!-- Main Content -->
+<!-- Contenido principal de la seccion de idiomas -->
 <section class="section">
     <div class="container">
         <div class="row">
@@ -26,21 +34,21 @@
                             <div class="col-md-4 mb-4 mb-md-0">
                                 <div class="text-center">
                                     <i class="fas fa-globe fa-3x text-primary mb-3"></i>
-                                    <h4>Comunicación Global</h4>
+                                    <h3>Comunicación Global</h3>
                                     <p>Interactúa con tripulaciones y autoridades portuarias de diferentes nacionalidades.</p>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-4 mb-md-0">
                                 <div class="text-center">
                                     <i class="fas fa-book fa-3x text-primary mb-3"></i>
-                                    <h4>Documentación Técnica</h4>
+                                    <h3>Documentación Técnica</h3>
                                     <p>Comprende manuales y procedimientos técnicos en idiomas extranjeros.</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="text-center">
                                     <i class="fas fa-briefcase fa-3x text-primary mb-3"></i>
-                                    <h4>Oportunidades Laborales</h4>
+                                    <h3>Oportunidades Laborales</h3>
                                     <p>Accede a posiciones en navieras internacionales con mejores condiciones.</p>
                                 </div>
                             </div>
@@ -57,7 +65,7 @@
                     <div class="card-body">
                         <p>El inglés es considerado el idioma universal en el ámbito marítimo. La Organización Marítima Internacional (OMI) ha establecido el inglés como idioma oficial para las comunicaciones marítimas internacionales.</p>
                         
-                        <h4 class="mt-4">Niveles y Contenidos</h4>
+                        <h3 class="mt-4">Niveles y Contenidos</h3>
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered">
                                 <thead class="table-primary">
@@ -197,7 +205,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h4 class="mb-3"><i class="fas fa-graduation-cap text-primary me-2"></i> MarEng Learning Tool</h4>
+                                        <h3 class="mb-3"><i class="fas fa-graduation-cap text-primary me-2"></i> MarEng Learning Tool</h3>
                                         <p>Plataforma especializada en inglés marítimo con módulos específicos para ingeniería naval.</p>
                                         <div class="d-grid">
                                             <a href="https://mareng.utu.fi/" target="_blank" class="btn btn-outline-primary">Visitar sitio</a>
@@ -208,7 +216,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h4 class="mb-3"><i class="fas fa-language text-primary me-2"></i> Instituto Confucio Online</h4>
+                                        <h3 class="mb-3"><i class="fas fa-language text-primary me-2"></i> Instituto Confucio Online</h3>
                                         <p>Cursos básicos e intermedios de chino mandarín con secciones especializadas en comercio y transportes.</p>
                                         <div class="d-grid">
                                             <a href="https://www.chinesetest.cn/" target="_blank" class="btn btn-outline-primary">Visitar sitio</a>
@@ -219,7 +227,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h4 class="mb-3"><i class="fas fa-headphones text-primary me-2"></i> Duolingo</h4>
+                                        <h3 class="mb-3"><i class="fas fa-headphones text-primary me-2"></i> Duolingo</h3>
                                         <p>Plataforma gratuita para aprendizaje básico e intermedio de múltiples idiomas.</p>
                                         <div class="d-grid">
                                             <a href="https://www.duolingo.com/" target="_blank" class="btn btn-outline-primary">Visitar sitio</a>
@@ -230,7 +238,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h4 class="mb-3"><i class="fas fa-book-open text-primary me-2"></i> SeaTalk</h4>
+                                        <h3 class="mb-3"><i class="fas fa-book-open text-primary me-2"></i> SeaTalk</h3>
                                         <p>Herramienta de la OMI para el aprendizaje de fraseología marítima estándar en inglés.</p>
                                         <div class="d-grid">
                                             <a href="https://www.seatalk.pro/" target="_blank" class="btn btn-outline-primary">Visitar sitio</a>
@@ -249,7 +257,7 @@
                     <!-- Registration Form -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-primary text-white">
-                            <h3 class="m-0">Próximos Cursos</h3>
+                            <h4 class="m-0">Próximos Cursos</h4>
                         </div>
                         <div class="card-body">
                             <p>Inscripciones abiertas para el siguiente período académico:</p>
@@ -289,7 +297,7 @@
                     <!-- Language Requirements -->
                     <div class="card mb-4 shadow">
                         <div class="card-header bg-secondary text-white">
-                            <h3 class="m-0">Requisitos Lingüísticos de la OMI</h3>
+                            <h4 class="m-0">Requisitos Lingüísticos de la OMI</h4>
                         </div>
                         <div class="card-body">
                             <p>La Organización Marítima Internacional establece requisitos lingüísticos específicos para oficiales de marina mercante:</p>
@@ -310,7 +318,7 @@
                     <!-- Success Stories -->
                     <div class="card shadow">
                         <div class="card-header bg-accent text-dark">
-                            <h3 class="m-0">Experiencias de Egresados</h3>
+                            <h4 class="m-0">Experiencias de Egresados</h4>
                         </div>
                         <div class="card-body p-0">
                             <div class="p-3 border-bottom">
@@ -552,14 +560,15 @@
     </div>
 </section>
 
-<!-- Call to Action -->
-<section class="section bg-primary text-white">
-    <div class="container text-center">
-        <h2 class="mb-4">Amplía tus horizontes profesionales</h2>
-        <p class="mb-4">Dominar idiomas extranjeros multiplica tus oportunidades en la marina mercante internacional.</p>
-        <a href="{{ url_for('registro') }}" class="btn btn-accent btn-lg">
+<!-- Llamada de la acción -->
+ <section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Amplía tus horizontes profesionales</h1>
+            <p class="hero-description fade-in">Dominar idiomas extranjeros multiplica tus oportunidades en la marina mercante internacional.</p>
+            <a href="{{ url_for('registro') }}" class="btn btn-accent btn-lg">
             <i class="fas fa-language me-2"></i> Comienza tu preparación lingüística
-        </a>
+            </a>
+        </div>
     </div>
-</section>
 {% endblock %}

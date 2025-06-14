@@ -4,12 +4,22 @@
 
 {% block content %}
 <!-- Registration Header -->
-<section class="section bg-primary text-white">
+<section class="hero" style="
+    background-image: url('{{ url_for('static', filename='proyecto UMC/oscuro.gif')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0;
+    text-align: center;
+    color: white;">
     <div class="container">
-        <h1 class="text-center">Registro de Ficha QR</h1>
-        <p class="text-center">Completa este formulario para generar tu código QR personal que contendrá información sobre tus cursos OMI, calificaciones, datos personales y perfil psicológico.</p>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Registro de Ficha QR</h1>
+            <p class="hero-description fade-in">Completa este formulario para generar tu código QR personal que contendrá información sobre tus cursos OMI, calificaciones, datos personales y perfil psicológico.</p>
+        </div>
     </div>
 </section>
+
 
 <!-- Registration Form Section -->
 <section class="section">
@@ -234,7 +244,7 @@
     </div>
 </section>
 
-<!-- Information Section -->
+<!-- Sección informativa -->
 <section class="section bg-light">
     <div class="container">
         <h2 class="section-title">Beneficios del Registro QR</h2>
