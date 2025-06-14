@@ -1,14 +1,171 @@
 import os
 import logging
 import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash
+import uuid
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+from sqlalchemy.orm import DeclarativeBase
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
-# Create Flask app
+# Base class for SQLAlchemy models
+class Base(DeclarativeBase):
+    pass
+
+# Create Flask app and database
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev_key_change_in_production")
+
+# Database configuration
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    raise RuntimeError("DATABASE_URL environment variable is not set")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_recycle": 300,
+    "pool_pre_ping": True,
+}
+
+# File upload configuration
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB max file size
+
+# Initialize database
+db = SQLAlchemy(app, model_class=Base)
+
+# Initialize login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+login_manager.login_message = 'Debes iniciar sesión para acceder a esta página.'
+login_manager.login_message_category = 'info'
+
+# Define models here to avoid circular imports
+class Estudiante(UserMixin, db.Model):
+    __tablename__ = 'estudiantes'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    cedula = db.Column(db.String(15), unique=True, nullable=False)
+    nombre = db.Column(db.String(100), nullable=False)
+    apellido = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    telefono = db.Column(db.String(20))
+    fecha_nacimiento = db.Column(db.Date)
+    direccion = db.Column(db.Text)
+    semestre = db.Column(db.Integer, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+    fecha_registro = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    activo = db.Column(db.Boolean, default=True)
+    
+    def get_nombre_completo(self):
+        return f'{self.nombre} {self.apellido}'
+
+class Profesor(UserMixin, db.Model):
+    __tablename__ = 'profesores'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    cedula = db.Column(db.String(15), unique=True, nullable=False)
+    nombre = db.Column(db.String(100), nullable=False)
+    apellido = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    telefono = db.Column(db.String(20))
+    departamento = db.Column(db.String(100), nullable=False)
+    materias = db.Column(db.Text)
+    experiencia_anos = db.Column(db.Integer)
+    titulo_academico = db.Column(db.String(200))
+    password_hash = db.Column(db.String(256), nullable=False)
+    fecha_registro = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    activo = db.Column(db.Boolean, default=True)
+    
+    def get_nombre_completo(self):
+        return f'{self.nombre} {self.apellido}'
+    
+    def get_materias_lista(self):
+        if self.materias:
+            return [materia.strip() for materia in self.materias.split(',')]
+        return []
+
+class EvaluacionDocente(db.Model):
+    __tablename__ = 'evaluaciones_docentes'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    estudiante_id = db.Column(db.Integer, db.ForeignKey('estudiantes.id'), nullable=False)
+    profesor_id = db.Column(db.Integer, db.ForeignKey('profesores.id'), nullable=False)
+    dominio_materia = db.Column(db.Integer, nullable=False)
+    claridad_explicacion = db.Column(db.Integer, nullable=False)
+    puntualidad = db.Column(db.Integer, nullable=False)
+    disponibilidad = db.Column(db.Integer, nullable=False)
+    metodologia = db.Column(db.Integer, nullable=False)
+    evaluacion_general = db.Column(db.Integer, nullable=False)
+    aspectos_positivos = db.Column(db.Text)
+    aspectos_mejorar = db.Column(db.Text)
+    comentarios_generales = db.Column(db.Text)
+    recomendacion = db.Column(db.String(20), nullable=False)
+    semestre = db.Column(db.Integer, nullable=False)
+    periodo_academico = db.Column(db.String(10), nullable=False)
+    fecha_evaluacion = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    
+    estudiante = db.relationship('Estudiante', backref='evaluaciones')
+    profesor = db.relationship('Profesor', backref='evaluaciones_recibidas')
+
+class VideoClase(db.Model):
+    __tablename__ = 'videos_clases'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    profesor_id = db.Column(db.Integer, db.ForeignKey('profesores.id'), nullable=False)
+    titulo = db.Column(db.String(200), nullable=False)
+    descripcion = db.Column(db.Text)
+    materia = db.Column(db.String(100), nullable=False)
+    semestre = db.Column(db.Integer)
+    archivo_video = db.Column(db.String(500))
+    url_video = db.Column(db.String(500))
+    duracion_minutos = db.Column(db.Integer)
+    fecha_subida = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    activo = db.Column(db.Boolean, default=True)
+    
+    profesor = db.relationship('Profesor', backref='videos_subidos')
+
+class TokenQRProfesor(db.Model):
+    __tablename__ = 'tokens_qr_profesores'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    profesor_id = db.Column(db.Integer, db.ForeignKey('profesores.id'), nullable=False)
+    token = db.Column(db.String(100), unique=True, nullable=False)
+    fecha_creacion = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    fecha_expiracion = db.Column(db.DateTime)
+    activo = db.Column(db.Boolean, default=True)
+    usos = db.Column(db.Integer, default=0)
+    
+    profesor = db.relationship('Profesor', backref='tokens_qr')
+
+# User loader for login manager
+@login_manager.user_loader
+def load_user(user_id):
+    user = Estudiante.query.get(user_id)
+    if user:
+        user.user_type = 'estudiante'
+        return user
+    
+    user = Profesor.query.get(user_id)
+    if user:
+        user.user_type = 'profesor'
+        return user
+    
+    return None
+
+# Create upload directory if it doesn't exist
+upload_dir = os.path.join(app.root_path, 'static', 'uploads')
+os.makedirs(upload_dir, exist_ok=True)
+
+# Create database tables
+with app.app_context():
+    db.create_all()
 
 # Context processor to add date information to all templates
 @app.context_processor
