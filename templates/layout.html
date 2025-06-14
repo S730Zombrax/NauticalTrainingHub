@@ -114,7 +114,7 @@
                             {{ current_user.get_nombre_completo() }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            {% if hasattr(current_user, 'user_type') and current_user.user_type == 'profesor' %}
+                            {% if current_user.__class__.__name__ == 'Profesor' %}
                                 <li><a class="dropdown-item" href="{{ url_for('panel_profesor') }}">
                                     <i class="fas fa-tachometer-alt me-2"></i>Panel de Profesor
                                 </a></li>

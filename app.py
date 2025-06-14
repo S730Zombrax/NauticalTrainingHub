@@ -258,7 +258,7 @@ def login():
         else:
             user = Profesor.query.filter_by(email=email, activo=True).first()
         
-        if user and check_password_hash(user.password_hash, password):
+        if user and user.password_hash and check_password_hash(user.password_hash, password):
             login_user(user)
             user.user_type = user_type
             
@@ -289,6 +289,11 @@ def registro_estudiante():
         semestre = request.form.get('semestre')
         password = request.form.get('password')
         
+        # Validate required fields
+        if not all([cedula, nombre, apellido, email, semestre, password]):
+            flash('Todos los campos obligatorios deben ser completados.', 'error')
+            return redirect(url_for('registro_estudiante'))
+        
         # Check if user already exists
         existing_student = Estudiante.query.filter(
             (Estudiante.email == email) | (Estudiante.cedula == cedula)
@@ -299,15 +304,14 @@ def registro_estudiante():
             return redirect(url_for('registro_estudiante'))
         
         # Create new student
-        new_student = Estudiante(
-            cedula=cedula,
-            nombre=nombre,
-            apellido=apellido,
-            email=email,
-            telefono=telefono,
-            semestre=int(semestre),
-            password_hash=generate_password_hash(password)
-        )
+        new_student = Estudiante()
+        new_student.cedula = cedula
+        new_student.nombre = nombre
+        new_student.apellido = apellido
+        new_student.email = email
+        new_student.telefono = telefono
+        new_student.semestre = int(semestre) if semestre else 1
+        new_student.password_hash = generate_password_hash(password) if password else ''
         
         db.session.add(new_student)
         db.session.commit()
@@ -341,18 +345,17 @@ def registro_profesor():
             return redirect(url_for('registro_profesor'))
         
         # Create new professor
-        new_professor = Profesor(
-            cedula=cedula,
-            nombre=nombre,
-            apellido=apellido,
-            email=email,
-            telefono=telefono,
-            departamento=departamento,
-            materias=materias,
-            experiencia_anos=int(experiencia_anos) if experiencia_anos else None,
-            titulo_academico=titulo_academico,
-            password_hash=generate_password_hash(password)
-        )
+        new_professor = Profesor()
+        new_professor.cedula = cedula
+        new_professor.nombre = nombre
+        new_professor.apellido = apellido
+        new_professor.email = email
+        new_professor.telefono = telefono
+        new_professor.departamento = departamento
+        new_professor.materias = materias
+        new_professor.experiencia_anos = int(experiencia_anos) if experiencia_anos else None
+        new_professor.titulo_academico = titulo_academico
+        new_professor.password_hash = generate_password_hash(password) if password else ''
         
         db.session.add(new_professor)
         db.session.commit()
