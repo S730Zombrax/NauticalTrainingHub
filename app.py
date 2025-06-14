@@ -217,9 +217,7 @@ def noticias():
 def jornada():
     return render_template('jornada.html')
 
-@app.route('/classroom')
-def classroom():
-    return render_template('classroom.html')
+
 
 @app.route('/sugerencias', methods=['GET', 'POST'])
 def sugerencias():
@@ -239,88 +237,332 @@ def sugerencias():
 def biblioteca():
     return render_template('biblioteca.html')
 
-@app.route('/docentes')
-def docentes():
-    # Lista de profesores de la institución
-    profesores = [
-        {
-            'id': 1,
-            'nombre': 'Dr. Carlos Navarro',
-            'materia': 'Ingeniería Naval',
-            'departamento': 'Ciencias Marítimas',
-            'email': 'c.navarro@umc.edu.ve',
-            'experiencia': '15 años'
-        },
-        {
-            'id': 2,
-            'nombre': 'Ing. María Fernández',
-            'materia': 'Motores Marinos',
-            'departamento': 'Ingeniería Mecánica',
-            'email': 'm.fernandez@umc.edu.ve',
-            'experiencia': '12 años'
-        },
-        {
-            'id': 3,
-            'nombre': 'Capt. Roberto Silva',
-            'materia': 'Navegación y Maniobra',
-            'departamento': 'Ciencias Náuticas',
-            'email': 'r.silva@umc.edu.ve',
-            'experiencia': '20 años'
-        },
-        {
-            'id': 4,
-            'nombre': 'Dra. Ana Rodríguez',
-            'materia': 'Derecho Marítimo',
-            'departamento': 'Ciencias Jurídicas',
-            'email': 'a.rodriguez@umc.edu.ve',
-            'experiencia': '18 años'
-        },
-        {
-            'id': 5,
-            'nombre': 'Ing. Pedro Morales',
-            'materia': 'Sistemas de Propulsión',
-            'departamento': 'Ingeniería Mecánica',
-            'email': 'p.morales@umc.edu.ve',
-            'experiencia': '10 años'
-        },
-        {
-            'id': 6,
-            'nombre': 'Prof. Carmen López',
-            'materia': 'Comunicaciones Marítimas',
-            'departamento': 'Tecnología Naval',
-            'email': 'c.lopez@umc.edu.ve',
-            'experiencia': '8 años'
-        }
-    ]
-    return render_template('docentes.html', profesores=profesores)
-
-@app.route('/evaluar-docente/<int:profesor_id>', methods=['GET', 'POST'])
-def evaluar_docente(profesor_id):
-    # Lista de profesores (misma que en /docentes)
-    profesores = [
-        {'id': 1, 'nombre': 'Dr. Carlos Navarro', 'materia': 'Ingeniería Naval'},
-        {'id': 2, 'nombre': 'Ing. María Fernández', 'materia': 'Motores Marinos'},
-        {'id': 3, 'nombre': 'Capt. Roberto Silva', 'materia': 'Navegación y Maniobra'},
-        {'id': 4, 'nombre': 'Dra. Ana Rodríguez', 'materia': 'Derecho Marítimo'},
-        {'id': 5, 'nombre': 'Ing. Pedro Morales', 'materia': 'Sistemas de Propulsión'},
-        {'id': 6, 'nombre': 'Prof. Carmen López', 'materia': 'Comunicaciones Marítimas'}
-    ]
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user_type = request.form.get('user_type')
+        
+        if user_type == 'estudiante':
+            query = "SELECT * FROM estudiantes WHERE email = %s AND activo = TRUE"
+        elif user_type == 'profesor':
+            query = "SELECT * FROM profesores WHERE email = %s AND activo = TRUE"
+        else:
+            flash('Tipo de usuario inválido.', 'error')
+            return redirect(url_for('login'))
+        
+        # Execute query using SQL tool would be complex, let's use Flask-SQLAlchemy models
+        if user_type == 'estudiante':
+            user = Estudiante.query.filter_by(email=email, activo=True).first()
+        else:
+            user = Profesor.query.filter_by(email=email, activo=True).first()
+        
+        if user and check_password_hash(user.password_hash, password):
+            login_user(user)
+            user.user_type = user_type
+            
+            next_page = request.args.get('next')
+            if user_type == 'profesor':
+                return redirect(next_page) if next_page else redirect(url_for('panel_profesor'))
+            else:
+                return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Email o contraseña incorrectos.', 'error')
     
-    # Buscar el profesor por ID
-    profesor = next((p for p in profesores if p['id'] == profesor_id), None)
-    if not profesor:
-        flash('Profesor no encontrado.', 'error')
-        return redirect(url_for('docentes'))
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Has cerrado sesión exitosamente.', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/registro-estudiante', methods=['GET', 'POST'])
+def registro_estudiante():
+    if request.method == 'POST':
+        cedula = request.form.get('cedula')
+        nombre = request.form.get('nombre')
+        apellido = request.form.get('apellido')
+        email = request.form.get('email')
+        telefono = request.form.get('telefono')
+        semestre = request.form.get('semestre')
+        password = request.form.get('password')
+        
+        # Check if user already exists
+        existing_student = Estudiante.query.filter(
+            (Estudiante.email == email) | (Estudiante.cedula == cedula)
+        ).first()
+        
+        if existing_student:
+            flash('Ya existe un estudiante con esa cédula o email.', 'error')
+            return redirect(url_for('registro_estudiante'))
+        
+        # Create new student
+        new_student = Estudiante(
+            cedula=cedula,
+            nombre=nombre,
+            apellido=apellido,
+            email=email,
+            telefono=telefono,
+            semestre=int(semestre),
+            password_hash=generate_password_hash(password)
+        )
+        
+        db.session.add(new_student)
+        db.session.commit()
+        
+        flash('Registro exitoso. Ya puedes iniciar sesión.', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('registro_estudiante.html')
+
+@app.route('/registro-profesor', methods=['GET', 'POST'])
+def registro_profesor():
+    if request.method == 'POST':
+        cedula = request.form.get('cedula')
+        nombre = request.form.get('nombre')
+        apellido = request.form.get('apellido')
+        email = request.form.get('email')
+        telefono = request.form.get('telefono')
+        departamento = request.form.get('departamento')
+        materias = request.form.get('materias')
+        experiencia_anos = request.form.get('experiencia_anos')
+        titulo_academico = request.form.get('titulo_academico')
+        password = request.form.get('password')
+        
+        # Check if professor already exists
+        existing_professor = Profesor.query.filter(
+            (Profesor.email == email) | (Profesor.cedula == cedula)
+        ).first()
+        
+        if existing_professor:
+            flash('Ya existe un profesor con esa cédula o email.', 'error')
+            return redirect(url_for('registro_profesor'))
+        
+        # Create new professor
+        new_professor = Profesor(
+            cedula=cedula,
+            nombre=nombre,
+            apellido=apellido,
+            email=email,
+            telefono=telefono,
+            departamento=departamento,
+            materias=materias,
+            experiencia_anos=int(experiencia_anos) if experiencia_anos else None,
+            titulo_academico=titulo_academico,
+            password_hash=generate_password_hash(password)
+        )
+        
+        db.session.add(new_professor)
+        db.session.commit()
+        
+        flash('Registro exitoso. Ya puedes iniciar sesión.', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('registro_profesor.html')
+
+@app.route('/panel-profesor')
+@login_required
+def panel_profesor():
+    if not hasattr(current_user, 'user_type') or current_user.user_type != 'profesor':
+        flash('Acceso denegado. Solo para profesores.', 'error')
+        return redirect(url_for('index'))
+    
+    # Get professor's QR token
+    qr_token = TokenQRProfesor.query.filter_by(
+        profesor_id=current_user.id, 
+        activo=True
+    ).first()
+    
+    if not qr_token:
+        # Generate new QR token
+        token = str(uuid.uuid4())
+        qr_token = TokenQRProfesor(
+            profesor_id=current_user.id,
+            token=token
+        )
+        db.session.add(qr_token)
+        db.session.commit()
+    
+    # Get professor's videos
+    videos = VideoClase.query.filter_by(
+        profesor_id=current_user.id,
+        activo=True
+    ).order_by(VideoClase.fecha_subida.desc()).all()
+    
+    # Get evaluations received
+    evaluaciones = EvaluacionDocente.query.filter_by(
+        profesor_id=current_user.id
+    ).order_by(EvaluacionDocente.fecha_evaluacion.desc()).limit(10).all()
+    
+    evaluation_url = url_for('evaluar_docente_token', token=qr_token.token, _external=True)
+    
+    return render_template('panel_profesor.html', 
+                         qr_token=qr_token.token,
+                         evaluation_url=evaluation_url,
+                         videos=videos,
+                         evaluaciones=evaluaciones)
+
+@app.route('/subir-video', methods=['GET', 'POST'])
+@login_required
+def subir_video():
+    if not hasattr(current_user, 'user_type') or current_user.user_type != 'profesor':
+        flash('Acceso denegado. Solo para profesores.', 'error')
+        return redirect(url_for('index'))
     
     if request.method == 'POST':
-        # Procesar la evaluación (sin base de datos por ahora)
-        estudiante_nombre = request.form.get('estudiante_nombre')
-        estudiante_cedula = request.form.get('estudiante_cedula')
+        titulo = request.form.get('titulo')
+        descripcion = request.form.get('descripcion')
+        materia = request.form.get('materia')
+        semestre = request.form.get('semestre')
+        url_video = request.form.get('url_video')
+        duracion_minutos = request.form.get('duracion_minutos')
         
-        flash(f'¡Evaluación enviada exitosamente para {profesor["nombre"]}! Gracias por tu retroalimentación.', 'success')
-        return redirect(url_for('docentes'))
+        # Handle file upload
+        archivo_video = None
+        if 'archivo_video' in request.files:
+            file = request.files['archivo_video']
+            if file and file.filename:
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(upload_dir, filename)
+                file.save(file_path)
+                archivo_video = f'uploads/{filename}'
+        
+        new_video = VideoClase(
+            profesor_id=current_user.id,
+            titulo=titulo,
+            descripcion=descripcion,
+            materia=materia,
+            semestre=int(semestre) if semestre else None,
+            archivo_video=archivo_video,
+            url_video=url_video,
+            duracion_minutos=int(duracion_minutos) if duracion_minutos else None
+        )
+        
+        db.session.add(new_video)
+        db.session.commit()
+        
+        flash('Video subido exitosamente.', 'success')
+        return redirect(url_for('panel_profesor'))
     
-    return render_template('evaluar_docente.html', profesor=profesor)
+    return render_template('subir_video.html')
+
+@app.route('/evaluar/<token>')
+def evaluar_docente_token(token):
+    # Find professor by token
+    qr_token = TokenQRProfesor.query.filter_by(token=token, activo=True).first()
+    if not qr_token:
+        flash('Token de evaluación inválido o expirado.', 'error')
+        return redirect(url_for('index'))
+    
+    profesor = qr_token.profesor
+    
+    # Increment usage counter
+    qr_token.usos += 1
+    db.session.commit()
+    
+    return render_template('evaluar_docente_privado.html', profesor=profesor, token=token)
+
+@app.route('/evaluar-docente-submit', methods=['POST'])
+def evaluar_docente_submit():
+    token = request.form.get('token')
+    
+    # Find professor by token
+    qr_token = TokenQRProfesor.query.filter_by(token=token, activo=True).first()
+    if not qr_token:
+        flash('Token de evaluación inválido.', 'error')
+        return redirect(url_for('index'))
+    
+    # Get evaluation data
+    estudiante_cedula = request.form.get('estudiante_cedula')
+    estudiante_nombre = request.form.get('estudiante_nombre')
+    semestre = request.form.get('semestre')
+    periodo_academico = request.form.get('periodo')
+    
+    # Ratings
+    dominio_materia = int(request.form.get('dominio_materia'))
+    claridad_explicacion = int(request.form.get('claridad_explicacion'))
+    puntualidad = int(request.form.get('puntualidad'))
+    disponibilidad = int(request.form.get('disponibilidad'))
+    metodologia = int(request.form.get('metodologia'))
+    evaluacion_general = int(request.form.get('evaluacion_general'))
+    
+    # Comments
+    aspectos_positivos = request.form.get('aspectos_positivos')
+    aspectos_mejorar = request.form.get('aspectos_mejorar')
+    comentarios_generales = request.form.get('comentarios_generales')
+    recomendacion = request.form.get('recomendacion')
+    
+    # Find or create student (anonymous evaluation, we only store basic info)
+    estudiante = Estudiante.query.filter_by(cedula=estudiante_cedula).first()
+    if not estudiante:
+        # Create temporary student record for evaluation purposes
+        estudiante = Estudiante(
+            cedula=estudiante_cedula,
+            nombre=estudiante_nombre.split()[0],
+            apellido=' '.join(estudiante_nombre.split()[1:]) if len(estudiante_nombre.split()) > 1 else '',
+            email=f"temp_{estudiante_cedula}@temp.umc.edu.ve",
+            semestre=int(semestre),
+            password_hash=generate_password_hash('temp_password')
+        )
+        db.session.add(estudiante)
+        db.session.flush()  # Get the ID without committing
+    
+    # Check if evaluation already exists
+    existing_eval = EvaluacionDocente.query.filter_by(
+        estudiante_id=estudiante.id,
+        profesor_id=qr_token.profesor_id,
+        periodo_academico=periodo_academico
+    ).first()
+    
+    if existing_eval:
+        flash('Ya has evaluado a este profesor en este período académico.', 'warning')
+        return redirect(url_for('index'))
+    
+    # Create evaluation
+    new_evaluation = EvaluacionDocente(
+        estudiante_id=estudiante.id,
+        profesor_id=qr_token.profesor_id,
+        dominio_materia=dominio_materia,
+        claridad_explicacion=claridad_explicacion,
+        puntualidad=puntualidad,
+        disponibilidad=disponibilidad,
+        metodologia=metodologia,
+        evaluacion_general=evaluacion_general,
+        aspectos_positivos=aspectos_positivos,
+        aspectos_mejorar=aspectos_mejorar,
+        comentarios_generales=comentarios_generales,
+        recomendacion=recomendacion,
+        semestre=int(semestre),
+        periodo_academico=periodo_academico
+    )
+    
+    db.session.add(new_evaluation)
+    db.session.commit()
+    
+    flash(f'¡Evaluación enviada exitosamente para {qr_token.profesor.get_nombre_completo()}! Gracias por tu retroalimentación.', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/classroom')
+def classroom():
+    # Get all videos from active professors
+    videos = VideoClase.query.filter_by(activo=True).order_by(VideoClase.fecha_subida.desc()).all()
+    
+    # Group videos by subject
+    videos_por_materia = {}
+    for video in videos:
+        if video.materia not in videos_por_materia:
+            videos_por_materia[video.materia] = []
+        videos_por_materia[video.materia].append(video)
+    
+    return render_template('classroom.html', videos_por_materia=videos_por_materia)
+
+# Remove old docentes route since it's now private
+@app.route('/docentes')
+def docentes():
+    flash('La evaluación docente ahora es privada. Los profesores proporcionan códigos QR individuales.', 'info')
+    return redirect(url_for('index'))
 
 # Error handlers
 @app.errorhandler(404)
