@@ -335,6 +335,11 @@ def registro_profesor():
         titulo_academico = request.form.get('titulo_academico')
         password = request.form.get('password')
         
+        # Validate required fields
+        if not all([cedula, nombre, apellido, email, departamento, materias, password]):
+            flash('Todos los campos obligatorios deben ser completados.', 'error')
+            return redirect(url_for('registro_profesor'))
+        
         # Check if professor already exists
         existing_professor = Profesor.query.filter(
             (Profesor.email == email) | (Profesor.cedula == cedula)
