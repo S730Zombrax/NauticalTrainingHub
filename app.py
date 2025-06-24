@@ -23,6 +23,18 @@ app.secret_key = os.environ.get("SESSION_SECRET", "dev_key_change_in_production"
 # Database configuration
 database_url = os.environ.get("DATABASE_URL")
 if not database_url:
+    logging.warning("DATABASE_URL no está definido. Usando SQLite local.")
+    database_url = 'sqlite:///app.db'
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_recycle": 300,
+    "pool_pre_ping": True,
+}
+'''
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
     raise RuntimeError("DATABASE_URL environment variable is not set")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
@@ -31,12 +43,13 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
     "pool_pre_ping": True,
 }
-
+'''
 # File upload configuration
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB max file size
 
 # Initialize database
+
 db = SQLAlchemy(app, model_class=Base)
 
 # Initialize login manager
@@ -173,51 +186,50 @@ def inject_now():
     return {'now': datetime.datetime.now()}
 
 # Routes
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('inicio/index.html')
 
 @app.route('/registro')
 def registro():
-    return render_template('registro.html')
+    return render_template('admision/registro.html')
 
 @app.route('/admision')
 def admision():
-    return render_template('admision.html')
+    return render_template('admision/admision.html')
 
 @app.route('/historia')
 def historia():
-    return render_template('historia.html')
+    return render_template('vida academica/historia.html')
 
 @app.route('/pasantias')
 def pasantias():
-    return render_template('pasantias.html')
+    return render_template('vida academica/pasantias.html')
 
 @app.route('/idiomas')
 def idiomas():
-    return render_template('idiomas.html')
+    return render_template('vida academica/idiomas.html')
 
 @app.route('/uniforme')
 def uniforme():
-    return render_template('uniforme.html')
+    return render_template('uniforme/uniforme.html')
 
 @app.route('/vida-cadete')
 def vida_cadete():
-    return render_template('vida_cadete.html')
+    return render_template('vida academica/vida_cadete.html')
 
 @app.route('/games')
 def games():
-    return render_template('games.html')
+    return render_template('recursos/games.html')
 
 @app.route('/noticias')
 def noticias():
-    return render_template('noticias.html')
+    return render_template('noticias y eventos/noticias.html')
 
 @app.route('/jornada')
 def jornada():
-    return render_template('jornada.html')
-
-
+    return render_template('noticias y eventos/jornada.html')
 
 @app.route('/sugerencias', methods=['GET', 'POST'])
 def sugerencias():
@@ -231,11 +243,11 @@ def sugerencias():
         flash('¡Gracias por tu sugerencia! La revisaremos pronto.', 'success')
         return redirect(url_for('sugerencias'))
         
-    return render_template('sugerencias.html')
+    return render_template('sugerencias/sugerencias.html')
 
 @app.route('/biblioteca')
 def biblioteca():
-    return render_template('biblioteca.html')
+    return render_template('recursos/biblioteca.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -270,7 +282,7 @@ def login():
         else:
             flash('Email o contraseña incorrectos.', 'error')
     
-    return render_template('login.html')
+    return render_template('iniciar sesion/login.html')
 
 @app.route('/logout')
 def logout():
@@ -319,7 +331,7 @@ def registro_estudiante():
         flash('Registro exitoso. Ya puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
     
-    return render_template('registro_estudiante.html')
+    return render_template('iniciar sesion/registro_estudiante.html')
 
 @app.route('/registro-profesor', methods=['GET', 'POST'])
 def registro_profesor():
@@ -368,7 +380,7 @@ def registro_profesor():
         flash('Registro exitoso. Ya puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
     
-    return render_template('registro_profesor.html')
+    return render_template('iniciar sesion/registro_profesor.html')
 
 @app.route('/panel-profesor')
 @login_required
@@ -406,7 +418,7 @@ def panel_profesor():
     
     evaluation_url = url_for('evaluar_docente_token', token=qr_token.token, _external=True)
     
-    return render_template('panel_profesor.html', 
+    return render_template('iniciar sesion/panel_profesor.html', 
                          qr_token=qr_token.token,
                          evaluation_url=evaluation_url,
                          videos=videos,
@@ -564,7 +576,7 @@ def classroom():
             videos_por_materia[video.materia] = []
         videos_por_materia[video.materia].append(video)
     
-    return render_template('classroom.html', videos_por_materia=videos_por_materia)
+    return render_template('recursos/classroom.html', videos_por_materia=videos_por_materia)
 
 # Remove old docentes route since it's now private
 @app.route('/docentes')

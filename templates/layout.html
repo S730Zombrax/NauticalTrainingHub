@@ -18,7 +18,6 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
@@ -30,10 +29,10 @@
     <!-- Navigacion -->
     <nav class="navbar">
         <div class="container navbar-container">
-                        <a href="{{ url_for('index') }}" class="navbar-logo" style="display: flex; align-items: center;">
-                <img src="{{ url_for('static', filename='images/logo_umc.png') }}"                             alt="Logo UMC" style="height: 44px; margin-right: 10px;">
-                            <span>Escuela Nautica</span>
-                        </a>
+            <a href="{{ url_for('index') }}" class="navbar-logo" style="display: flex; align-items: center;">
+            <img src="{{ url_for('static', filename='logo_umc.png') }}" alt="Logo UMC" style="height: 44px; margin-right: 10px;">
+                <span>Escuela Nautica</span>
+                </a>
             
             <div class="navbar-toggle">
                 <span></span>
