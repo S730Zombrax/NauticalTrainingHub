@@ -21,7 +21,18 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev_key_change_in_production")
 
 # Database configuration
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    logging.warning("DATABASE_URL no está definido. Usando SQLite local.")
+    database_url = 'sqlite:///app.db'
 
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_recycle": 300,
+    "pool_pre_ping": True,
+}
+'''
 database_url = os.environ.get("DATABASE_URL")
 if not database_url:
     raise RuntimeError("DATABASE_URL environment variable is not set")
@@ -32,7 +43,7 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
     "pool_pre_ping": True,
 }
-
+'''
 # File upload configuration
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB max file size
