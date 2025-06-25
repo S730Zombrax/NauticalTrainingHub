@@ -1,0 +1,5 @@
+Pasos de ejecucion:
+1. En la parte superior del archivo escribir CMD y dar enter, esto para abrir un una ventana negra que da acceso al archivo y su contenido
+2. copiar y pegar el siguiente codigo sin las comillas y dar enter "python main.py"
+3. Ctrl + Click sobre alguno de las dos direcciones ip que te arroja la ventana negra
+4. opcionalmente si no tiene las dependecias usar el comando "pip install <nombre de dependencia>" (sustituir nombre de dependencia por el nombre de a dependencia que haga falta)
