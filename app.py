@@ -231,6 +231,10 @@ def noticias():
 def jornada():
     return render_template('noticias y eventos/jornada.html')
 
+@app.route('/autoridades')
+def autoridades_env():
+    return render_template('autoridades/autoridadesENV.html')
+
 @app.route('/sugerencias', methods=['GET', 'POST'])
 def sugerencias():
     if request.method == 'POST':

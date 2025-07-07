@@ -101,7 +101,11 @@
                 <li class="nav-item">
                     <a href="{{ url_for('sugerencias') }}" class="nav-link">Sugerencias</a>
                 </li>
-                
+
+                <!-- Autoridades -->
+                <li class="nav-item">
+                    <a href="{{ url_for('autoridades_env') }}" class="nav-link">Autoridades</a>
+                </li>
                 <!-- Auth Menu Item -->
                 {% if current_user.is_authenticated %}
                     <li class="nav-item dropdown">
