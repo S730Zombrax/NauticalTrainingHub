@@ -2096,7 +2096,8 @@ details[open] summary::before{
 }
 
 .personalENV{
-    margin-top: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 
